@@ -19,189 +19,156 @@ search: true
 
 Introduction ...
 
-# Authentication
+# API Manipulation
 
-> To authorize, use this code:
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+## Add API
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+# Make sure the `Content-Type` is set correctly
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
+	-H 'Content-Type: application/json'
+	-d '{
+	  "name": "Github",
+	  "type": "REST",
+	  "version": "1.0",
+	  "provider": "Github Inc.",
+	  "description": "github apis",
+	  "baseUrl": "https://api.github.com"
+	}'
+```
+
+```python
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+This endpoint adds an API entity to APIBase.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+### HTTP Request
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+`POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}`
 
-`Authorization: meowmeowmeow`
+### Parameters
+attribute | type | example | description
+--- | --- | --- | ---
+\*name | string | "Github" | Name of the API
+type | "REST" | "REST" | type of the API, always "REST"
+version | string | "1.0" | version string
+\*provider | string | "Github Inc." | a short sentence representing the provider
+tags | ["strings"] | ["development", "git"] | list of tags that identify the API
+\*description | string | "github APIs" | description about the API
+\*baseUrl |string | "https://api.github.com" | base URL of the API
+
+
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Attributes marked with * are required
 </aside>
 
-# Kittens
-
-## Get All Kittens
-
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+If you are using shell, make sure the <code>Content-Type</code> is set correctly to <code>application/json</code>
 </aside>
 
-## Get a Specific Kitten
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Retrieve information of an API
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves an API.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}`
 
-### URL Parameters
+### Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+attribute | type | description
+--- | --- | --- | ---
+id | uuid | id of the API
 
-## Delete a Specific Kitten
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Add a Method to an API
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+#
+curl -XPOST -H 'Content-Type: application/json' \
+http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/methods -d '{
+  "name": "GetGist”,
+  "method": "POST",
+  "path": "/gist/{gistId}",
+  "description": "get a gist"
+}'
 ```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
+This endpoint adds a Method entity to an API.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/methods`
 
-### URL Parameters
+### Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+attribute | type | example | description
+--- | --- | --- | ---
+\*name | string | "GetGist" | Name of the Method
+\*method | `POST`, `GET`, `PUT` or `DELETE` | "GET" | HTTP method used
+\*path | string | "gist/{gistId}" | path for the endpoint, relative to the `baseURL` of the API, use brackets {} if there for placeholder segments
+\*description | string | "get a gist" | description for the Method
+
+
+## Retrieve information of a Method
+
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c
+```
+
+This endpoint retrieves a Method.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}`
+
+### Parameters
+
+attribute | type | description
+--- | --- | --- | ---
+id | uuid | id of the Method
+
+
+
+## Add a Parameter to a Method
+
+```shell
+curl -XPOST -H 'Content-Type: application/json'
+http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/parameters -d '{
+  "name": "gistId",
+  "location": "path",
+  "type": "string",
+  "required": true
+}'
+
+```
+
+Parameters describe the parameters of a Method, their types, whether they are optional and the place
+where the parameters should be placed (in url as path/query, in the header, or in the request body).
+Locked attribute indicates whether the parameter is intended to be changed by user or not. If it is
+set, APIBase will always use the default value for the parameter regardless of what the user input.
+
+This endpoint adds a Parameter entity to a Metdhod.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/parameters`
+
+### Parameters
+attribute | type | example | description
+--- | --- | --- | ---
+\*name | string |  "gistId" | name of the parameter
+\*location | `path`, `query`, `body`, `header` or `form` | "path" | location where the parameter should be
+\*type | `string`, `number`, `integer`, `boolean`, `array` or `file` | "string" | type of the parameter
+\*required | boolean | true | whether the parameter is required or not
+default | same as `type` | "default gist ID" | default value if the parameter is missing or is `locked`
+locked | boolean | false | indicate whether the parameter is `locked` or not
 

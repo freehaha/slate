@@ -244,6 +244,20 @@
               </ul>
           </li>
           <li>
+            <a href="#entity" class="toc-h1 toc-link" data-title="Entity">Entity</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#entity-search" class="toc-h2 toc-link" data-title="Entity search">Entity search</a>
+                  </li>
+                  <li>
+                    <a href="#retrieving-arbitrary-entity" class="toc-h2 toc-link" data-title="Retrieving arbitrary entity">Retrieving arbitrary entity</a>
+                  </li>
+                  <li>
+                    <a href="#display-entity" class="toc-h2 toc-link" data-title="Display entity">Display entity</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </div>
@@ -476,6 +490,97 @@ set, APIBase will always use the default value for the parameter regardless of w
 <td>boolean</td>
 <td>false</td>
 <td>indicate whether the parameter is <code>locked</code> or not</td>
+</tr>
+</tbody></table>
+<h1 id='entity'>Entity</h1><h2 id='entity-search'>Entity search</h2><pre class="highlight shell tab-shell"><code><span class="c"># search for API with the 'Github' keyword</span>
+curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=Github&amp;type=API'</span>
+</code></pre>
+<blockquote>
+<p>if you want to specify a particular field to search, use <code>field:</code> syntax</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="c"># search for APIs that have 'music' in its description</span>
+curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=description:music&amp;type=API'</span>
+</code></pre>
+<p>This endpoint performs a keyword search in APIBase. It returns only the first 30 results. To get
+more results, use the <code>page</code> query parameter.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/search</code></p>
+<h3 id='query-parameters'>Query parameters</h3>
+<table><thead>
+<tr>
+<th>attribute</th>
+<th>type</th>
+<th>example</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*q</td>
+<td>string</td>
+<td>&quot;Github&quot;</td>
+<td>Query string</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>API</code>, <code>Method</code>, <code>Recipe</code>, <code>DataSourceSchema</code>, <code>DataSource</code></td>
+<td>&quot;API&quot;</td>
+<td>type of entity you want to search, leave empty to search for all types</td>
+</tr>
+<tr>
+<td>page</td>
+<td>integer</td>
+<td>1</td>
+<td>page</td>
+</tr>
+</tbody></table>
+<h2 id='retrieving-arbitrary-entity'>Retrieving arbitrary entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4'</span>
+</code></pre>
+<p>This endpoint lets you get an entity regardless of its type. For example can use
+this endpoint to retrieve an API, Method or DataSourceSchema...  Related
+entities will also be shown. To change this behavior, use <code>brief=false</code> in the
+query.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>attribute</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*id</td>
+<td>uuid</td>
+<td>id of the entity in question</td>
+</tr>
+<tr>
+<td>brief</td>
+<td>bool</td>
+<td>true to show only the entity in question, otherwise all related entities will be shown</td>
+</tr>
+</tbody></table>
+<h2 id='display-entity'>Display entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/display'</span>
+</code></pre>
+<p>This endpoint shows arbitrary entity and interpret/execute it if applicable.
+Similar to the <a href="#retrieving-arbitrary-entity">Retrieving arbitrary entity</a> endpoint, this
+endpoint can also show an arbitrary entity but if the entity represents an
+executable object, for example a Query, then the entity will be executed/run and
+show the result instead.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}/display</code></p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>attribute</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*id</td>
+<td>uuid</td>
+<td>id of the entity in question</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>

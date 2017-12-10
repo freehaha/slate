@@ -48,10 +48,10 @@ This endpoint adds an API entity to APIBase.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}`
+`POST http://johnsd.cse.unsw.edu.au:3000/apis`
 
 ### Parameters
-attribute | type | example | description
+Parameter | Type | Example | Description
 --- | --- | --- | ---
 \*name | string | "Github" | Name of the API
 type | "REST" | "REST" | type of the API, always "REST"
@@ -64,7 +64,7 @@ tags | ["strings"] | ["development", "git"] | list of tags that identify the API
 
 
 <aside class="notice">
-Attributes marked with * are required
+Parameters marked with * are required
 </aside>
 
 <aside class="notice">
@@ -85,7 +85,7 @@ This endpoint retrieves an API.
 
 ### Parameters
 
-attribute | type | description
+Parameter | Type | Description
 --- | --- | --- | ---
 id | uuid | id of the API
 
@@ -154,7 +154,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 
 Parameters describe the parameters of a Method, their types, whether they are optional and the place
 where the parameters should be placed (in url as path/query, in the header, or in the request body).
-Locked attribute indicates whether the parameter is intended to be changed by user or not. If it is
+Locked attribute indicates whether the parameter is intended to be changed by users or not. If it is
 set, APIBase will always use the default value for the parameter regardless of what the user input.
 
 This endpoint adds a Parameter entity to a Metdhod.

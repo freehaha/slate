@@ -25,7 +25,7 @@ more results, use the `page` query parameter.
 attribute | type | example | description
 --- | --- | --- | ---
 \*q | string | "Github" | Query string
-type | `API`, `Method`, `Recipe`, `DataSourceSchema`, `DataSource` | "API" | type of entity you want to search, leave empty to search for all types
+type | `API`, `Method`, `Recipe`, `DataSourceSchema`, `DataSource` | "API" | Type of entity you want to search; leave empty to search for all types
 page | integer | 1 | page
 
 ## Retrieving arbitrary entity
@@ -48,7 +48,7 @@ query.
 attribute | type | description
 --- | --- | --- | ---
 \*id | uuid | id of the entity in question
-brief | bool | true to show only the entity in question, otherwise all related entities will be shown
+brief | bool | true to retrieve only the entity in question, otherwise all related entities will be retrieved
 
 ## Display entity
 

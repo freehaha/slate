@@ -21,12 +21,12 @@ more results, use the `page` query parameter.
 
 `GET http://johnsd.cse.unsw.edu.au:3000/entities/search`
 
-### Query parameters
-attribute | type | example | description
+### Query Parameters
+Parameter | Type | Example | Description
 --- | --- | --- | ---
 \*q | string | "Github" | Query string
 type | `API`, `Method`, `Recipe`, `DataSourceSchema`, `DataSource` | "API" | Type of entity you want to search; leave empty to search for all types
-page | integer | 1 | page
+page | integer | 1 | Page number, starting from 1
 
 ## Retrieving arbitrary entity
 
@@ -45,12 +45,12 @@ query.
 
 ### Parameters
 
-attribute | type | description
+Parameter | Type | Description
 --- | --- | --- | ---
-\*id | uuid | id of the entity in question
-brief | bool | true to retrieve only the entity in question, otherwise all related entities will be retrieved
+\*id | uuid | ID of the entity in question
+brief | bool | `true` to retrieve only the entity in question, otherwise all related entities will be retrieved
 
-## Display entity
+## Display Entity
 
 ```shell
 curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/display'
@@ -68,6 +68,6 @@ show the result instead.
 
 ### Parameters
 
-attribute | type | description
+Parameter | Type | Description
 --- | --- | --- | ---
-\*id | uuid | id of the entity in question
+\*id | uuid | ID of the entity in question

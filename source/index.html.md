@@ -54,12 +54,12 @@ This endpoint adds an API entity to APIBase.
 Parameter | Type | Example | Description
 --- | --- | --- | ---
 \*name | string | "Github" | Name of the API
-type | "REST" | "REST" | type of the API, always "REST"
-version | string | "1.0" | version string
-\*provider | string | "Github Inc." | a short sentence representing the provider
-tags | ["strings"] | ["development", "git"] | list of tags that identify the API
-\*description | string | "github APIs" | description about the API
-\*baseUrl |string | "https://api.github.com" | base URL of the API
+type | "REST" | "REST" | Type of the API, always "REST"
+version | string | "1.0" | Version string
+\*provider | string | "Github Inc." | A short sentence representing the provider
+tags | ["strings"] | ["development", "git"] | List of tags that identify the API
+\*description | string | "github APIs" | Description about the API
+\*baseUrl |string | "https://api.github.com" | Base URL of the API
 
 
 
@@ -87,7 +87,7 @@ This endpoint retrieves an API.
 
 Parameter | Type | Description
 --- | --- | --- | ---
-id | uuid | id of the API
+id | uuid | ID of the API
 
 ## Add a Method to an API
 
@@ -111,12 +111,12 @@ This endpoint adds a Method entity to an API.
 
 ### Parameters
 
-attribute | type | example | description
+Attribute | Type | Example | Description
 --- | --- | --- | ---
 \*name | string | "GetGist" | Name of the Method
 \*method | `POST`, `GET`, `PUT` or `DELETE` | "GET" | HTTP method used
-\*path | string | "gist/{gistId}" | path for the endpoint, relative to the `baseURL` of the API, use brackets {} if there for placeholder segments
-\*description | string | "get a gist" | description for the Method
+\*path | string | "gist/{gistId}" | Path for the endpoint, relative to the `baseURL` of the API, use brackets {} if there for placeholder segments
+\*description | string | "get a gist" | Description for the Method
 
 
 ## Retrieve information of a Method
@@ -164,12 +164,12 @@ This endpoint adds a Parameter entity to a Metdhod.
 `POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/parameters`
 
 ### Parameters
-attribute | type | example | description
+Attribute | Type | Example | Description
 --- | --- | --- | ---
-\*name | string |  "gistId" | name of the parameter
-\*location | `path`, `query`, `body`, `header` or `form` | "path" | location where the parameter should be
-\*type | `string`, `number`, `integer`, `boolean`, `array` or `file` | "string" | type of the parameter
-\*required | boolean | true | whether the parameter is required or not
-default | same as `type` | "default gist ID" | default value if the parameter is missing or is `locked`
-locked | boolean | false | indicate whether the parameter is `locked` or not
+\*name | string |  "gistId" | Name of the parameter
+\*location | `path`, `query`, `body`, `header` or `form` | "path" | Location where the parameter should be
+\*type | `string`, `number`, `integer`, `boolean`, `array` or `file` | "string" | Type of the parameter
+\*required | boolean | true | Whether the parameter is required or not
+default | same as `type` | "default gist ID" | Default value if the parameter is missing or is `locked`
+locked | boolean | false | Indicate whether the parameter is `locked` or not
 

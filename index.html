@@ -253,7 +253,7 @@
                     <a href="#retrieving-arbitrary-entity" class="toc-h2 toc-link" data-title="Retrieving arbitrary entity">Retrieving arbitrary entity</a>
                   </li>
                   <li>
-                    <a href="#display-entity" class="toc-h2 toc-link" data-title="Display entity">Display entity</a>
+                    <a href="#display-entity" class="toc-h2 toc-link" data-title="Display Entity">Display Entity</a>
                   </li>
               </ul>
           </li>
@@ -284,14 +284,14 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 </code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
 <p>This endpoint adds an API entity to APIBase.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}</code></p>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
-<th>attribute</th>
-<th>type</th>
-<th>example</th>
-<th>description</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -304,42 +304,42 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <td>type</td>
 <td>&quot;REST&quot;</td>
 <td>&quot;REST&quot;</td>
-<td>type of the API, always &quot;REST&quot;</td>
+<td>Type of the API, always &quot;REST&quot;</td>
 </tr>
 <tr>
 <td>version</td>
 <td>string</td>
 <td>&quot;1.0&quot;</td>
-<td>version string</td>
+<td>Version string</td>
 </tr>
 <tr>
 <td>*provider</td>
 <td>string</td>
 <td>&quot;Github Inc.&quot;</td>
-<td>a short sentence representing the provider</td>
+<td>A short sentence representing the provider</td>
 </tr>
 <tr>
 <td>tags</td>
 <td>[&quot;strings&quot;]</td>
 <td>[&quot;development&quot;, &quot;git&quot;]</td>
-<td>list of tags that identify the API</td>
+<td>List of tags that identify the API</td>
 </tr>
 <tr>
 <td>*description</td>
 <td>string</td>
 <td>&quot;github APIs&quot;</td>
-<td>description about the API</td>
+<td>Description about the API</td>
 </tr>
 <tr>
 <td>*baseUrl</td>
 <td>string</td>
 <td>&quot;https://api.github.com&quot;</td>
-<td>base URL of the API</td>
+<td>Base URL of the API</td>
 </tr>
 </tbody></table>
 
 <aside class="notice">
-Attributes marked with * are required
+Parameters marked with * are required
 </aside>
 
 <aside class="notice">
@@ -353,15 +353,15 @@ If you are using shell, make sure the <code>Content-Type</code> is set correctly
 <h3 id='parameters-2'>Parameters</h3>
 <table><thead>
 <tr>
-<th>attribute</th>
-<th>type</th>
-<th>description</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
 <td>uuid</td>
-<td>id of the API</td>
+<td>ID of the API</td>
 </tr>
 </tbody></table>
 <h2 id='add-a-method-to-an-api'>Add a Method to an API</h2><pre class="highlight shell tab-shell"><code><span class="c">#</span>
@@ -379,10 +379,10 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
-<th>attribute</th>
-<th>type</th>
-<th>example</th>
-<th>description</th>
+<th>Attribute</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -401,13 +401,13 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <td>*path</td>
 <td>string</td>
 <td>&quot;gist/{gistId}&quot;</td>
-<td>path for the endpoint, relative to the <code>baseURL</code> of the API, use brackets {} if there for placeholder segments</td>
+<td>Path for the endpoint, relative to the <code>baseURL</code> of the API, use brackets {} if there for placeholder segments</td>
 </tr>
 <tr>
 <td>*description</td>
 <td>string</td>
 <td>&quot;get a gist&quot;</td>
-<td>description for the Method</td>
+<td>Description for the Method</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-information-of-a-method'>Retrieve information of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c
@@ -440,7 +440,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 </code></pre>
 <p>Parameters describe the parameters of a Method, their types, whether they are optional and the place
 where the parameters should be placed (in url as path/query, in the header, or in the request body).
-Locked attribute indicates whether the parameter is intended to be changed by user or not. If it is
+Locked attribute indicates whether the parameter is intended to be changed by users or not. If it is
 set, APIBase will always use the default value for the parameter regardless of what the user input.</p>
 
 <p>This endpoint adds a Parameter entity to a Metdhod.</p>
@@ -449,47 +449,47 @@ set, APIBase will always use the default value for the parameter regardless of w
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
-<th>attribute</th>
-<th>type</th>
-<th>example</th>
-<th>description</th>
+<th>Attribute</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>*name</td>
 <td>string</td>
 <td>&quot;gistId&quot;</td>
-<td>name of the parameter</td>
+<td>Name of the parameter</td>
 </tr>
 <tr>
 <td>*location</td>
 <td><code>path</code>, <code>query</code>, <code>body</code>, <code>header</code> or <code>form</code></td>
 <td>&quot;path&quot;</td>
-<td>location where the parameter should be</td>
+<td>Location where the parameter should be</td>
 </tr>
 <tr>
 <td>*type</td>
 <td><code>string</code>, <code>number</code>, <code>integer</code>, <code>boolean</code>, <code>array</code> or <code>file</code></td>
 <td>&quot;string&quot;</td>
-<td>type of the parameter</td>
+<td>Type of the parameter</td>
 </tr>
 <tr>
 <td>*required</td>
 <td>boolean</td>
 <td>true</td>
-<td>whether the parameter is required or not</td>
+<td>Whether the parameter is required or not</td>
 </tr>
 <tr>
 <td>default</td>
 <td>same as <code>type</code></td>
 <td>&quot;default gist ID&quot;</td>
-<td>default value if the parameter is missing or is <code>locked</code></td>
+<td>Default value if the parameter is missing or is <code>locked</code></td>
 </tr>
 <tr>
 <td>locked</td>
 <td>boolean</td>
 <td>false</td>
-<td>indicate whether the parameter is <code>locked</code> or not</td>
+<td>Indicate whether the parameter is <code>locked</code> or not</td>
 </tr>
 </tbody></table>
 <h1 id='entity'>Entity</h1><h2 id='entity-search'>Entity search</h2><pre class="highlight shell tab-shell"><code><span class="c"># search for API with the 'Github' keyword</span>
@@ -505,13 +505,13 @@ curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?
 more results, use the <code>page</code> query parameter.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/search</code></p>
-<h3 id='query-parameters'>Query parameters</h3>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
-<th>attribute</th>
-<th>type</th>
-<th>example</th>
-<th>description</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -524,13 +524,13 @@ more results, use the <code>page</code> query parameter.</p>
 <td>type</td>
 <td><code>API</code>, <code>Method</code>, <code>Recipe</code>, <code>DataSourceSchema</code>, <code>DataSource</code></td>
 <td>&quot;API&quot;</td>
-<td>type of entity you want to search, leave empty to search for all types</td>
+<td>Type of entity you want to search; leave empty to search for all types</td>
 </tr>
 <tr>
 <td>page</td>
 <td>integer</td>
 <td>1</td>
-<td>page</td>
+<td>Page number, starting from 1</td>
 </tr>
 </tbody></table>
 <h2 id='retrieving-arbitrary-entity'>Retrieving arbitrary entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4'</span>
@@ -544,23 +544,23 @@ query.</p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
-<th>attribute</th>
-<th>type</th>
-<th>description</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>*id</td>
 <td>uuid</td>
-<td>id of the entity in question</td>
+<td>ID of the entity in question</td>
 </tr>
 <tr>
 <td>brief</td>
 <td>bool</td>
-<td>true to show only the entity in question, otherwise all related entities will be shown</td>
+<td><code>true</code> to retrieve only the entity in question, otherwise all related entities will be retrieved</td>
 </tr>
 </tbody></table>
-<h2 id='display-entity'>Display entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/display'</span>
+<h2 id='display-entity'>Display Entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/display'</span>
 </code></pre>
 <p>This endpoint shows arbitrary entity and interpret/execute it if applicable.
 Similar to the <a href="#retrieving-arbitrary-entity">Retrieving arbitrary entity</a> endpoint, this
@@ -572,15 +572,15 @@ show the result instead.</p>
 <h3 id='parameters-2'>Parameters</h3>
 <table><thead>
 <tr>
-<th>attribute</th>
-<th>type</th>
-<th>description</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>*id</td>
 <td>uuid</td>
-<td>id of the entity in question</td>
+<td>ID of the entity in question</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>

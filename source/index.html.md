@@ -44,6 +44,15 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 ```javascript
 ```
 
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
 This endpoint adds an API entity to APIBase.
 
 ### HTTP Request
@@ -61,6 +70,12 @@ tags | ["strings"] | ["development", "git"] | List of tags that identify the API
 \*description | string | "github APIs" | Description about the API
 \*baseUrl |string | "https://api.github.com" | Base URL of the API
 
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+409 | API with the specified name already exists | entity of that name already exists
 
 
 <aside class="notice">
@@ -76,6 +91,30 @@ If you are using shell, make sure the <code>Content-Type</code> is set correctly
 ```shell
 curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
 ```
+
+> Successful request returns an API object:
+
+```json
+{
+    "_created": 1404866619,
+    "_type": "API",
+    "id": "ee1db224-3331-4b8a-bc11-8839b4e5d6b4",
+    "type": "REST"
+    "baseUrl": "https://api.github.com",
+    "description": "github",
+    "methods": [
+        "07acb558-7626-4bb4-946a-2ddd77c4dbb6",
+        "9446bdf1-da5a-4096-98bc-47cfa8c15157",
+        "df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"
+    ],
+    "name": "Github",
+    "provider": "http://github.com",
+    "resources": [
+        "6d5dd456-3b04-4590-b51a-c5094c6a5cd7"
+    ],
+}
+```
+
 
 This endpoint retrieves an API.
 

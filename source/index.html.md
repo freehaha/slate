@@ -174,8 +174,6 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b
 
 ```json
 {
-    "_created": 1404866619,
-    "_type": "API",
     "id": "ee1db224-3331-4b8a-bc11-8839b4e5d6b4",
     "type": "REST"
     "baseUrl": "https://api.github.com",
@@ -271,6 +269,24 @@ Code | Reason | Message
 ```shell
 curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c
 ```
+> Successful request returns an [Method object](#method):
+
+```json
+{
+    "id": "99d64f8e-eace-417d-8cea-511621aaf57c",
+    "description": "Get a gist",
+    "method": "GET",
+    "name": "GetGist",
+    "parameters": [
+        "8ca7b0c7-bda0-4667-9f74-f67897cef67f"
+    ],
+    "path": "/gists/{gistId}",
+    "resources": [
+        "55394b28-b162-4355-b65b-6574b1956c77"
+    ],
+}
+
+```
 
 This endpoint retrieves a Method.
 
@@ -282,7 +298,23 @@ This endpoint retrieves a Method.
 
 Parameter | Type | Description
 --- | --- | --- | ---
-id | uuid | id of the Method
+id | uuid | ID of the Method
+
+### Response
+
+An [Method](#method) Object with related `parameters` and `resources`.
+
+Attribute | Description
+--------- | ----------- |
+parameters | ID of Parameters of the API
+resources | ID of Resources of the API
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | Method of specified `id` does not exist | resource not found
 
 
 

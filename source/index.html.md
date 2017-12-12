@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - entities
+  - resourcetypes
 
 search: true
 ---
@@ -112,21 +113,31 @@ form | In HTTP body, serialized as standard x-www-form-urlencoded format
 
 ### Resource
 
+```json
+{
+	"resourceType": "YoutubeVideo",
+	"description": "video tutorial of using Github"
+	"data": {
+		"title": "Github Tutorial For Beginners - Github Basics for Mac or Windows & Source Control Basics",
+		"link" : "https://youtu.be/0fKg7e37bQE"
+	}
+}
+```
+
 A Resource encapsulate information related to API, Method and other entities to
 explain and enrich the entities.  Resources could be of various types. For
 example, there are `YoutubeVideo` resources that represent videos hosted in
-Youtube. Resources can be added to various entities to provide additional
+Youtube, `InvokeExample` resources that show example parameters for invoking a
+Method. Resources can be added to various entities to provide additional
 information about the entities.
 
 A Resource has the following attributes:
 
-Attribute | Type | Example | Description
---- | --- | --- | ---
-\*description | string |  "video tutorial of Github" | Description of the resource
-\*data | any | see example on the right | The actual data of the resource
-\*resourceType | ResourceType | The type of Resource which schema `data` will be validated against
-
-See a list of available `resourceType` and their schema [here](#resourcetypes)
+Attribute | Type | Description
+--- | --- | ---
+\*description | string | Description of the resource
+\*data | any | The actual data of the resource
+\*resourceType | ResourceType | The type of Resource which schema `data` will be validated against. See a list of available `resourceType` and their schema [here](#resourcetypes)
 
 ## Add API
 

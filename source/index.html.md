@@ -150,6 +150,12 @@ This endpoint adds an API entity to APIBase.
 ### Parameters
 An [API](#api) Object.
 
+### Response
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created API object
+
 ### Errors
 Possible error codes and reasons:
 

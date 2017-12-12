@@ -191,8 +191,6 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b
     ],
 }
 ```
-
-
 This endpoint retrieves an API.
 
 ### HTTP Request
@@ -204,6 +202,22 @@ This endpoint retrieves an API.
 Parameter | Type | Description
 --- | --- | --- | ---
 id | uuid | ID of the API
+
+### Response
+
+An [API](#api) Object with related `methods` and `resources`.
+
+Attribute | Description
+--------- | ----------- |
+methods | ID of Methods of the API
+resources | ID of Resources of the API
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | API of specified `id` does not exist | resource not found
 
 ## Add a Method to an API
 

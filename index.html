@@ -518,6 +518,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>User input doesn not match API schema</td>
+<td>schema mismatch</td>
+</tr>
+<tr>
 <td>409</td>
 <td>API with the specified name already exists</td>
 <td>entity of that name already exists</td>
@@ -564,6 +569,40 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <td>ID of the API</td>
 </tr>
 </tbody></table>
+<h3 id='response-2'>Response</h3>
+<p>An <a href="#api">API</a> Object with related <code>methods</code> and <code>resources</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>methods</td>
+<td>ID of Methods of the API</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>ID of Resources of the API</td>
+</tr>
+</tbody></table>
+<h3 id='errors-2'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>API of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
 <h2 id='add-a-method-to-an-api'>Add a Method to an API</h2><pre class="highlight shell tab-shell"><code><span class="c">#</span>
 curl -XPOST -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/methods -d <span class="s1">'{
@@ -573,41 +612,49 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
   "description": "get a gist"
 }'</span>
 </code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>This endpoint adds a Method entity to an API.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/methods</code></p>
 <h3 id='parameters-3'>Parameters</h3>
+<p>A <a href="#method">Method</a> object.</p>
+<h3 id='response-3'>Response</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Example</th>
+<th>Attribute</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>*name</td>
-<td>string</td>
-<td>&quot;GetGist&quot;</td>
-<td>Name of the Method</td>
+<td>message</td>
+<td><code>entity created</code></td>
 </tr>
 <tr>
-<td>*method</td>
-<td><code>POST</code>, <code>GET</code>, <code>PUT</code> or <code>DELETE</code></td>
-<td>&quot;GET&quot;</td>
-<td>HTTP method used</td>
+<td>id</td>
+<td>ID of the created Method object</td>
 </tr>
+</tbody></table>
+<h3 id='errors-3'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
 <tr>
-<td>*path</td>
-<td>string</td>
-<td>&quot;gist/{gistId}&quot;</td>
-<td>Path for the endpoint, relative to the <code>baseURL</code> of the API, use brackets {} if there for placeholder segments</td>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
 </tr>
+</thead><tbody>
 <tr>
-<td>*description</td>
-<td>string</td>
-<td>&quot;get a gist&quot;</td>
-<td>Description for the Method</td>
+<td>400</td>
+<td>User input doesn not match Method schema</td>
+<td>schema mismatch</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-information-of-a-method'>Retrieve information of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c

@@ -221,11 +221,11 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
             <a href="#api-manipulation" class="toc-h1 toc-link" data-title="API Manipulation">API Manipulation</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#models" class="toc-h2 toc-link" data-title="Models">Models</a>
+                  </li>
                   <li>
                     <a href="#add-api" class="toc-h2 toc-link" data-title="Add API">Add API</a>
                   </li>
@@ -268,9 +268,205 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Introduction ...</p>
-<h1 id='api-manipulation'>API Manipulation</h1><h2 id='add-api'>Add API</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+        <h1 id='api-manipulation'>API Manipulation</h1><h2 id='models'>Models</h2><h3 id='api'>API</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github Inc."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github apis"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"baseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.github.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>API, Application Program Interface, is a set of routines and protocols for
+building software applications. The API is the building block for software
+applications and specifies how software components should interact. An API
+object in APIBase has the following structure:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>&quot;Github&quot;</td>
+<td>Name of the API</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>&quot;REST&quot;</td>
+<td>type of the API, always <code>REST</code></td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>&quot;1.0&quot;</td>
+<td>version string</td>
+</tr>
+<tr>
+<td>*provider</td>
+<td>string</td>
+<td>&quot;Github Inc.&quot;</td>
+<td>a short sentence representing the provider</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>[&quot;strings&quot;]</td>
+<td>[&quot;development&quot;, &quot;git&quot;]</td>
+<td>list of tags that identify the API</td>
+</tr>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>&quot;github APIs&quot;</td>
+<td>description about the API</td>
+</tr>
+<tr>
+<td>*baseUrl</td>
+<td>string</td>
+<td>&quot;https://api.github.com&quot;</td>
+<td>base URL of the API</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Attributes marked with * are required
+</aside>
+<h3 id='method'>Method</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetGist”,
+  "</span><span class="err">method</span><span class="s2">": "</span><span class="err">POST</span><span class="s2">",
+  "</span><span class="err">path</span><span class="s2">": "</span><span class="err">/gist/</span><span class="p">{</span><span class="err">gistId</span><span class="p">}</span><span class="s2">",
+  "</span><span class="err">description</span><span class="s2">": "</span><span class="err">get</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">gist</span><span class="s2">"
+}
+</span></code></pre>
+<p>A Method describes an endpoint of an API. For example, the <a href="https://developer.github.com/v3/gists/#get-a-single-gist">Get a single
+gist</a> of Github API
+is a Method in the Github API. Methods contains the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>&quot;GetGist&quot;</td>
+<td>Name of the Method</td>
+</tr>
+<tr>
+<td>*method</td>
+<td><code>POST</code>, <code>GET</code>, <code>PUT</code> or <code>DELETE</code></td>
+<td>&quot;GET&quot;</td>
+<td>HTTP method used</td>
+</tr>
+<tr>
+<td>*path</td>
+<td>string</td>
+<td>&quot;gist/{gistId}&quot;</td>
+<td>Path for the endpoint, relative to the <code>baseURL</code> of the API, use brackets {} if there for placeholder segments</td>
+</tr>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>&quot;get a gist&quot;</td>
+<td>Description for the Method</td>
+</tr>
+</tbody></table>
+<h3 id='parameter'>Parameter</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gistId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"path"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Parameters describes what are the inputs required/available for the Method. A Method can have multiple Parameters
+and in different <code>locations</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>&quot;gistId&quot;</td>
+<td>Name of the parameter</td>
+</tr>
+<tr>
+<td>*location</td>
+<td><code>path</code>, <code>query</code>, <code>body</code>, <code>header</code> or <code>form</code></td>
+<td>&quot;path&quot;</td>
+<td>Location where the parameter should be</td>
+</tr>
+<tr>
+<td>*type</td>
+<td><code>string</code>, <code>number</code>, <code>integer</code>, <code>boolean</code>, <code>array</code> or <code>file</code></td>
+<td>&quot;string&quot;</td>
+<td>Type of the parameter</td>
+</tr>
+<tr>
+<td>*required</td>
+<td>boolean</td>
+<td>true</td>
+<td>Whether the parameter is required or not</td>
+</tr>
+<tr>
+<td>default</td>
+<td>same as <code>type</code></td>
+<td>&quot;default gist ID&quot;</td>
+<td>Default value if the parameter is missing or is <code>locked</code></td>
+</tr>
+<tr>
+<td>locked</td>
+<td>boolean</td>
+<td>false</td>
+<td>Indicate whether the parameter is <code>locked</code> or not</td>
+</tr>
+</tbody></table>
+<h4 id='location'>Location</h4>
+<p>The <code>location</code> attribute indicate how the Parameter should be sent when invoking the endpoint.</p>
+
+<table><thead>
+<tr>
+<th>Location</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>path</td>
+<td>http://host/foo/{parameter}/bar</td>
+</tr>
+<tr>
+<td>query</td>
+<td>http://host/foo?{parameter}=value</td>
+</tr>
+<tr>
+<td>header</td>
+<td>In HTTP request header. For example, Agent or Content-Type. A list of headers can be found <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields">here</a></td>
+</tr>
+<tr>
+<td>body</td>
+<td>In HTTP body, serialized as JSON</td>
+</tr>
+<tr>
+<td>form</td>
+<td>In HTTP body, serialized as standard x-www-form-urlencoded format</td>
+</tr>
+</tbody></table>
+<h2 id='add-api'>Add API</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
@@ -294,57 +490,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis</code></p>
 <h3 id='parameters'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Example</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>*name</td>
-<td>string</td>
-<td>&quot;Github&quot;</td>
-<td>Name of the API</td>
-</tr>
-<tr>
-<td>type</td>
-<td>&quot;REST&quot;</td>
-<td>&quot;REST&quot;</td>
-<td>Type of the API, always &quot;REST&quot;</td>
-</tr>
-<tr>
-<td>version</td>
-<td>string</td>
-<td>&quot;1.0&quot;</td>
-<td>Version string</td>
-</tr>
-<tr>
-<td>*provider</td>
-<td>string</td>
-<td>&quot;Github Inc.&quot;</td>
-<td>A short sentence representing the provider</td>
-</tr>
-<tr>
-<td>tags</td>
-<td>[&quot;strings&quot;]</td>
-<td>[&quot;development&quot;, &quot;git&quot;]</td>
-<td>List of tags that identify the API</td>
-</tr>
-<tr>
-<td>*description</td>
-<td>string</td>
-<td>&quot;github APIs&quot;</td>
-<td>Description about the API</td>
-</tr>
-<tr>
-<td>*baseUrl</td>
-<td>string</td>
-<td>&quot;https://api.github.com&quot;</td>
-<td>Base URL of the API</td>
-</tr>
-</tbody></table>
+<p>An <a href="#api">API</a> Object.</p>
 <h3 id='errors'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
@@ -361,14 +507,6 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-
-<aside class="notice">
-Parameters marked with * are required
-</aside>
-
-<aside class="notice">
-If you are using shell, make sure the <code>Content-Type</code> is set correctly to <code>application/json</code>
-</aside>
 <h2 id='retrieve-information-of-an-api'>Retrieve information of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
 </code></pre>
 <blockquote>
@@ -425,7 +563,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Parameter</th>
 <th>Type</th>
 <th>Example</th>
 <th>Description</th>
@@ -464,9 +602,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <h3 id='parameters-4'>Parameters</h3>
 <table><thead>
 <tr>
-<th>attribute</th>
-<th>type</th>
-<th>description</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -489,13 +627,13 @@ where the parameters should be placed (in url as path/query, in the header, or i
 Locked attribute indicates whether the parameter is intended to be changed by users or not. If it is
 set, APIBase will always use the default value for the parameter regardless of what the user input.</p>
 
-<p>This endpoint adds a Parameter entity to a Metdhod.</p>
+<p>This endpoint adds a Parameter entity to a Method.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/parameters</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Parameter</th>
 <th>Type</th>
 <th>Example</th>
 <th>Description</th>

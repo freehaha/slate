@@ -130,9 +130,9 @@ Attribute | Type | Description
 
 ```json
 {
-	"name": "get number ",
+	"name": "filter 200",
 	"sources": ["id1", "id2"],
-	"description": "get the first row",
+	"description": "filter out rows where first column <= 200",
 	"expression": ".rows | map(select(.[1] | tonumber > 200))"
 }
 ```
@@ -171,3 +171,111 @@ Attribute | Type | Description
 \*target | uuid | ID of the target DataSourceSchema
 \*description | string | Short description of the Transformer
 \*expression | string | a [jq](https://stedolan.github.io/jq/manual/) query expression
+
+
+## Create Data Source Schema
+
+```shell
+# Make sure the `Content-Type` is set correctly
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
+	-H 'Content-Type: application/json'
+	-d '{
+		"schema": {
+			"properties": {
+				"query": {
+					"type": "string"
+				},
+				"results": {
+					"type": "array"
+				}
+			},
+			"required": [
+				"query"
+			]
+		},
+		"description": "string",
+		"name": "Yooz Rest API Schema",
+	}'
+```
+
+A DataSourceSchema describes the schema of data coming from a source so that we can understand and explore the structure of the data.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas`
+
+### Parameters
+
+A [DataSourceSchema](#data-source-schema) Object.
+
+### Response
+
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created DataSourceSchema entity
+
+### Errors
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match API schema | schema mismatch
+409 | DataSourceSchema with the specified name already exists | entity of that name already exists
+
+## Retrieve information of a DataSourceSchema
+
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314
+```
+
+> Successful request returns an DataSourceSchema object:
+
+```json
+{
+    "id": "56e3e7af-8268-445f-91ed-63eabb0e5314",
+    "schema": {
+        "properties": {
+            "query": {
+                "type": "string"
+            },
+            "results": {
+                "type": "array"
+            }
+        },
+        "required": [
+            "query"
+        ]
+    },
+    "description": "string",
+    "name": "Yooz Rest API Schema",
+    "connectors": [
+        "b5f922b9-c850-45b7-86c1-0e8bc7371cae"
+    ]
+}
+```
+This endpoint retrieves an API.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the DataSourceSchema
+
+### Response
+
+An [DataSourceSchema](#data-source-schema) Object with related `connectors`.
+
+Attribute | Description
+--------- | ----------- |
+connectors | ID of Connectors available for the DataSourceSchema
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | DataSourceSchema of specified `id` does not exist | resource not found

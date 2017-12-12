@@ -47,6 +47,9 @@ tags | ["strings"] | ["development", "git"] | list of tags that identify the API
 \*description | string | "github APIs" | description about the API
 \*baseUrl |string | "https://api.github.com" | base URL of the API
 
+<aside class="notice">
+Attributes marked with * are required
+</aside>
 
 ### Method
 
@@ -145,15 +148,7 @@ This endpoint adds an API entity to APIBase.
 `POST http://johnsd.cse.unsw.edu.au:3000/apis`
 
 ### Parameters
-Parameter | Type | Example | Description
---- | --- | --- | ---
-\*name | string | "Github" | Name of the API
-type | "REST" | "REST" | Type of the API, always "REST"
-version | string | "1.0" | Version string
-\*provider | string | "Github Inc." | A short sentence representing the provider
-tags | ["strings"] | ["development", "git"] | List of tags that identify the API
-\*description | string | "github APIs" | Description about the API
-\*baseUrl |string | "https://api.github.com" | Base URL of the API
+An [API](#api) Object.
 
 ### Errors
 Possible error codes and reasons:
@@ -161,15 +156,6 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 409 | API with the specified name already exists | entity of that name already exists
-
-
-<aside class="notice">
-Parameters marked with * are required
-</aside>
-
-<aside class="notice">
-If you are using shell, make sure the <code>Content-Type</code> is set correctly to <code>application/json</code>
-</aside>
 
 ## Retrieve information of an API
 

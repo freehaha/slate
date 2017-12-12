@@ -1376,7 +1376,271 @@ return the result instead.</p>
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h1 id='data'>Data</h1><h2 id='models'>Models</h2><h3 id='data-source-schema'>Data Source Schema</h3><h3 id='connector'>Connector</h3><h3 id='data-source'>Data Source</h3><h3 id='query'>Query</h3><h3 id='transformer'>Transformer</h3><h1 id='resourcetypes'>ResourceTypes</h1>
+<h1 id='data'>Data</h1><h2 id='models'>Models</h2><h3 id='data-source-schema'>Data Source Schema</h3>
+<blockquote>
+<p>An example Data Source Schema</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11185e1d-c1bd-4d3c-ac50-04a222b02452"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TestCollection"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection of object"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Data Source Schema is a schema describing data coming from a source so that we can understand the structure of the data.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>Name of the Data Source Schema</td>
+</tr>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>Short description of the Data Source Schema</td>
+</tr>
+<tr>
+<td>*schema</td>
+<td>JSON Schema</td>
+<td>JSON schema describing the structure of data</td>
+</tr>
+</tbody></table>
+<h3 id='connector'>Connector</h3>
+<blockquote>
+<p>An example Connector</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"629cfe3b-6101-4b5a-a8d9-166cd0e3be82"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1507270476</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echo-connector"</span><span class="w">
+    </span><span class="s2">"engine"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"npm"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"https://github.com/APIBase/echo-connector.git"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Connector is a module that allows APIBase to retrieve data from 3rd party services. For example, the socrata-connector
+allows APIBase to retrieve data from Socrata given a resource id, which is then available to perfrom a <a href="#query">Query</a>.</p>
+
+<p>Below lists attributes of a Connector:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>Name of the Conncetor, must match the name in package.json in the repository</td>
+</tr>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>Short description of the Connector</td>
+</tr>
+<tr>
+<td>*engine</td>
+<td>object</td>
+<td>see below</td>
+</tr>
+</tbody></table>
+<h4 id='engine'>Engine</h4>
+<p>The <code>engine</code> object describe how APIBase can use the connector. As of now we only support npm packages.</p>
+<h5 id='npm'>npm</h5>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*method</td>
+<td>string</td>
+<td>always <code>npm</code></td>
+</tr>
+<tr>
+<td>*code</td>
+<td>string</td>
+<td>url accepted by <a href="https://docs.npmjs.com/cli/install">npm install</a>, listed below</td>
+</tr>
+</tbody></table>
+
+<p>Accepted <code>code</code> format:</p>
+
+<ul>
+<li>[&lt;@scope&gt;/]&lt;name&gt;</li>
+<li>[&lt;@scope&gt;/]&lt;name&gt;@&lt;tag&gt;</li>
+<li>[&lt;@scope&gt;/]&lt;name&gt;@&lt;version&gt;</li>
+<li>[&lt;@scope&gt;/]&lt;name&gt;@&lt;version range&gt;</li>
+<li>&lt;git-host&gt;:&lt;git-user&gt;/&lt;repo-name&gt;</li>
+<li>&lt;git repo url&gt;</li>
+</ul>
+<h3 id='data-source'>Data Source</h3>
+<blockquote>
+<p>An example Data Source entity</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"dataProvider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://data.melbourne.vic.gov.au"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"resourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vh2v-4nfs"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testing purpose"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Data Source is an instance of Connector with specific configuration. For
+example, one can create a Data Source using the Socrata Connector and configure
+it so that when accessed, the Data Source returns the data inside a specific
+resource of Socrata. Below lists attribute of a DataSource:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>Name of the Conncetor, must match the name in package.json in the repository</td>
+</tr>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>Short description of the DataSource</td>
+</tr>
+<tr>
+<td>*source</td>
+<td>object</td>
+<td>configuration for the Connector. This is Connector-specific.</td>
+</tr>
+</tbody></table>
+<h3 id='query'>Query</h3>
+<blockquote>
+<p>An example Query entity. Returns the first element of the array.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get-first-query"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id1"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get the first row"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">".[0]"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Another example, filtering out rows where the first column is less than or equal to 200</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get number "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"id2"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get the first row"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">".rows | map(select(.[1] | tonumber &gt; 200))"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Query entity describe a <a href="https://stedolan.github.io/jq/manual/">jq</a> query
+expression to be executed on a DataSource.  When a Query is created, it will
+not be immediately executed and thus will not return the result. Instead, the
+<a href="#display-entity">Display Entity</a> should be used to execute the Query and view
+the result.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>Name of the Conncetor, must match the name in package.json in the repository</td>
+</tr>
+<tr>
+<td>*sources</td>
+<td>[ uuid ]</td>
+<td>IDs of sources which the expression will be evaluated on. These can be ID of DataSource or Query.</td>
+</tr>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>Short description of the Query</td>
+</tr>
+<tr>
+<td>*expression</td>
+<td>string</td>
+<td>a <a href="https://stedolan.github.io/jq/manual/">jq</a> query expression</td>
+</tr>
+</tbody></table>
+<h3 id='transformer'>Transformer</h3>
+<blockquote>
+<p>An example Transformer entity.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transform data"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id-source&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id-target&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"map({text: .body})"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Transformer is a query that is designed transform data from one DataSourceSchema to another. Below lists the attributes of a Transformer:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*source</td>
+<td>uuid</td>
+<td>ID of the source DataSourceSchema</td>
+</tr>
+<tr>
+<td>*target</td>
+<td>uuid</td>
+<td>ID of the target DataSourceSchema</td>
+</tr>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>Short description of the Transformer</td>
+</tr>
+<tr>
+<td>*expression</td>
+<td>string</td>
+<td>a <a href="https://stedolan.github.io/jq/manual/">jq</a> query expression</td>
+</tr>
+</tbody></table>
+<h1 id='resourcetypes'>ResourceTypes</h1>
 <p>Below are a list of resource types available when creating a Resource:</p>
 <h2 id='youtubevideo'>YoutubeVideo</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics"</span><span class="p">,</span><span class="w">

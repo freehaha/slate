@@ -278,6 +278,12 @@
                   <li>
                     <a href="#models" class="toc-h2 toc-link" data-title="Models">Models</a>
                   </li>
+                  <li>
+                    <a href="#create-data-source-schema" class="toc-h2 toc-link" data-title="Create Data Source Schema">Create Data Source Schema</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-information-of-a-datasourceschema" class="toc-h2 toc-link" data-title="Retrieve information of a DataSourceSchema">Retrieve information of a DataSourceSchema</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1559,9 +1565,9 @@ resource of Socrata. Below lists attribute of a DataSource:</p>
 <p>Another example, filtering out rows where the first column is less than or equal to 200</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get number "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filter 200"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"id2"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get the first row"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filter out rows where first column &lt;= 200"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">".rows | map(select(.[1] | tonumber &gt; 200))"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1638,6 +1644,141 @@ the result.</p>
 <td>*expression</td>
 <td>string</td>
 <td>a <a href="https://stedolan.github.io/jq/manual/">jq</a> query expression</td>
+</tr>
+</tbody></table>
+<h2 id='create-data-source-schema'>Create Data Source Schema</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
+    -H <span class="s1">'Content-Type: application/json'</span>
+    -d <span class="s1">'{
+        "schema": {
+            "properties": {
+                "query": {
+                    "type": "string"
+                },
+                "results": {
+                    "type": "array"
+                }
+            },
+            "required": [
+                "query"
+            ]
+        },
+        "description": "string",
+        "name": "Yooz Rest API Schema",
+    }'</span>
+</code></pre>
+<p>A DataSourceSchema describes the schema of data coming from a source so that we can understand and explore the structure of the data.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas</code></p>
+<h3 id='parameters'>Parameters</h3>
+<p>A <a href="#data-source-schema">DataSourceSchema</a> Object.</p>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the created DataSourceSchema entity</td>
+</tr>
+</tbody></table>
+<h3 id='errors'>Errors</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match API schema</td>
+<td>schema mismatch</td>
+</tr>
+<tr>
+<td>409</td>
+<td>DataSourceSchema with the specified name already exists</td>
+<td>entity of that name already exists</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-information-of-a-datasourceschema'>Retrieve information of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314
+</code></pre>
+<blockquote>
+<p>Successful request returns an DataSourceSchema object:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56e3e7af-8268-445f-91ed-63eabb0e5314"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"query"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yooz Rest API Schema"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"connectors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"b5f922b9-c850-45b7-86c1-0e8bc7371cae"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves an API.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}</code></p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the DataSourceSchema</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<p>An <a href="#data-source-schema">DataSourceSchema</a> Object with related <code>connectors</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>connectors</td>
+<td>ID of Connectors available for the DataSourceSchema</td>
+</tr>
+</tbody></table>
+<h3 id='errors-2'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>DataSourceSchema of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
 </tr>
 </tbody></table>
 <h1 id='resourcetypes'>ResourceTypes</h1>

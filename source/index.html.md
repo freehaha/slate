@@ -233,6 +233,15 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 }'
 ```
 
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
 
 This endpoint adds a Method entity to an API.
 
@@ -242,13 +251,20 @@ This endpoint adds a Method entity to an API.
 
 ### Parameters
 
-Parameter | Type | Example | Description
---- | --- | --- | ---
-\*name | string | "GetGist" | Name of the Method
-\*method | `POST`, `GET`, `PUT` or `DELETE` | "GET" | HTTP method used
-\*path | string | "gist/{gistId}" | Path for the endpoint, relative to the `baseURL` of the API, use brackets {} if there for placeholder segments
-\*description | string | "get a gist" | Description for the Method
+A [Method](#method) object.
 
+### Response
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Method object
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input doesn not match Method schema | schema mismatch
 
 ## Retrieve information of a Method
 

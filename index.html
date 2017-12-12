@@ -1118,6 +1118,43 @@ curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?
 <pre class="highlight shell tab-shell"><code><span class="c"># search for APIs that have 'music' in its description</span>
 curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=description:music&amp;type=API'</span>
 </code></pre>
+<blockquote>
+<p>example result</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Get info about songs given a list of ids"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7e21ca78-34e2-4329-bb18-e35de4b107ea"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://developer.echonest.com/api/v4/song/profile?api_key={apiKey}&amp;format={outputFormat}&amp;id={songId}"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get user's profile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07acb558-7626-4bb4-946a-2ddd77c4dbb6"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetProfile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/users/{id}"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Get a User&amp;rsquo;s Profile.&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fd74bdf-7aa5-46b5-a9d3-63a270691537"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetUserProfile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1/users/{user_id}"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e686e6c9-9d17-4834-9344-a2d641c99250"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetOwnProfile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.pivotaltracker.com/services/v5/me"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
 <p>This endpoint performs a keyword search in APIBase. It returns only the first 30 results. To get
 more results, use the <code>page</code> query parameter.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -1150,11 +1187,63 @@ more results, use the <code>page</code> query parameter.</p>
 <td>Page number, starting from 1</td>
 </tr>
 </tbody></table>
+<h3 id='response'>Response</h3>
+<p>An array of entities that match the search criteria. Maximum 30 entities.</p>
+<h3 id='errors'>Errors</h3>
+<p>N/A</p>
 <h2 id='retrieving-arbitrary-entity'>Retrieving arbitrary entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4'</span>
 </code></pre>
+<blockquote>
+<p>successful request returns the entity:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"baseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.github.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ee1db224-3331-4b8a-bc11-8839b4e5d6b4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"07acb558-7626-4bb4-946a-2ddd77c4dbb6"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"9446bdf1-da5a-4096-98bc-47cfa8c15157"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://github.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"_relations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1404866573</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CategoryFolder"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root node"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55cdee12-c49a-46f6-909c-98f983c79a92"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APIs"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTAINS"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1432536694</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38932</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Operation"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MergePR"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/repos/{owner}/{repo}/pulls/{number}/merge"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HAS_METHOD"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>This endpoint lets you get an entity regardless of its type. For example can use
 this endpoint to retrieve an API, Method or DataSourceSchema...  Related
-entities will also be shown. To change this behavior, use <code>brief=false</code> in the
+entities will also be retrieved. To change this behavior, use <code>brief=false</code> in the
 query.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}</code></p>
@@ -1177,13 +1266,52 @@ query.</p>
 <td><code>true</code> to retrieve only the entity in question, otherwise all related entities will be retrieved</td>
 </tr>
 </tbody></table>
+<h3 id='response-2'>Response</h3>
+<p>In addition to the attributes of the entity, this endpoint also returns an
+<code>_relation</code> array that list entities related to the entity. Each entries in the list contains the following attribute:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>The relationship of the two entities</td>
+</tr>
+<tr>
+<td>direction</td>
+<td><code>in</code> or <code>out</code> indicating the direction of their relationship</td>
+</tr>
+<tr>
+<td>target</td>
+<td>The related entity</td>
+</tr>
+</tbody></table>
+<h3 id='errors-2'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Entity of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
 <h2 id='display-entity'>Display Entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/display'</span>
 </code></pre>
 <p>This endpoint shows arbitrary entity and interpret/execute it if applicable.
 Similar to the <a href="#retrieving-arbitrary-entity">Retrieving arbitrary entity</a> endpoint, this
-endpoint can also show an arbitrary entity but if the entity represents an
-executable object, for example a Query, then the entity will be executed/run and
-show the result instead.</p>
+endpoint can also retrieve an arbitrary entity but if the entity represents an
+executable object, for example a <a href="#query">Query</a>, then the entity will be executed/run and
+return the result instead.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}/display</code></p>
 <h3 id='parameters-2'>Parameters</h3>
@@ -1198,6 +1326,22 @@ show the result instead.</p>
 <td>*id</td>
 <td>uuid</td>
 <td>ID of the entity in question</td>
+</tr>
+</tbody></table>
+<h3 id='errors-3'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Entity of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
 </tr>
 </tbody></table>
 <h1 id='resourcetypes'>ResourceTypes</h1>

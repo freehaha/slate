@@ -162,6 +162,7 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 409 | API with the specified name already exists | entity of that name already exists
+400 | User input doesn not match API schema | schema mismatch
 
 ## Retrieve information of an API
 

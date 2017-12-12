@@ -534,8 +534,6 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <p>Successful request returns an API object:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1404866619</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ee1db224-3331-4b8a-bc11-8839b4e5d6b4"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="w">
     </span><span class="s2">"baseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.github.com"</span><span class="p">,</span><span class="w">
@@ -659,6 +657,24 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 </tbody></table>
 <h2 id='retrieve-information-of-a-method'>Retrieve information of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c
 </code></pre>
+<blockquote>
+<p>Successful request returns an <a href="#method">Method object</a>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99d64f8e-eace-417d-8cea-511621aaf57c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Get a gist"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetGist"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"8ca7b0c7-bda0-4667-9f74-f67897cef67f"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/gists/{gistId}"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"55394b28-b162-4355-b65b-6574b1956c77"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <p>This endpoint retrieves a Method.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}</code></p>
@@ -673,7 +689,41 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <tr>
 <td>id</td>
 <td>uuid</td>
-<td>id of the Method</td>
+<td>ID of the Method</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<p>An <a href="#method">Method</a> Object with related <code>parameters</code> and <code>resources</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>parameters</td>
+<td>ID of Parameters of the API</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>ID of Resources of the API</td>
+</tr>
+</tbody></table>
+<h3 id='errors-4'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Method of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
 </tr>
 </tbody></table>
 <h2 id='add-a-parameter-to-a-method'>Add a Parameter to a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>

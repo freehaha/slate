@@ -273,6 +273,14 @@
               </ul>
           </li>
           <li>
+            <a href="#data" class="toc-h1 toc-link" data-title="Data">Data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#models" class="toc-h2 toc-link" data-title="Models">Models</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#resourcetypes" class="toc-h1 toc-link" data-title="ResourceTypes">ResourceTypes</a>
               <ul class="toc-list-h2">
                   <li>
@@ -901,7 +909,8 @@ set, APIBase will always use the default value for the parameter regardless of w
 </tbody></table>
 <h2 id='add-a-resource-to-an-api'>Add a Resource to an API</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
 http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
-    "resourceType": "YoutubeVideo"
+    "resourceType": "YoutubeVideo",
+    "description": "Github Universe 2017 event video",
     "data": {
         "title": "GitHub Universe 2017",
         "link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
@@ -1006,10 +1015,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </tbody></table>
 <h2 id='add-a-resource-to-a-method'>Add a Resource to a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
 http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
-    "resourceType": "YoutubeVideo"
+    "resourceType": "YoutubeVideo",
+    "description": "Basic tutorial for Github in Mac and Windows"
     "data": {
-        "title": "GitHub Universe 2017",
-        "link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+        "title": "Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics",
+        "link" : "https://youtu.be/0fKg7e37bQE"
     }
 }'</span>
 
@@ -1366,7 +1376,7 @@ return the result instead.</p>
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h1 id='resourcetypes'>ResourceTypes</h1>
+<h1 id='data'>Data</h1><h2 id='models'>Models</h2><h3 id='data-source-schema'>Data Source Schema</h3><h3 id='connector'>Connector</h3><h3 id='data-source'>Data Source</h3><h3 id='query'>Query</h3><h3 id='transformer'>Transformer</h3><h1 id='resourcetypes'>ResourceTypes</h1>
 <p>Below are a list of resource types available when creating a Resource:</p>
 <h2 id='youtubevideo'>YoutubeVideo</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics"</span><span class="p">,</span><span class="w">

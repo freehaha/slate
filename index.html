@@ -272,6 +272,17 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#resourcetypes" class="toc-h1 toc-link" data-title="ResourceTypes">ResourceTypes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#youtubevideo" class="toc-h2 toc-link" data-title="YoutubeVideo">YoutubeVideo</a>
+                  </li>
+                  <li>
+                    <a href="#invokeexample" class="toc-h2 toc-link" data-title="InvokeExample">InvokeExample</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
@@ -479,11 +490,20 @@ If it is set, APIBase will always use the <code>default</code> value for that pa
 <td>In HTTP body, serialized as standard x-www-form-urlencoded format</td>
 </tr>
 </tbody></table>
-<h3 id='resource'>Resource</h3>
+<h3 id='resource'>Resource</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YoutubeVideo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"video tutorial of using Github"</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://youtu.be/0fKg7e37bQE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A Resource encapsulate information related to API, Method and other entities to
 explain and enrich the entities.  Resources could be of various types. For
 example, there are <code>YoutubeVideo</code> resources that represent videos hosted in
-Youtube. Resources can be added to various entities to provide additional
+Youtube, <code>InvokeExample</code> resources that show example parameters for invoking a
+Method. Resources can be added to various entities to provide additional
 information about the entities.</p>
 
 <p>A Resource has the following attributes:</p>
@@ -492,31 +512,25 @@ information about the entities.</p>
 <tr>
 <th>Attribute</th>
 <th>Type</th>
-<th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>*description</td>
 <td>string</td>
-<td>&quot;video tutorial of Github&quot;</td>
 <td>Description of the resource</td>
 </tr>
 <tr>
 <td>*data</td>
 <td>any</td>
-<td>see example on the right</td>
 <td>The actual data of the resource</td>
 </tr>
 <tr>
 <td>*resourceType</td>
 <td>ResourceType</td>
-<td>The type of Resource which schema <code>data</code> will be validated against</td>
-<td></td>
+<td>The type of Resource which schema <code>data</code> will be validated against. See a list of available <code>resourceType</code> and their schema <a href="#resourcetypes">here</a></td>
 </tr>
 </tbody></table>
-
-<p>See a list of available <code>resourceType</code> and their schema <a href="#resourcetypes">here</a></p>
 <h2 id='add-api'>Add API</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
     -H <span class="s1">'Content-Type: application/json'</span>
@@ -1184,6 +1198,66 @@ show the result instead.</p>
 <td>*id</td>
 <td>uuid</td>
 <td>ID of the entity in question</td>
+</tr>
+</tbody></table>
+<h1 id='resourcetypes'>ResourceTypes</h1>
+<p>Below are a list of resource types available when creating a Resource:</p>
+<h2 id='youtubevideo'>YoutubeVideo</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://youtu.be/0fKg7e37bQE"</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>References to Youtube videos.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*title</td>
+<td>string</td>
+<td>Title of the video</td>
+</tr>
+<tr>
+<td>*link</td>
+<td>string</td>
+<td>URL to the Youtube video</td>
+</tr>
+</tbody></table>
+<h2 id='invokeexample'>InvokeExample</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Get user profile from Github"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07acb558-7626-4bb4-946a-2ddd77c4dbb6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"freehaha"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Example for invoking a Method.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*title</td>
+<td>string</td>
+<td>Title of the invoke example</td>
+</tr>
+<tr>
+<td>*method</td>
+<td>string</td>
+<td>ID of the Method</td>
+</tr>
+<tr>
+<td>*parameters</td>
+<td>object</td>
+<td>Example parameters</td>
 </tr>
 </tbody></table>
 

@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - entities
+  - data
   - resourcetypes
 
 search: true
@@ -442,7 +443,8 @@ Code | Reason | Message
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
 http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
-	"resourceType": "YoutubeVideo"
+	"resourceType": "YoutubeVideo",
+	"description": "Github Universe 2017 event video",
 	"data": {
 		"title": "GitHub Universe 2017",
 		"link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
@@ -527,10 +529,11 @@ Code | Reason | Message
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
 http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
-	"resourceType": "YoutubeVideo"
+	"resourceType": "YoutubeVideo",
+	"description": "Basic tutorial for Github in Mac and Windows"
 	"data": {
-		"title": "GitHub Universe 2017",
-		"link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+		"title": "Github Tutorial For Beginners - Github Basics for Mac or Windows & Source Control Basics",
+		"link" : "https://youtu.be/0fKg7e37bQE"
 	}
 }'
 

@@ -171,6 +171,27 @@ Code | Reason | Message
 ```shell
 curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/display'
 ```
+> successful request returns the entity:
+
+```json
+{
+    "_type": "API",
+    "id": "ee1db224-3331-4b8a-bc11-8839b4e5d6b4",
+    "baseUrl": "https://api.github.com",
+    "description": "github",
+    "methods": [
+        "07acb558-7626-4bb4-946a-2ddd77c4dbb6",
+        "9446bdf1-da5a-4096-98bc-47cfa8c15157",
+        "df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"
+    ],
+    "name": "Github",
+    "provider": "http://github.com",
+    "resources": [
+        "6d5dd456-3b04-4590-b51a-c5094c6a5cd7"
+    ],
+    "type": "REST"
+}
+```
 
 This endpoint shows arbitrary entity and interpret/execute it if applicable.
 Similar to the [Retrieving arbitrary entity](#retrieving-arbitrary-entity) endpoint, this

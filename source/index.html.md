@@ -430,7 +430,7 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/api/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
+http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
 	"resourceType": "YoutubeVideo"
 	"data": {
 		"title": "GitHub Universe 2017",
@@ -463,7 +463,7 @@ A [Resource](#resource) Object.
 Attribute | Description
 --- | ---
 message | `entity created`
-id | ID of the created Parameter object
+id | ID of the created Resource object
 
 ### Errors
 Possible error codes and reasons:
@@ -510,3 +510,88 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 404 | API of specified `id` does not exist | resource not found
+
+## Add a Resource to a Method
+
+```shell
+curl -XPOST -H 'Content-Type: application/json'
+http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
+	"resourceType": "YoutubeVideo"
+	"data": {
+		"title": "GitHub Universe 2017",
+		"link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+	}
+}'
+
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
+This endpoint adds a Resource entity to a Method.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources`
+
+### Parameters
+A [Resource](#resource) Object.
+
+
+### Response
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Resource object
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match Resource schema | schema mismatch
+400 | `data` does not match ResourceType schema | resource schema mismatch
+
+## List resources of a Method
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+```
+
+> Successful request returns a list of ID of resources:
+
+```json
+[
+	"6d5dd456-3b04-4590-b51a-c5094c6a5cd7",
+	"3d53d456-3b04-3ab0-b51s-d3012a133d56"
+]
+```
+
+This endpoint retrieves an array of Resources that are associated with the Method.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the Method
+
+### Response
+
+An array of [Resource objects](#resource) related to the Method.
+
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | Method of specified `id` does not exist | resource not found

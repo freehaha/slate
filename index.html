@@ -241,6 +241,21 @@
                   <li>
                     <a href="#add-a-parameter-to-a-method" class="toc-h2 toc-link" data-title="Add a Parameter to a Method">Add a Parameter to a Method</a>
                   </li>
+                  <li>
+                    <a href="#retrieve-information-of-a-parameter" class="toc-h2 toc-link" data-title="Retrieve information of a Parameter">Retrieve information of a Parameter</a>
+                  </li>
+                  <li>
+                    <a href="#add-a-resource-to-an-api" class="toc-h2 toc-link" data-title="Add a Resource to an API">Add a Resource to an API</a>
+                  </li>
+                  <li>
+                    <a href="#list-resources-of-an-api" class="toc-h2 toc-link" data-title="List resources of an API">List resources of an API</a>
+                  </li>
+                  <li>
+                    <a href="#add-a-resource-to-a-method" class="toc-h2 toc-link" data-title="Add a Resource to a Method">Add a Resource to a Method</a>
+                  </li>
+                  <li>
+                    <a href="#list-resources-of-a-method" class="toc-h2 toc-link" data-title="List resources of a Method">List resources of a Method</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -256,9 +271,6 @@
                     <a href="#display-entity" class="toc-h2 toc-link" data-title="Display Entity">Display Entity</a>
                   </li>
               </ul>
-          </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -389,7 +401,8 @@ is a Method in the Github API. Methods contains the following attributes:</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Parameters describes what are the inputs required/available for the Method. A Method can have multiple Parameters
-and in different <code>locations</code>.</p>
+and in different <code>locations</code>. <code>locked</code> attribute indicates whether the parameter is intended to be changed by user or not.
+If it is set, APIBase will always use the <code>default</code> value for that parameter regardless of what users input.</p>
 
 <table><thead>
 <tr>
@@ -466,6 +479,44 @@ and in different <code>locations</code>.</p>
 <td>In HTTP body, serialized as standard x-www-form-urlencoded format</td>
 </tr>
 </tbody></table>
+<h3 id='resource'>Resource</h3>
+<p>A Resource encapsulate information related to API, Method and other entities to
+explain and enrich the entities.  Resources could be of various types. For
+example, there are <code>YoutubeVideo</code> resources that represent videos hosted in
+Youtube. Resources can be added to various entities to provide additional
+information about the entities.</p>
+
+<p>A Resource has the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>&quot;video tutorial of Github&quot;</td>
+<td>Description of the resource</td>
+</tr>
+<tr>
+<td>*data</td>
+<td>any</td>
+<td>see example on the right</td>
+<td>The actual data of the resource</td>
+</tr>
+<tr>
+<td>*resourceType</td>
+<td>ResourceType</td>
+<td>The type of Resource which schema <code>data</code> will be validated against</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>See a list of available <code>resourceType</code> and their schema <a href="#resourcetypes">here</a></p>
 <h2 id='add-api'>Add API</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
     -H <span class="s1">'Content-Type: application/json'</span>
@@ -519,7 +570,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>User input doesn not match API schema</td>
+<td>User input does not match API schema</td>
 <td>schema mismatch</td>
 </tr>
 <tr>
@@ -651,7 +702,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>User input doesn not match Method schema</td>
+<td>User input does not match Method schema</td>
 <td>schema mismatch</td>
 </tr>
 </tbody></table>
@@ -735,58 +786,313 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 }'</span>
 
 </code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Parameters describe the parameters of a Method, their types, whether they are optional and the place
 where the parameters should be placed (in url as path/query, in the header, or in the request body).
 Locked attribute indicates whether the parameter is intended to be changed by users or not. If it is
-set, APIBase will always use the default value for the parameter regardless of what the user input.</p>
+set, APIBase will always use the default value for the parameter regardless of what users input.</p>
 
 <p>This endpoint adds a Parameter entity to a Method.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/parameters</code></p>
 <h3 id='parameters-5'>Parameters</h3>
+<p>A <a href="#parameter">Parameter</a> Object.</p>
+<h3 id='response-5'>Response</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Example</th>
+<th>Attribute</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>*name</td>
-<td>string</td>
-<td>&quot;gistId&quot;</td>
-<td>Name of the parameter</td>
+<td>message</td>
+<td><code>entity created</code></td>
 </tr>
 <tr>
-<td>*location</td>
-<td><code>path</code>, <code>query</code>, <code>body</code>, <code>header</code> or <code>form</code></td>
-<td>&quot;path&quot;</td>
-<td>Location where the parameter should be</td>
+<td>id</td>
+<td>ID of the created Parameter object</td>
+</tr>
+</tbody></table>
+<h3 id='errors-5'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Parameter schema</td>
+<td>schema mismatch</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-information-of-a-parameter'>Retrieve information of a Parameter</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/parameters/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
+</code></pre>
+<blockquote>
+<p>Successful request returns an <a href="#parameter">Parameter object</a>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d74c24e6-9451-41f6-93be-afdfc20a7f4c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"english"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"form"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"language"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves an Parameter.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/parameters/{id}</code></p>
+<h3 id='parameters-6'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the Parameter</td>
+</tr>
+</tbody></table>
+<h3 id='response-6'>Response</h3>
+<p>A <a href="#parameter">Parameter</a> Object.</p>
+<h3 id='errors-6'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Parameter of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
+<h2 id='add-a-resource-to-an-api'>Add a Resource to an API</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
+    "resourceType": "YoutubeVideo"
+    "data": {
+        "title": "GitHub Universe 2017",
+        "link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+    }
+}'</span>
+
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a Resource entity to an API.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/resources</code></p>
+<h3 id='parameters-7'>Parameters</h3>
+<p>A <a href="#resource">Resource</a> Object.</p>
+<h3 id='response-7'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
 </tr>
 <tr>
-<td>*type</td>
-<td><code>string</code>, <code>number</code>, <code>integer</code>, <code>boolean</code>, <code>array</code> or <code>file</code></td>
-<td>&quot;string&quot;</td>
-<td>Type of the parameter</td>
+<td>id</td>
+<td>ID of the created Resource object</td>
+</tr>
+</tbody></table>
+<h3 id='errors-7'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Resource schema</td>
+<td>schema mismatch</td>
 </tr>
 <tr>
-<td>*required</td>
-<td>boolean</td>
-<td>true</td>
-<td>Whether the parameter is required or not</td>
+<td>400</td>
+<td><code>data</code> does not match ResourceType schema</td>
+<td>resource schema mismatch</td>
+</tr>
+</tbody></table>
+<h2 id='list-resources-of-an-api'>List resources of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+</code></pre>
+<blockquote>
+<p>Successful request returns a list of ID of resources:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves an array of Resources that are associated with the API.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}/resources</code></p>
+<h3 id='parameters-8'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the API</td>
+</tr>
+</tbody></table>
+<h3 id='response-8'>Response</h3>
+<p>An array of <a href="#resource">Resource objects</a> related to the API.</p>
+<h3 id='errors-8'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>API of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
+<h2 id='add-a-resource-to-a-method'>Add a Resource to a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
+    "resourceType": "YoutubeVideo"
+    "data": {
+        "title": "GitHub Universe 2017",
+        "link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+    }
+}'</span>
+
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a Resource entity to a Method.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources</code></p>
+<h3 id='parameters-9'>Parameters</h3>
+<p>A <a href="#resource">Resource</a> Object.</p>
+<h3 id='response-9'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
 </tr>
 <tr>
-<td>default</td>
-<td>same as <code>type</code></td>
-<td>&quot;default gist ID&quot;</td>
-<td>Default value if the parameter is missing or is <code>locked</code></td>
+<td>id</td>
+<td>ID of the created Resource object</td>
+</tr>
+</tbody></table>
+<h3 id='errors-9'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Resource schema</td>
+<td>schema mismatch</td>
 </tr>
 <tr>
-<td>locked</td>
-<td>boolean</td>
-<td>false</td>
-<td>Indicate whether the parameter is <code>locked</code> or not</td>
+<td>400</td>
+<td><code>data</code> does not match ResourceType schema</td>
+<td>resource schema mismatch</td>
+</tr>
+</tbody></table>
+<h2 id='list-resources-of-a-method'>List resources of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+</code></pre>
+<blockquote>
+<p>Successful request returns a list of ID of resources:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves an array of Resources that are associated with the Method.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources</code></p>
+<h3 id='parameters-10'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the Method</td>
+</tr>
+</tbody></table>
+<h3 id='response-10'>Response</h3>
+<p>An array of <a href="#resource">Resource objects</a> related to the Method.</p>
+<h3 id='errors-10'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Method of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
 </tr>
 </tbody></table>
 <h1 id='entity'>Entity</h1><h2 id='entity-search'>Entity search</h2><pre class="highlight shell tab-shell"><code><span class="c"># search for API with the 'Github' keyword</span>
@@ -878,62 +1184,6 @@ show the result instead.</p>
 <td>*id</td>
 <td>uuid</td>
 <td>ID of the entity in question</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 

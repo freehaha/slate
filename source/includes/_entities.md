@@ -132,8 +132,7 @@ curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-
 
 This endpoint lets you get an entity regardless of its type. For example can use
 this endpoint to retrieve an API, Method or DataSourceSchema...  Related
-entities will also be retrieved. To change this behavior, use `brief=false` in the
-query.
+entities will also be retrieved. To change this behavior, use the `brief=true` query parameter.
 
 ### HTTP Request
 
@@ -149,7 +148,9 @@ brief | bool | `true` to retrieve only the entity in question, otherwise all rel
 ### Response
 
 In addition to the attributes of the entity, this endpoint also returns an
-`_relation` array that list entities related to the entity. Each entries in the list contains the following attribute:
+`_relation` array if `brief=false`(default). `The _relation` array list
+entities related to the entity, each containing the following
+attribute:
 
 Attribute | Description
 --------- | ----------- |

@@ -85,7 +85,8 @@ Attribute | Type | Example | Description
 ```
 
 Parameters describes what are the inputs required/available for the Method. A Method can have multiple Parameters
-and in different `locations`.
+and in different `locations`. `locked` attribute indicates whether the parameter is intended to be changed by user or not.
+If it is set, APIBase will always use the `default` value for that parameter regardless of what users input.
 
 
 Attribute | Type | Example | Description
@@ -331,10 +332,19 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 
 ```
 
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
 Parameters describe the parameters of a Method, their types, whether they are optional and the place
 where the parameters should be placed (in url as path/query, in the header, or in the request body).
 Locked attribute indicates whether the parameter is intended to be changed by users or not. If it is
-set, APIBase will always use the default value for the parameter regardless of what the user input.
+set, APIBase will always use the default value for the parameter regardless of what users input.
 
 This endpoint adds a Parameter entity to a Method.
 
@@ -343,12 +353,59 @@ This endpoint adds a Parameter entity to a Method.
 `POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/parameters`
 
 ### Parameters
-Parameter | Type | Example | Description
---- | --- | --- | ---
-\*name | string |  "gistId" | Name of the parameter
-\*location | `path`, `query`, `body`, `header` or `form` | "path" | Location where the parameter should be
-\*type | `string`, `number`, `integer`, `boolean`, `array` or `file` | "string" | Type of the parameter
-\*required | boolean | true | Whether the parameter is required or not
-default | same as `type` | "default gist ID" | Default value if the parameter is missing or is `locked`
-locked | boolean | false | Indicate whether the parameter is `locked` or not
+A [Parameter](#parameter) Object.
 
+
+### Response
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Parameter object
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input doesn not match Parameter schema | schema mismatch
+
+## Retrieve information of a Parameter
+
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/parameters/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
+```
+
+> Successful request returns an [Parameter object](#parameter):
+
+```json
+{
+	"id": "d74c24e6-9451-41f6-93be-afdfc20a7f4c",
+	"default": "english",
+	"location": "form",
+	"name": "language",
+	"type": "string",
+	"required": false
+}
+```
+This endpoint retrieves an Parameter.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/parameters/{id}`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the Parameter
+
+### Response
+
+A [Parameter](#parameter) Object.
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | Parameter of specified `id` does not exist | resource not found

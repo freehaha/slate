@@ -448,7 +448,7 @@ This endpoint retrieves a Connector.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/connector/{id}`
+`GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}`
 
 ### Parameters
 
@@ -556,3 +556,109 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 404 | Connector of specified `id` does not exist | resource not found
+
+## Add DataSource
+
+```shell
+# Make sure the `Content-Type` is set correctly
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/3c7814c3-0e0c-4cd3-85cd-f288b9e85174/datasources
+	-H 'Content-Type: application/json'
+	-d '{
+		"name": "TestData1",
+		"description": "testing data 1",
+		"source": [
+			{
+				"name": "abc",
+				"id": 1
+			},
+			{
+				"name": "def",
+				"id": 1
+			}
+		]
+	}'
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
+This endpoint adds a DataSource using specified Connector, creating an instance of Connector with configuration
+specified by `source`.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/datasources`
+
+### Parameters
+
+A [Connector](#connector) Object.
+
+### Response
+
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Connector entity
+
+### Errors
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match Connector schema | schema mismatch
+409 | DataSource with the specified name already exists | entity of that name already exists
+
+## Retrieve information of a DataSource
+
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/c9fd63eb-8882-4a42-9919-6326b85f4768
+```
+
+> Successful request returns a [Connector object](#connector):
+
+```json
+{
+    "id": "c9fd63eb-8882-4a42-9919-6326b85f4768",
+	"name": "TestData1",
+	"description": "testing data 1",
+	"source": [
+		{
+			"name": "abc",
+			"id": 1
+		},
+		{
+			"name": "def",
+			"id": 1
+		}
+	]
+}
+```
+
+This endpoint retrieves a Connector.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/datasources/{id}`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the DataSource
+
+### Response
+
+A [DataSource](#data-source-schema) Object.
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | DataSource of specified `id` does not exist | resource not found
+

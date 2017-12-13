@@ -199,3 +199,58 @@ Code | Reason | Message
 --- | --- | ---
 404 | Recipe of specified `id` does not exist | resource not found
 
+## Run Recipe
+
+```shell
+# Make sure the `Content-Type` is set correctly
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f
+	-H 'Content-Type: application/json'
+	-d '{
+		"parameters": {
+			"username": "freehaha"
+		}
+	}'
+```
+
+> Successful requst returns the result of the recipe:
+
+```json
+{
+	"username": "freehaha",
+	"_results": {
+		"0": {
+			"...": "results of the first operation"
+		},
+		"1": {
+			"...": "results of the second operation"
+		}
+	}
+}
+```
+
+This endpoint creates a Recipe.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/recipes`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | ---
+parameters | object | Parameter to be passed to the recipe, overwriting any default parameters and will be used as the context
+
+
+
+### Response
+
+The resulting context of the Recipe. The `_result` object contains result of
+each opeartion with `._result["0"]` being the result of the first operation,
+`._result["1"]` being the second and so on.
+
+### Errors
+
+Code | Reason | Message
+--- | --- | ---
+404 | Recipe with the specified ID does not exist | recipe not found
+400 | Error running recipe | message related to the operation failing

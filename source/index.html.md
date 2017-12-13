@@ -13,6 +13,7 @@ includes:
   - entities
   - data
   - recipe
+  - widget
   - resourcetypes
 
 search: true

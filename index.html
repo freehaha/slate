@@ -314,6 +314,26 @@
                   <li>
                     <a href="#retrieve-information-of-a-query" class="toc-h2 toc-link" data-title="Retrieve information of a Query">Retrieve information of a Query</a>
                   </li>
+                  <li>
+                    <a href="#transformer-2" class="toc-h2 toc-link" data-title="Transformer">Transformer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#recipes" class="toc-h1 toc-link" data-title="Recipes">Recipes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#models" class="toc-h2 toc-link" data-title="Models">Models</a>
+                  </li>
+                  <li>
+                    <a href="#create-recipe" class="toc-h2 toc-link" data-title="Create Recipe">Create Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-information-of-a-recipe" class="toc-h2 toc-link" data-title="Retrieve information of a Recipe">Retrieve information of a Recipe</a>
+                  </li>
+                  <li>
+                    <a href="#run-recipe" class="toc-h2 toc-link" data-title="Run Recipe">Run Recipe</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2022,7 +2042,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 </tr>
 </tbody></table>
 <h3 id='response-6'>Response</h3>
-<p>A <a href="#data-source-schema">Connector</a> Object with related <code>resources</code> and <code>datasources</code>.</p>
+<p>A <a href="#connector">Connector</a> Object with related <code>resources</code> and <code>datasources</code>.</p>
 
 <table><thead>
 <tr>
@@ -2308,7 +2328,7 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 <h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/queries</code></p>
 <h3 id='parameters-11'>Parameters</h3>
-<p>A <a href="#Query">Query</a> Object.</p>
+<p>A <a href="#query">Query</a> Object.</p>
 <h3 id='response-11'>Response</h3>
 <table><thead>
 <tr>
@@ -2392,6 +2412,375 @@ To evaluate the Query and view the result, use the <a href="#display-entity">Dis
 <td>404</td>
 <td>Query of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
+</tr>
+</tbody></table>
+<h2 id='transformer-2'>Transformer</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/transformer
+    -H <span class="s1">'Content-Type: application/json'</span>
+    -d <span class="s1">'{
+        "description": "tranfrom social text posts to array of text object"
+        "expression": "map({text: .body})"
+        "source": "&lt;source-id&gt;",
+        "target": "&lt;target-id&gt;"
+    },'</span>
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a <a href="#transformer">Transformer</a>.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/transformer</code></p>
+<h3 id='parameters-13'>Parameters</h3>
+<p>A <a href="#query">Query</a> Object.</p>
+<h3 id='response-13'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the created Query entity</td>
+</tr>
+</tbody></table>
+<h3 id='errors-13'>Errors</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Transformer schema</td>
+<td>schema mismatch</td>
+</tr>
+</tbody></table>
+<h1 id='recipes'>Recipes</h1><h2 id='models'>Models</h2><h3 id='recipe'>Recipe</h3>
+<blockquote>
+<p>A Recipe entity</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f95c28be-f3d9-459b-b204-b00bd31c981f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get first gist"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"listGists"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9446bdf1-da5a-4096-98bc-47cfa8c15157"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"getGist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99d64f8e-eace-417d-8cea-511621aaf57c"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"listGists"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">".username"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"gists"</span><span class="p">:</span><span class="w"> </span><span class="s2">"."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">".gists | length &gt; 1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getGist"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"gistId"</span><span class="p">:</span><span class="w"> </span><span class="s2">".gists[0].id"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"freehaha"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Recipe is a sequence of actions to be executed with optionally conditions. It consists of following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>Name of the Recipe</td>
+</tr>
+<tr>
+<td>*operations</td>
+<td>object</td>
+<td>Object containing Methods that are used in the recipe and their alias as key. They can also refer to other Recipes.</td>
+</tr>
+<tr>
+<td>*sequence</td>
+<td>array</td>
+<td>Sequence of actions to be run</td>
+</tr>
+<tr>
+<td>parameters</td>
+<td>object</td>
+<td>The context used throughout the recipe</td>
+</tr>
+</tbody></table>
+<h4 id='sequence'>Sequence</h4>
+<p><code>sequence</code> contains an array of actions to be run. Each action is described by an object with the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*operation</td>
+<td>string</td>
+<td>Name of the action to be executed, can be the aliases specified in <code>operations</code> or special operator prefixed with <code>$</code>, listed below.</td>
+</tr>
+<tr>
+<td>*parameters</td>
+<td>object</td>
+<td>Parameters of the <code>operations</code></td>
+</tr>
+<tr>
+<td>condition</td>
+<td>string</td>
+<td>A query expression. When specified, it will be evaluated and if the result is <code>false</code> the action will be skipped, otherwise run as normal.</td>
+</tr>
+<tr>
+<td>output</td>
+<td>object</td>
+<td>A mapping specifying whether the output should be saved as variables and how.</td>
+</tr>
+</tbody></table>
+
+<p>By default, the result of each operation is stored as <code>._results[#]</code> in the context. <code>.results[0]</code> being the result of the first operation, <code>_.results[1]</code> the second and so on.</p>
+<h5 id='operators'>$ operators</h5>
+<ul>
+<li><code>$query</code>: perform a query on the context</li>
+<li><code>$exit</code>: terminate the recipe, no further actions will be executed</li>
+<li><code>$sequence</code>: excuted a sequence of operations</li>
+</ul>
+<h5 id='output'>Output</h5>
+<p>The <code>output</code> contains a list of key-value pairs where the values are expressions to be evaluated against the result of the operation and the keys are where the evaluated 
+values will be stored in the context. In the example recipe on the right, the result of the first <code>listGists</code> operation is stored as <code>gists</code> in the context. </p>
+<h4 id='recipe-parameters'>Recipe/Parameters</h4>
+<p>The <code>parameters</code> in a Recipe will be used as the context when running the Recipe. All expressions will be evaluated against this context. </p>
+<h2 id='create-recipe'>Create Recipe</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
+    -H <span class="s1">'Content-Type: application/json'</span>
+    -d <span class="s1">'{
+        "sequence": [
+            {
+                "operation": "listGists",
+                "parameters": {
+                    "user": ".username"
+                }
+            },
+            {
+                "condition": "._results[\"0\"] | length &gt; 1",
+                "operation": "getGist",
+                "parameters": {
+                    "gistId": "._results[\"0\"][0].id"
+                }
+            }
+        ],
+        "name": "get first gist with condition",
+        "parameters": {
+            "username": "freehaha"
+        },
+        "operations": {
+            "listGists": "9446bdf1-da5a-4096-98bc-47cfa8c15157",
+            "getGist": "99d64f8e-eace-417d-8cea-511621aaf57c"
+        },
+    }'</span>
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a Recipe.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes</code></p>
+<h3 id='parameters'>Parameters</h3>
+<p>A <a href="#recipe">Recipe</a> Object.</p>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the created Recipe entity</td>
+</tr>
+</tbody></table>
+<h3 id='errors'>Errors</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Recipe schema</td>
+<td>schema mismatch</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Recipe with the specified name already exists</td>
+<td>entity of that name already exists</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-information-of-a-recipe'>Retrieve information of a Recipe</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/recipe/f95c28be-f3d9-459b-b204-b00bd31c981f
+</code></pre>
+<blockquote>
+<p>Successful request returns a <a href="#recipe">Recipe object</a>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f95c28be-f3d9-459b-b204-b00bd31c981f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get first gist with condition"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"listGists"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">".username"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"._results[</span><span class="se">\"</span><span class="s2">0</span><span class="se">\"</span><span class="s2">] | length &gt; 1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getGist"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"gistId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"._results[</span><span class="se">\"</span><span class="s2">0</span><span class="se">\"</span><span class="s2">][0].id"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"freehaha"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"listGists"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9446bdf1-da5a-4096-98bc-47cfa8c15157"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"getGist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99d64f8e-eace-417d-8cea-511621aaf57c"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a Recipe.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/recipes/{id}</code></p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the Recipe</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<p>A <a href="#recipe">Recipe</a> Object.</p>
+<h3 id='errors-2'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Recipe of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
+<h2 id='run-recipe'>Run Recipe</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f
+    -H <span class="s1">'Content-Type: application/json'</span>
+    -d <span class="s1">'{
+        "parameters": {
+            "username": "freehaha"
+        }
+    }'</span>
+</code></pre>
+<blockquote>
+<p>Successful requst returns the result of the recipe:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"freehaha"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_results"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"..."</span><span class="p">:</span><span class="w"> </span><span class="s2">"results of the first operation"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"..."</span><span class="p">:</span><span class="w"> </span><span class="s2">"results of the second operation"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a Recipe.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes</code></p>
+<h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>parameters</td>
+<td>object</td>
+<td>Parameter to be passed to the recipe, overwriting any default parameters and will be used as the context</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<p>The resulting context of the Recipe. The <code>_result</code> object contains result of
+each opeartion with <code>._result[&quot;0&quot;]</code> being the result of the first operation,
+<code>._result[&quot;1&quot;]</code> being the second and so on.</p>
+<h3 id='errors-3'>Errors</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Recipe with the specified ID does not exist</td>
+<td>recipe not found</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Error running recipe</td>
+<td>message related to the operation failing</td>
 </tr>
 </tbody></table>
 <h1 id='resourcetypes'>ResourceTypes</h1>

@@ -662,3 +662,94 @@ Code | Reason | Message
 --- | --- | ---
 404 | DataSource of specified `id` does not exist | resource not found
 
+## Create Query
+
+```shell
+# Make sure the `Content-Type` is set correctly
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
+	-H 'Content-Type: application/json'
+	-d '{
+        "name": "Stock Threshold",
+		"sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
+        "expression": ".rows | map(select(.[1] | tonumber > 200))",
+		"description": "filter out rows where first column <= 200"
+    },'
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
+A Query allows one to evaluate an `expression` on one or more DataSources or Queries. Upon being
+created, the query is not immediately executed and returns only the entity created message. To
+evaluate the Query and view the result, use the [Display Entity](#display-entity) endpoint.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/queries`
+
+### Parameters
+
+A [Query](#Query) Object.
+
+### Response
+
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Query entity
+
+### Errors
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match Query schema | schema mismatch
+409 | Query with the specified name already exists | entity of that name already exists
+
+## Retrieve information of a Query
+
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/562be085-604a-4e4e-868b-0f618e9493de
+```
+
+> Successful request returns a [Query object](#query):
+
+```json
+{
+    "_type": "Query",
+    "id": "562be085-604a-4e4e-868b-0f618e9493de",
+	"name": "Stock Threshold",
+	"sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
+	"expression": ".rows | map(select(.[1] | tonumber > 200))",
+	"description": "filter out rows where first column <= 200"
+}
+```
+
+This endpoint retrieves a Query. Note that this endpoint only retrieve the query expression, not the evaluated result.
+To evaluate the Query and view the result, use the [Display Entity](#display-entity) endpoint.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/queries/{id}`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the Query
+
+### Response
+
+An [Query](#query) Object.
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | Query of specified `id` does not exist | resource not found

@@ -219,7 +219,7 @@ id | ID of the created DataSourceSchema entity
 
 Code | Reason | Message
 --- | --- | ---
-400 | User input does not match API schema | schema mismatch
+400 | User input does not match DataSourceSchema schema | schema mismatch
 409 | DataSourceSchema with the specified name already exists | entity of that name already exists
 
 ## Retrieve information of a DataSourceSchema
@@ -253,7 +253,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-44
     ]
 }
 ```
-This endpoint retrieves an API.
+This endpoint retrieves an DataSourceSchema.
 
 ### HTTP Request
 
@@ -279,3 +279,84 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 404 | DataSourceSchema of specified `id` does not exist | resource not found
+
+## Create Connector
+
+```shell
+# Make sure the `Content-Type` is set correctly
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/connectors
+	-H 'Content-Type: application/json'
+	-d '{
+		"id": "b5f922b9-c850-45b7-86c1-0e8bc7371cae",
+		"engine": {
+			"method": "npm",
+			"code": "https://github.com/mysilver/yooz-connector"
+		},
+		"name": "yooz-api-connector",
+	}'
+```
+
+This endpoint adds a Connector to a DataSourceSchema
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/connectors`
+
+### Parameters
+
+A [Connector](#connector) Object.
+
+### Response
+
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Connector entity
+
+### Errors
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match Connector schema | schema mismatch
+409 | Connector with the specified name already exists | entity of that name already exists
+
+## Retrieve information of a Connector
+
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b5f922b9-c850-45b7-86c1-0e8bc7371cae
+```
+
+> Successful request returns an Connector object:
+
+```json
+{
+    "id": "b5f922b9-c850-45b7-86c1-0e8bc7371cae",
+    "engine": {
+        "method": "npm",
+        "code": "https://github.com/mysilver/yooz-connector"
+    },
+    "name": "yooz-api-connector",
+}
+```
+This endpoint retrieves an Connector.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/connector/{id}`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the Connector
+
+### Response
+
+A [Connector](#data-source-schema) Object.
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | Connector of specified `id` does not exist | resource not found

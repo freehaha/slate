@@ -279,16 +279,28 @@
                     <a href="#models" class="toc-h2 toc-link" data-title="Models">Models</a>
                   </li>
                   <li>
-                    <a href="#create-data-source-schema" class="toc-h2 toc-link" data-title="Create Data Source Schema">Create Data Source Schema</a>
+                    <a href="#create-datasourceschema" class="toc-h2 toc-link" data-title="Create DataSourceSchema">Create DataSourceSchema</a>
                   </li>
                   <li>
                     <a href="#retrieve-information-of-a-datasourceschema" class="toc-h2 toc-link" data-title="Retrieve information of a DataSourceSchema">Retrieve information of a DataSourceSchema</a>
                   </li>
                   <li>
-                    <a href="#create-connector" class="toc-h2 toc-link" data-title="Create Connector">Create Connector</a>
+                    <a href="#add-a-resource-to-a-datasourceschema" class="toc-h2 toc-link" data-title="Add a Resource to a DataSourceSchema">Add a Resource to a DataSourceSchema</a>
+                  </li>
+                  <li>
+                    <a href="#list-resources-of-a-datasourceschema" class="toc-h2 toc-link" data-title="List resources of a DataSourceSchema">List resources of a DataSourceSchema</a>
+                  </li>
+                  <li>
+                    <a href="#add-connector" class="toc-h2 toc-link" data-title="Add Connector">Add Connector</a>
                   </li>
                   <li>
                     <a href="#retrieve-information-of-a-connector" class="toc-h2 toc-link" data-title="Retrieve information of a Connector">Retrieve information of a Connector</a>
+                  </li>
+                  <li>
+                    <a href="#add-a-resource-to-a-connector" class="toc-h2 toc-link" data-title="Add a Resource to a Connector">Add a Resource to a Connector</a>
+                  </li>
+                  <li>
+                    <a href="#list-resources-of-a-connector" class="toc-h2 toc-link" data-title="List resources of a Connector">List resources of a Connector</a>
                   </li>
               </ul>
           </li>
@@ -1652,7 +1664,7 @@ the result.</p>
 <td>a <a href="https://stedolan.github.io/jq/manual/">jq</a> query expression</td>
 </tr>
 </tbody></table>
-<h2 id='create-data-source-schema'>Create Data Source Schema</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+<h2 id='create-datasourceschema'>Create DataSourceSchema</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
@@ -1673,6 +1685,14 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
         "name": "Yooz Rest API Schema",
     }'</span>
 </code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A DataSourceSchema describes the schema of data coming from a source so that we can understand and explore the structure of the data.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas</code></p>
@@ -1716,7 +1736,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <h2 id='retrieve-information-of-a-datasourceschema'>Retrieve information of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314
 </code></pre>
 <blockquote>
-<p>Successful request returns an DataSourceSchema object:</p>
+<p>Successful request returns a <a href="#data-source-schema">DataSourceSchema object</a>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56e3e7af-8268-445f-91ed-63eabb0e5314"</span><span class="p">,</span><span class="w">
@@ -1737,10 +1757,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yooz Rest API Schema"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"connectors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"b5f922b9-c850-45b7-86c1-0e8bc7371cae"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves an DataSourceSchema.</p>
+<p>This endpoint retrieves a DataSourceSchema.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}</code></p>
 <h3 id='parameters-2'>Parameters</h3>
@@ -1758,7 +1779,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </tr>
 </tbody></table>
 <h3 id='response-2'>Response</h3>
-<p>An <a href="#data-source-schema">DataSourceSchema</a> Object with related <code>connectors</code>.</p>
+<p>An <a href="#data-source-schema">DataSourceSchema</a> Object with related <code>connectors</code> and <code>resources</code>.</p>
 
 <table><thead>
 <tr>
@@ -1769,6 +1790,10 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <tr>
 <td>connectors</td>
 <td>ID of Connectors available for the DataSourceSchema</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>ID of Resources associated to the DataSourceSchema</td>
 </tr>
 </tbody></table>
 <h3 id='errors-2'>Errors</h3>
@@ -1787,7 +1812,113 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='create-connector'>Create Connector</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+<h2 id='add-a-resource-to-a-datasourceschema'>Add a Resource to a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
+    "resourceType": "YoutubeVideo",
+    "description": "Github Universe 2017 event video",
+    "data": {
+        "title": "GitHub Universe 2017",
+        "link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+    }
+}'</span>
+
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a Resource entity to a DataSourceSchema.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources</code></p>
+<h3 id='parameters-3'>Parameters</h3>
+<p>A <a href="#resource">Resource</a> Object.</p>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the created Resource object</td>
+</tr>
+</tbody></table>
+<h3 id='errors-3'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Resource schema</td>
+<td>schema mismatch</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>data</code> does not match ResourceType schema</td>
+<td>resource schema mismatch</td>
+</tr>
+</tbody></table>
+<h2 id='list-resources-of-a-datasourceschema'>List resources of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+</code></pre>
+<blockquote>
+<p>Successful request returns a list of ID of resources:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves an array of Resources that are associated with the DataSourceSchema.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources</code></p>
+<h3 id='parameters-4'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the DataSourceSchema</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<p>An array of IDs of <a href="#resource">Resource objects</a> related to the DataSourceSchema.</p>
+<h3 id='errors-4'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>DataSourceSchema of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
+<h2 id='add-connector'>Add Connector</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/connectors
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
@@ -1796,15 +1927,23 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
             "method": "npm",
             "code": "https://github.com/mysilver/yooz-connector"
         },
-        "name": "yooz-api-connector",
+        "name": "yooz-api-connector"
     }'</span>
 </code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>This endpoint adds a Connector to a DataSourceSchema</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/connectors</code></p>
-<h3 id='parameters-3'>Parameters</h3>
+<h3 id='parameters-5'>Parameters</h3>
 <p>A <a href="#connector">Connector</a> Object.</p>
-<h3 id='response-3'>Response</h3>
+<h3 id='response-5'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -1820,7 +1959,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <td>ID of the created Connector entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-3'>Errors</h3>
+<h3 id='errors-5'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -1842,7 +1981,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <h2 id='retrieve-information-of-a-connector'>Retrieve information of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b5f922b9-c850-45b7-86c1-0e8bc7371cae
 </code></pre>
 <blockquote>
-<p>Successful request returns an Connector object:</p>
+<p>Successful request returns a <a href="#connector">Connector object</a>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b5f922b9-c850-45b7-86c1-0e8bc7371cae"</span><span class="p">,</span><span class="w">
@@ -1853,10 +1992,10 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yooz-api-connector"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves an Connector.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<p>This endpoint retrieves a Connector.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/connector/{id}</code></p>
-<h3 id='parameters-4'>Parameters</h3>
+<h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1870,9 +2009,131 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <td>ID of the Connector</td>
 </tr>
 </tbody></table>
-<h3 id='response-4'>Response</h3>
-<p>A <a href="#data-source-schema">Connector</a> Object.</p>
-<h3 id='errors-4'>Errors</h3>
+<h3 id='response-6'>Response</h3>
+<p>A <a href="#data-source-schema">Connector</a> Object with related <code>resources</code> and <code>datasources</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>resources</td>
+<td>ID of Resources associated with the Connector</td>
+</tr>
+<tr>
+<td>datasources</td>
+<td>ID of DataSources that use this Connector</td>
+</tr>
+</tbody></table>
+<h3 id='errors-6'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Connector of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
+<h2 id='add-a-resource-to-a-connector'>Add a Resource to a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
+    "resourceType": "YoutubeVideo",
+    "description": "Github Universe 2017 event video",
+    "data": {
+        "title": "GitHub Universe 2017",
+        "link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+    }
+}'</span>
+
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a Resource entity to a Connector.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources</code></p>
+<h3 id='parameters-7'>Parameters</h3>
+<p>A <a href="#resource">Resource</a> Object.</p>
+<h3 id='response-7'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the created Resource object</td>
+</tr>
+</tbody></table>
+<h3 id='errors-7'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Resource schema</td>
+<td>schema mismatch</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>data</code> does not match ResourceType schema</td>
+<td>resource schema mismatch</td>
+</tr>
+</tbody></table>
+<h2 id='list-resources-of-a-connector'>List resources of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+</code></pre>
+<blockquote>
+<p>Successful request returns a list of ID of resources:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves an array of Resources that are associated with the Connector.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources</code></p>
+<h3 id='parameters-8'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the Connector</td>
+</tr>
+</tbody></table>
+<h3 id='response-8'>Response</h3>
+<p>An array of IDs of <a href="#resource">Resource objects</a> related to the Connector.</p>
+<h3 id='errors-8'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>

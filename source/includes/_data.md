@@ -198,6 +198,15 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 	}'
 ```
 
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
 A DataSourceSchema describes the schema of data coming from a source so that we can understand and explore the structure of the data.
 
 ### HTTP Request
@@ -228,7 +237,7 @@ Code | Reason | Message
 curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314
 ```
 
-> Successful request returns an DataSourceSchema object:
+> Successful request returns a [DataSourceSchema object](#data-source-schema):
 
 ```json
 {
@@ -253,7 +262,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-44
     ]
 }
 ```
-This endpoint retrieves an DataSourceSchema.
+This endpoint retrieves a DataSourceSchema.
 
 ### HTTP Request
 
@@ -280,7 +289,7 @@ Code | Reason | Message
 --- | --- | ---
 404 | DataSourceSchema of specified `id` does not exist | resource not found
 
-## Create Connector
+## Add Connector
 
 ```shell
 # Make sure the `Content-Type` is set correctly
@@ -292,8 +301,17 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 			"method": "npm",
 			"code": "https://github.com/mysilver/yooz-connector"
 		},
-		"name": "yooz-api-connector",
+		"name": "yooz-api-connector"
 	}'
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
 ```
 
 This endpoint adds a Connector to a DataSourceSchema
@@ -326,7 +344,7 @@ Code | Reason | Message
 curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b5f922b9-c850-45b7-86c1-0e8bc7371cae
 ```
 
-> Successful request returns an Connector object:
+> Successful request returns a [Connector object](#connector):
 
 ```json
 {
@@ -338,7 +356,8 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b5f922b9-c850-45b7-86c1
     "name": "yooz-api-connector",
 }
 ```
-This endpoint retrieves an Connector.
+
+This endpoint retrieves a Connector.
 
 ### HTTP Request
 
@@ -352,7 +371,97 @@ id | uuid | ID of the Connector
 
 ### Response
 
-A [Connector](#data-source-schema) Object.
+A [Connector](#data-source-schema) Object with related `resources` and `datasources`.
+
+Attribute | Description
+--------- | ----------- |
+resources | ID of Resources associated with the Connector
+datasources | ID of DataSources that use this Connector
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | Connector of specified `id` does not exist | resource not found
+
+## Add a Resource to a Connector
+
+```shell
+curl -XPOST -H 'Content-Type: application/json'
+http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
+	"resourceType": "YoutubeVideo",
+	"description": "Github Universe 2017 event video",
+	"data": {
+		"title": "GitHub Universe 2017",
+		"link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+	}
+}'
+
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
+This endpoint adds a Resource entity to a Connector.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources`
+
+### Parameters
+
+A [Resource](#resource) Object.
+
+### Response
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Resource object
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match Resource schema | schema mismatch
+400 | `data` does not match ResourceType schema | resource schema mismatch
+
+## List resources of a Connector
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+```
+
+> Successful request returns a list of ID of resources:
+
+```json
+[
+	"6d5dd456-3b04-4590-b51a-c5094c6a5cd7",
+	"3d53d456-3b04-3ab0-b51s-d3012a133d56"
+]
+```
+
+This endpoint retrieves an array of Resources that are associated with the Connector.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the Connector
+
+### Response
+
+An array of IDs of [Resource objects](#resource) related to the Connector.
 
 ### Errors
 Possible error codes and reasons:

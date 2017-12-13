@@ -308,6 +308,12 @@
                   <li>
                     <a href="#retrieve-information-of-a-datasource" class="toc-h2 toc-link" data-title="Retrieve information of a DataSource">Retrieve information of a DataSource</a>
                   </li>
+                  <li>
+                    <a href="#create-query" class="toc-h2 toc-link" data-title="Create Query">Create Query</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-information-of-a-query" class="toc-h2 toc-link" data-title="Retrieve information of a Query">Retrieve information of a Query</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2275,6 +2281,116 @@ specified by <code>source</code>.</p>
 <tr>
 <td>404</td>
 <td>DataSource of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
+<h2 id='create-query'>Create Query</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
+    -H <span class="s1">'Content-Type: application/json'</span>
+    -d <span class="s1">'{
+        "name": "Stock Threshold",
+        "sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
+        "expression": ".rows | map(select(.[1] | tonumber &gt; 200))",
+        "description": "filter out rows where first column &lt;= 200"
+    },'</span>
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Query allows one to evaluate an <code>expression</code> on one or more DataSources or Queries. Upon being
+created, the query is not immediately executed and returns only the entity created message. To
+evaluate the Query and view the result, use the <a href="#display-entity">Display Entity</a> endpoint.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/queries</code></p>
+<h3 id='parameters-11'>Parameters</h3>
+<p>A <a href="#Query">Query</a> Object.</p>
+<h3 id='response-11'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the created Query entity</td>
+</tr>
+</tbody></table>
+<h3 id='errors-11'>Errors</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Query schema</td>
+<td>schema mismatch</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Query with the specified name already exists</td>
+<td>entity of that name already exists</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-information-of-a-query'>Retrieve information of a Query</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/562be085-604a-4e4e-868b-0f618e9493de
+</code></pre>
+<blockquote>
+<p>Successful request returns a <a href="#query">Query object</a>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Query"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"562be085-604a-4e4e-868b-0f618e9493de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stock Threshold"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"c9fd63eb-8882-4a42-9919-6326b85f4768"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">".rows | map(select(.[1] | tonumber &gt; 200))"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filter out rows where first column &lt;= 200"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a Query. Note that this endpoint only retrieve the query expression, not the evaluated result.
+To evaluate the Query and view the result, use the <a href="#display-entity">Display Entity</a> endpoint.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/queries/{id}</code></p>
+<h3 id='parameters-12'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the Query</td>
+</tr>
+</tbody></table>
+<h3 id='response-12'>Response</h3>
+<p>An <a href="#query">Query</a> Object.</p>
+<h3 id='errors-12'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Query of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
 </tr>
 </tbody></table>

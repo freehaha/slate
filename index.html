@@ -337,6 +337,20 @@
               </ul>
           </li>
           <li>
+            <a href="#widget" class="toc-h1 toc-link" data-title="Widget">Widget</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#models" class="toc-h2 toc-link" data-title="Models">Models</a>
+                  </li>
+                  <li>
+                    <a href="#add-widget" class="toc-h2 toc-link" data-title="Add Widget">Add Widget</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-information-of-a-widget" class="toc-h2 toc-link" data-title="Retrieve information of a Widget">Retrieve information of a Widget</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#resourcetypes" class="toc-h1 toc-link" data-title="ResourceTypes">ResourceTypes</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2781,6 +2795,211 @@ each opeartion with <code>._result[&quot;0&quot;]</code> being the result of the
 <td>400</td>
 <td>Error running recipe</td>
 <td>message related to the operation failing</td>
+</tr>
+</tbody></table>
+<h1 id='widget'>Widget</h1><h2 id='models'>Models</h2><h3 id='widget-2'>Widget</h3>
+<blockquote>
+<p>A Widget entity</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9a038994-16c2-4d2a-bb79-e6c8261d0cd4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gist-element"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"framework"</span><span class="p">:</span><span class="w"> </span><span class="s2">"polymer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sourceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/freehaha/gist-element.git"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"display a single-file gist"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"gistId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7e8bec3fd8cd3789ddd681a38068e655"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"gist"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Widgets are reusable pieces of visualization code that takes some parameters and represent them with
+graphical elements. In APIBase, widgets are simply Google Polymer Elements. Widgets can be standalone or associated to a
+<a href="#data-source-schema">DataSourceSchema</a> in which case when we receive data that is known to conform to a DataSourceSchema,
+we can visualize the data with a call to the <a href="#widget-render">Widget Render</a> API.</p>
+
+<p>A Widget entity has the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>*name</td>
+<td>string</td>
+<td>Name of the Widget</td>
+</tr>
+<tr>
+<td>*framework</td>
+<td>string</td>
+<td><code>polymer</code> is the only supported value here at the moment</td>
+</tr>
+<tr>
+<td>*sourceCode</td>
+<td>string</td>
+<td>Location of the github repository</td>
+</tr>
+<tr>
+<td>*description</td>
+<td>string</td>
+<td>Short description for the widget</td>
+</tr>
+<tr>
+<td>*parameters</td>
+<td>object</td>
+<td>An object describing the parameters that the widget takes. Each key represents a parameter and the value describe the type and default value of the parameter.</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>[ string ]</td>
+<td>An array of string to tag the Widget. This is only used for indexing</td>
+</tr>
+</tbody></table>
+<h2 id='add-widget'>Add Widget</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
+    -H <span class="s1">'Content-Type: application/json'</span>
+    -d <span class="s1">'{
+        "name": "gist-element",
+        "framework": "polymer",
+        "sourceCode": "https://github.com/freehaha/gist-element.git",
+        "description": "display a single-file gist",
+        "parameters": {
+            "gistId": {
+                "type": "string",
+                "default": "7e8bec3fd8cd3789ddd681a38068e655"
+            }
+        },
+        "tags": [
+            "gist"
+        ]
+    }'</span>
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a Widget entity to APIBase.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets</code></p>
+<h3 id='parameters'>Parameters</h3>
+<p>A <a href="#widget">Widget</a> Object.</p>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the created Widget object</td>
+</tr>
+</tbody></table>
+<h3 id='errors'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match Widget schema</td>
+<td>schema mismatch</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Widget with the specified name already exists</td>
+<td>entity of that name already exists</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-information-of-a-widget'>Retrieve information of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4
+</code></pre>
+<blockquote>
+<p>Successful request returns a <a href="#widget">Widget object</a>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9a038994-16c2-4d2a-bb79-e6c8261d0cd4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gist-element"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"framework"</span><span class="p">:</span><span class="w"> </span><span class="s2">"polymer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sourceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/freehaha/gist-element.git"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"display a single-file gist"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"gistId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7e8bec3fd8cd3789ddd681a38068e655"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"gist"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a Widget.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}</code></p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the Widget</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<p>A <a href="#widget">Widget</a> Object with related <code>resources</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>resources</td>
+<td>ID of Resources of the Widget</td>
+</tr>
+</tbody></table>
+<h3 id='errors-2'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Widget of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
 </tr>
 </tbody></table>
 <h1 id='resourcetypes'>ResourceTypes</h1>

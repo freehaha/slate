@@ -150,3 +150,110 @@ Code | Reason | Message
 --- | --- | ---
 404 | Widget of specified `id` does not exist | resource not found
 
+## Render Widget
+
+This endpoint is an iframe API to render a Widget. To use the endpoint, one must use the endpoint URL in the iframe in order to render the widget.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/render?{parameters}={value}`
+
+### Query Parameters
+
+> Example using gist-element Widget to render a Gist with id `3cac2180f2c0ef43d6c7`
+
+```html
+<iframe style="width: 500px; height: 350px; border: none;"
+	src="http://localhost:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
+```
+
+The query parameters trailing the URL will be used as parameters to the Widget. Below is an example rendering a gist using the gist-element Widget.
+The actual parameters depend on individual Widget.
+
+<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="http://localhost:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
+
+## Add a Resource to a Widget
+
+```shell
+curl -XPOST -H 'Content-Type: application/json'
+http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
+	"resourceType": "YoutubeVideo",
+	"description": "Basic tutorial for Github in Mac and Windows"
+	"data": {
+		"title": "Github Tutorial For Beginners - Github Basics for Mac or Windows & Source Control Basics",
+		"link" : "https://youtu.be/0fKg7e37bQE"
+	}
+}'
+
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
+This endpoint adds a Resource to a Widget.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources`
+
+### Parameters
+A [Resource](#resource) Object.
+
+
+### Response
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Resource object
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match Resource schema | schema mismatch
+400 | `data` does not match ResourceType schema | resource schema mismatch
+
+## List resources of a Widget
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+```
+
+> Successful request returns a list of ID of resources:
+
+```json
+[
+	"6d5dd456-3b04-4590-b51a-c5094c6a5cd7",
+	"3d53d456-3b04-3ab0-b51s-d3012a133d56"
+]
+```
+
+This endpoint retrieves an array of Resources that are associated with the Widget.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the Widget
+
+### Response
+
+An array of [Resource objects](#resource) related to the Widget.
+
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | Widget of specified `id` does not exist | resource not found

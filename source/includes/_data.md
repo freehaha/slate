@@ -315,7 +315,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-883
 }
 ```
 
-This endpoint adds a Resource entity to a DataSourceSchema.
+This endpoint adds a Resource to a DataSourceSchema.
 
 ### HTTP Request
 
@@ -496,7 +496,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 }
 ```
 
-This endpoint adds a Resource entity to a Connector.
+This endpoint adds a Resource to a Connector.
 
 ### HTTP Request
 

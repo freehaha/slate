@@ -464,7 +464,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 }
 ```
 
-This endpoint adds a Resource entity to an API.
+This endpoint adds a Resource to an API.
 
 ### HTTP Request
 
@@ -550,7 +550,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 }
 ```
 
-This endpoint adds a Resource entity to a Method.
+This endpoint adds a Resource to a Method.
 
 ### HTTP Request
 

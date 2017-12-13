@@ -302,6 +302,12 @@
                   <li>
                     <a href="#list-resources-of-a-connector" class="toc-h2 toc-link" data-title="List resources of a Connector">List resources of a Connector</a>
                   </li>
+                  <li>
+                    <a href="#add-datasource" class="toc-h2 toc-link" data-title="Add DataSource">Add DataSource</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-information-of-a-datasource" class="toc-h2 toc-link" data-title="Retrieve information of a DataSource">Retrieve information of a DataSource</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1994,7 +2000,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 </span></code></pre>
 <p>This endpoint retrieves a Connector.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/connector/{id}</code></p>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}</code></p>
 <h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
@@ -2146,6 +2152,129 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 <tr>
 <td>404</td>
 <td>Connector of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
+<h2 id='add-datasource'>Add DataSource</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/3c7814c3-0e0c-4cd3-85cd-f288b9e85174/datasources
+    -H <span class="s1">'Content-Type: application/json'</span>
+    -d <span class="s1">'{
+        "name": "TestData1",
+        "description": "testing data 1",
+        "source": [
+            {
+                "name": "abc",
+                "id": 1
+            },
+            {
+                "name": "def",
+                "id": 1
+            }
+        ]
+    }'</span>
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a DataSource using specified Connector, creating an instance of Connector with configuration
+specified by <code>source</code>.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/datasources</code></p>
+<h3 id='parameters-9'>Parameters</h3>
+<p>A <a href="#data-source">DataSource</a> Object.</p>
+<h3 id='response-9'>Response</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>entity created</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the created DataSource entity</td>
+</tr>
+</tbody></table>
+<h3 id='errors-9'>Errors</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User input does not match DataSource schema</td>
+<td>schema mismatch</td>
+</tr>
+<tr>
+<td>409</td>
+<td>DataSource with the specified name already exists</td>
+<td>entity of that name already exists</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-information-of-a-datasource'>Retrieve information of a DataSource</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/c9fd63eb-8882-4a42-9919-6326b85f4768
+</code></pre>
+<blockquote>
+<p>Successful request returns a <a href="#data-source">DataSource object</a>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c9fd63eb-8882-4a42-9919-6326b85f4768"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TestData1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testing data 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"def"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a DataSource.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasources/{id}</code></p>
+<h3 id='parameters-10'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the DataSource</td>
+</tr>
+</tbody></table>
+<h3 id='response-10'>Response</h3>
+<p>A <a href="#data-source-schema">DataSource</a> Object.</p>
+<h3 id='errors-10'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>DataSource of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
 </tr>
 </tbody></table>

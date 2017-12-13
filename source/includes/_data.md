@@ -173,7 +173,7 @@ Attribute | Type | Description
 \*expression | string | a [jq](https://stedolan.github.io/jq/manual/) query expression
 
 
-## Create Data Source Schema
+## Create DataSourceSchema
 
 ```shell
 # Make sure the `Content-Type` is set correctly
@@ -259,7 +259,8 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-44
     "name": "Yooz Rest API Schema",
     "connectors": [
         "b5f922b9-c850-45b7-86c1-0e8bc7371cae"
-    ]
+    ],
+    "resources": []
 }
 ```
 This endpoint retrieves a DataSourceSchema.
@@ -276,11 +277,97 @@ id | uuid | ID of the DataSourceSchema
 
 ### Response
 
-An [DataSourceSchema](#data-source-schema) Object with related `connectors`.
+An [DataSourceSchema](#data-source-schema) Object with related `connectors` and `resources`.
 
 Attribute | Description
 --------- | ----------- |
 connectors | ID of Connectors available for the DataSourceSchema
+resources | ID of Resources associated to the DataSourceSchema
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+404 | DataSourceSchema of specified `id` does not exist | resource not found
+
+## Add a Resource to a DataSourceSchema
+
+```shell
+curl -XPOST -H 'Content-Type: application/json'
+http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
+	"resourceType": "YoutubeVideo",
+	"description": "Github Universe 2017 event video",
+	"data": {
+		"title": "GitHub Universe 2017",
+		"link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+	}
+}'
+
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
+This endpoint adds a Resource entity to a DataSourceSchema.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources`
+
+### Parameters
+
+A [Resource](#resource) Object.
+
+### Response
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Resource object
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match Resource schema | schema mismatch
+400 | `data` does not match ResourceType schema | resource schema mismatch
+
+## List resources of a DataSourceSchema
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+```
+
+> Successful request returns a list of ID of resources:
+
+```json
+[
+	"6d5dd456-3b04-4590-b51a-c5094c6a5cd7",
+	"3d53d456-3b04-3ab0-b51s-d3012a133d56"
+]
+```
+
+This endpoint retrieves an array of Resources that are associated with the DataSourceSchema.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the DataSourceSchema
+
+### Response
+
+An array of IDs of [Resource objects](#resource) related to the DataSourceSchema.
 
 ### Errors
 Possible error codes and reasons:

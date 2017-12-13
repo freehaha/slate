@@ -695,7 +695,7 @@ evaluate the Query and view the result, use the [Display Entity](#display-entity
 
 ### Parameters
 
-A [Query](#Query) Object.
+A [Query](#query) Object.
 
 ### Response
 
@@ -753,3 +753,49 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 404 | Query of specified `id` does not exist | resource not found
+
+## Transformer
+
+```shell
+# Make sure the `Content-Type` is set correctly
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/transformer
+	-H 'Content-Type: application/json'
+	-d '{
+		"description": "tranfrom social text posts to array of text object"
+        "expression": "map({text: .body})"
+		"source": "<source-id>",
+		"target": "<target-id>"
+    },'
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "entity created",
+	"id": "<id_of_created_entity>"
+}
+```
+
+This endpoint creates a [Transformer](#transformer).
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/transformer`
+
+### Parameters
+
+A [Query](#query) Object.
+
+### Response
+
+Attribute | Description
+--- | ---
+message | `entity created`
+id | ID of the created Query entity
+
+### Errors
+
+Code | Reason | Message
+--- | --- | ---
+400 | User input does not match Transformer schema | schema mismatch

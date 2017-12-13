@@ -597,20 +597,20 @@ specified by `source`.
 
 ### Parameters
 
-A [Connector](#connector) Object.
+A [DataSource](#data-source) Object.
 
 ### Response
 
 Attribute | Description
 --- | ---
 message | `entity created`
-id | ID of the created Connector entity
+id | ID of the created DataSource entity
 
 ### Errors
 
 Code | Reason | Message
 --- | --- | ---
-400 | User input does not match Connector schema | schema mismatch
+400 | User input does not match DataSource schema | schema mismatch
 409 | DataSource with the specified name already exists | entity of that name already exists
 
 ## Retrieve information of a DataSource
@@ -619,7 +619,7 @@ Code | Reason | Message
 curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/c9fd63eb-8882-4a42-9919-6326b85f4768
 ```
 
-> Successful request returns a [Connector object](#connector):
+> Successful request returns a [DataSource object](#data-source):
 
 ```json
 {
@@ -639,7 +639,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/c9fd63eb-8882-4a42-991
 }
 ```
 
-This endpoint retrieves a Connector.
+This endpoint retrieves a DataSource.
 
 ### HTTP Request
 

@@ -458,7 +458,7 @@ id | uuid | ID of the Connector
 
 ### Response
 
-A [Connector](#data-source-schema) Object with related `resources` and `datasources`.
+A [Connector](#connector) Object with related `resources` and `datasources`.
 
 Attribute | Description
 --------- | ----------- |

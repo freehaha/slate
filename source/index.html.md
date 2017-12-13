@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - entities
   - data
+  - recipe
   - resourcetypes
 
 search: true

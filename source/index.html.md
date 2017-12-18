@@ -18,6 +18,23 @@ includes:
 
 search: true
 ---
+# Introduction
+
+APIBase is a database for APIs. Similar to Wikipedia, APIBase stores knowledge for
+to understanding topics related to APIs including indiviual endpoints and their parameters.
+To facilitate understand of Data and data-analysis APIs, APIBase also allow
+users to define data schemas and provide related methods to help the
+understanding the nature of different datasets. Finally, with Recipes users can
+make composition of APIs and share the knowledge of how different APIs
+can be used together and how to apply them onto different sources of data.
+
+APIBase itself is provided as a service accessed by the APIBase API and is sectioned as below:
+
+- API Manipulation: methods to get/add/list entities related to APIs
+- Entity: general operations on entities in APIBase
+- Data: methods to define/query data from different sources
+- Recipe: methods to create/run recipes
+- Widget: methods to add/render widgets
 
 # API Manipulation
 

@@ -60,12 +60,12 @@ object in APIBase has the following structure:
 Attribute | Type | Example | Description
 --- | --- | --- | ---
 \*name | string | "Github" | Name of the API
-type | string | "REST" | type of the API, always `REST`
-version | string | "1.0" | version string
-\*provider | string | "Github Inc." | a short sentence representing the provider
-tags | ["strings"] | ["development", "git"] | list of tags that identify the API
-\*description | string | "github APIs" | description about the API
-\*baseUrl |string | "https://api.github.com" | base URL of the API
+type | string | "REST" | Type of the API, always `REST`
+version | string | "1.0" | Version string
+\*provider | string | "Github Inc." | A short sentence representing the provider
+tags | ["strings"] | ["development", "git"] | List of tags that identify the API
+\*description | string | "github APIs" | Description about the API
+\*baseUrl |string | "https://api.github.com" | Base URL of the API
 
 <aside class="notice">
 Attributes marked with * are required

@@ -221,6 +221,9 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
             <a href="#api-manipulation" class="toc-h1 toc-link" data-title="API Manipulation">API Manipulation</a>
               <ul class="toc-list-h2">
                   <li>
@@ -378,7 +381,25 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='api-manipulation'>API Manipulation</h1><h2 id='models'>Models</h2><h3 id='api'>API</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        <h1 id='introduction'>Introduction</h1>
+<p>APIBase is a database for APIs. Similar to Wikipedia, APIBase stores knowledge for
+to understanding topics related to APIs including indiviual endpoints and their parameters.
+To facilitate understand of Data and data-analysis APIs, APIBase also allow
+users to define data schemas and provide related methods to help the
+understanding the nature of different datasets. Finally, with Recipes users can
+make composition of APIs and share the knowledge of how different APIs
+can be used together and how to apply them onto different sources of data.</p>
+
+<p>APIBase itself is provided as a service accessed by the APIBase API and is sectioned as below:</p>
+
+<ul>
+<li>API Manipulation: methods to get/add/list entities related to APIs</li>
+<li>Entity: general operations on entities in APIBase</li>
+<li>Data: methods to define/query data from different sources</li>
+<li>Recipe: methods to create/run recipes</li>
+<li>Widget: methods to add/render widgets</li>
+</ul>
+<h1 id='api-manipulation'>API Manipulation</h1><h2 id='models'>Models</h2><h3 id='api'>API</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">

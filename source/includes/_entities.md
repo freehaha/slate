@@ -193,7 +193,7 @@ curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-
 }
 ```
 
-This endpoint shows arbitrary entity and interpret/execute it if applicable.
+This endpoint shows arbitrary entity and interprets/executes it if applicable.
 Similar to the [Retrieving arbitrary entity](#retrieving-arbitrary-entity) endpoint, this
 endpoint can also retrieve an arbitrary entity but if the entity represents an
 executable object, for example a [Query](#query), then the entity will be executed/run and

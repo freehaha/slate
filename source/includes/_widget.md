@@ -25,10 +25,12 @@
 }
 ```
 
-Widgets are reusable pieces of visualization code that takes some parameters and represent them with
-graphical elements. In APIBase, widgets are simply Google Polymer Elements. Widgets can be standalone or associated to a
-[DataSourceSchema](#data-source-schema) in which case when we receive data that is known to conform to a DataSourceSchema,
-we can visualize the data with a call to the [Widget Render](#widget-render) API.
+Widgets are reusable pieces of visualization code that takes some parameters
+and represent them with graphical elements. In APIBase, widgets are simply
+[Google Polymer Elements](https://www.polymer-project.org/). Widgets can be
+standalone or associated to a [DataSourceSchema](#data-source-schema) in which
+case when we receive data that is known to conform to a DataSourceSchema, we
+can visualize the data with a call to the [Widget Render](#widget-render) API.
 
 A Widget entity has the following attributes:
 

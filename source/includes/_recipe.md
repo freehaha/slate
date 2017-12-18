@@ -228,7 +228,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
 }
 ```
 
-This endpoint creates a Recipe.
+This endpoint executes a Recipe.
 
 ### HTTP Request
 

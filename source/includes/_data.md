@@ -731,7 +731,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/562be085-604a-4e4e-868b-0f
 }
 ```
 
-This endpoint retrieves a Query. Note that this endpoint only retrieve the query expression, not the evaluated result.
+This endpoint retrieves a Query. Note that this endpoint only retrieves the query expression, not the evaluated result.
 To evaluate the Query and view the result, use the [Display Entity](#display-entity) endpoint.
 
 ### HTTP Request

@@ -533,7 +533,7 @@ id | uuid | ID of the API
 
 ### Response
 
-An array of [Resource objects](#resource) related to the API.
+An array of IDs of [Resource objects](#resource) related to the API.
 
 
 ### Errors
@@ -619,7 +619,7 @@ id | uuid | ID of the Method
 
 ### Response
 
-An array of [Resource objects](#resource) related to the Method.
+An array of IDs of [Resource objects](#resource) related to the Method.
 
 
 ### Errors

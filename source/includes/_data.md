@@ -171,7 +171,7 @@ Attribute | Type | Description
 \*source | uuid | ID of the source DataSourceSchema
 \*target | uuid | ID of the target DataSourceSchema
 \*description | string | Short description of the Transformer
-\*expression | string | a [jq](https://stedolan.github.io/jq/manual/) query expression
+\*expression | string | A [jq](https://stedolan.github.io/jq/manual/) query expression
 
 
 ## Create DataSourceSchema

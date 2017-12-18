@@ -65,7 +65,7 @@ Attribute | Type | Description
 --- | --- | --- | ---
 \*name | string | Name of the Conncetor, must match the name in package.json in the repository
 \*description | string | Short description of the Connector
-\*engine | object | see below
+\*engine | object | See below
 
 #### Engine
 The `engine` object describe how APIBase can use the connector. As of now we only support npm packages.
@@ -73,8 +73,8 @@ The `engine` object describe how APIBase can use the connector. As of now we onl
 ##### npm
 Attribute | Type | Description
 --- | --- | --- | ---
-\*method | string | always `npm`
-\*code | string | url accepted by [npm install](https://docs.npmjs.com/cli/install), listed below
+\*method | string | Always `npm`
+\*code | string | URL accepted by [npm install](https://docs.npmjs.com/cli/install), listed below
 
 Accepted `code` format:
 
@@ -86,7 +86,6 @@ Accepted `code` format:
 - \<git repo url\>
 
 When a `<name>` is used, the module will be pulled from the npm registry whereas if a git url(`<git-host>` or `<git repo url>`) is used it will be used to pull the module.
-
 
 ### Data Source
 
@@ -112,7 +111,7 @@ Attribute | Type | Description
 --- | --- | --- | ---
 \*name | string | Name of the Conncetor, must match the name in package.json in the repository
 \*description | string | Short description of the DataSource
-\*source | object | configuration for the Connector. This is Connector-specific.
+\*source | object | Configuration for the Connector. This is Connector-specific.
 
 
 ### Query
@@ -150,7 +149,7 @@ Attribute | Type | Description
 \*name | string | Name of the Conncetor, must match the name in package.json in the repository
 \*sources | [ uuid ] | IDs of sources which the expression will be evaluated on. These can be ID of DataSource or Query.
 \*description | string | Short description of the Query
-\*expression | string | a [jq](https://stedolan.github.io/jq/manual/) query expression
+\*expression | string | A [jq](https://stedolan.github.io/jq/manual/) query expression
 
 ### Transformer
 

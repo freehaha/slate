@@ -120,7 +120,7 @@ locked | boolean | false | Indicate whether the parameter is `locked` or not
 
 #### Location
 
-The `location` attribute indicate how the Parameter should be sent when invoking the endpoint.
+The `location` attribute indicates how the Parameter should be sent when invoking the endpoint.
 
 Location | Example
 --- | --- | --- | ---
@@ -144,10 +144,10 @@ form | In HTTP body, serialized as standard x-www-form-urlencoded format
 }
 ```
 
-A Resource encapsulate information related to API, Method and other entities to
+A Resource encapsulates information related to APIs, Methods and other entities to
 explain and enrich the entities.  Resources could be of various types. For
 example, there are `YoutubeVideo` resources that represent videos hosted in
-Youtube, `InvokeExample` resources that show example parameters for invoking a
+Youtube and `InvokeExample` resources that show example parameters for invoking a
 Method. Resources can be added to various entities to provide additional
 information about the entities.
 
@@ -159,7 +159,7 @@ Attribute | Type | Description
 \*data | any | The actual data of the resource
 \*resourceType | ResourceType | The type of Resource which schema `data` will be validated against. See a list of available `resourceType` and their schema [here](#resourcetypes)
 
-## Add API
+## Add an API
 
 ```shell
 # Make sure the `Content-Type` is set correctly

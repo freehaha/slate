@@ -230,7 +230,7 @@
                     <a href="#models" class="toc-h2 toc-link" data-title="Models">Models</a>
                   </li>
                   <li>
-                    <a href="#add-api" class="toc-h2 toc-link" data-title="Add API">Add API</a>
+                    <a href="#add-an-api" class="toc-h2 toc-link" data-title="Add an API">Add an API</a>
                   </li>
                   <li>
                     <a href="#retrieve-information-of-an-api" class="toc-h2 toc-link" data-title="Retrieve information of an API">Retrieve information of an API</a>
@@ -569,7 +569,7 @@ If it is set, APIBase will always use the <code>default</code> value for that pa
 </tr>
 </tbody></table>
 <h4 id='location'>Location</h4>
-<p>The <code>location</code> attribute indicate how the Parameter should be sent when invoking the endpoint.</p>
+<p>The <code>location</code> attribute indicates how the Parameter should be sent when invoking the endpoint.</p>
 
 <table><thead>
 <tr>
@@ -607,10 +607,10 @@ If it is set, APIBase will always use the <code>default</code> value for that pa
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>A Resource encapsulate information related to API, Method and other entities to
+<p>A Resource encapsulates information related to APIs, Methods and other entities to
 explain and enrich the entities.  Resources could be of various types. For
 example, there are <code>YoutubeVideo</code> resources that represent videos hosted in
-Youtube, <code>InvokeExample</code> resources that show example parameters for invoking a
+Youtube and <code>InvokeExample</code> resources that show example parameters for invoking a
 Method. Resources can be added to various entities to provide additional
 information about the entities.</p>
 
@@ -639,7 +639,7 @@ information about the entities.</p>
 <td>The type of Resource which schema <code>data</code> will be validated against. See a list of available <code>resourceType</code> and their schema <a href="#resourcetypes">here</a></td>
 </tr>
 </tbody></table>
-<h2 id='add-api'>Add API</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
+<h2 id='add-an-api'>Add an API</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
@@ -1096,7 +1096,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </tr>
 </tbody></table>
 <h3 id='response-8'>Response</h3>
-<p>An array of <a href="#resource">Resource objects</a> related to the API.</p>
+<p>An array of IDs of <a href="#resource">Resource objects</a> related to the API.</p>
 <h3 id='errors-8'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
@@ -1202,7 +1202,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </tr>
 </tbody></table>
 <h3 id='response-10'>Response</h3>
-<p>An array of <a href="#resource">Resource objects</a> related to the Method.</p>
+<p>An array of IDs of <a href="#resource">Resource objects</a> related to the Method.</p>
 <h3 id='errors-10'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
@@ -1439,7 +1439,7 @@ attribute:</p>
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint shows arbitrary entity and interpret/execute it if applicable.
+<p>This endpoint shows arbitrary entity and interprets/executes it if applicable.
 Similar to the <a href="#retrieving-arbitrary-entity">Retrieving arbitrary entity</a> endpoint, this
 endpoint can also retrieve an arbitrary entity but if the entity represents an
 executable object, for example a <a href="#query">Query</a>, then the entity will be executed/run and
@@ -1568,7 +1568,7 @@ allows APIBase to retrieve data from Socrata given a resource id, which is then 
 <tr>
 <td>*engine</td>
 <td>object</td>
-<td>see below</td>
+<td>See below</td>
 </tr>
 </tbody></table>
 <h4 id='engine'>Engine</h4>
@@ -1584,25 +1584,27 @@ allows APIBase to retrieve data from Socrata given a resource id, which is then 
 <tr>
 <td>*method</td>
 <td>string</td>
-<td>always <code>npm</code></td>
+<td>Always <code>npm</code></td>
 </tr>
 <tr>
 <td>*code</td>
 <td>string</td>
-<td>url accepted by <a href="https://docs.npmjs.com/cli/install">npm install</a>, listed below</td>
+<td>URL accepted by <a href="https://docs.npmjs.com/cli/install">npm install</a>, listed below</td>
 </tr>
 </tbody></table>
 
 <p>Accepted <code>code</code> format:</p>
 
 <ul>
-<li>[&lt;@scope&gt;/]&lt;name&gt;</li>
-<li>[&lt;@scope&gt;/]&lt;name&gt;@&lt;tag&gt;</li>
-<li>[&lt;@scope&gt;/]&lt;name&gt;@&lt;version&gt;</li>
-<li>[&lt;@scope&gt;/]&lt;name&gt;@&lt;version range&gt;</li>
+<li>&lt;name&gt;</li>
+<li>&lt;name&gt;@&lt;tag&gt;</li>
+<li>&lt;name&gt;@&lt;version&gt;</li>
+<li>&lt;name&gt;@&lt;version range&gt;</li>
 <li>&lt;git-host&gt;:&lt;git-user&gt;/&lt;repo-name&gt;</li>
 <li>&lt;git repo url&gt;</li>
 </ul>
+
+<p>When a <code>&lt;name&gt;</code> is used, the module will be pulled from the npm registry whereas if a git url(<code>&lt;git-host&gt;</code> or <code>&lt;git repo url&gt;</code>) is used it will be used to pull the module.</p>
 <h3 id='data-source'>Data Source</h3>
 <blockquote>
 <p>An example Data Source entity</p>
@@ -1641,7 +1643,7 @@ resource of Socrata. Below lists attribute of a DataSource:</p>
 <tr>
 <td>*source</td>
 <td>object</td>
-<td>configuration for the Connector. This is Connector-specific.</td>
+<td>Configuration for the Connector. This is Connector-specific.</td>
 </tr>
 </tbody></table>
 <h3 id='query'>Query</h3>
@@ -1696,7 +1698,7 @@ the result.</p>
 <tr>
 <td>*expression</td>
 <td>string</td>
-<td>a <a href="https://stedolan.github.io/jq/manual/">jq</a> query expression</td>
+<td>A <a href="https://stedolan.github.io/jq/manual/">jq</a> query expression</td>
 </tr>
 </tbody></table>
 <h3 id='transformer'>Transformer</h3>
@@ -2422,7 +2424,7 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filter out rows where first column &lt;= 200"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a Query. Note that this endpoint only retrieve the query expression, not the evaluated result.
+<p>This endpoint retrieves a Query. Note that this endpoint only retrieves the query expression, not the evaluated result.
 To evaluate the Query and view the result, use the <a href="#display-entity">Display Entity</a> endpoint.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/queries/{id}</code></p>
@@ -2787,7 +2789,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint creates a Recipe.</p>
+<p>This endpoint executes a Recipe.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes</code></p>
 <h3 id='parameters-3'>Parameters</h3>
@@ -2848,10 +2850,12 @@ each opeartion with <code>._result[&quot;0&quot;]</code> being the result of the
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Widgets are reusable pieces of visualization code that takes some parameters and represent them with
-graphical elements. In APIBase, widgets are simply Google Polymer Elements. Widgets can be standalone or associated to a
-<a href="#data-source-schema">DataSourceSchema</a> in which case when we receive data that is known to conform to a DataSourceSchema,
-we can visualize the data with a call to the <a href="#widget-render">Widget Render</a> API.</p>
+<p>Widgets are reusable pieces of visualization code that takes some parameters
+and represent them with graphical elements. In APIBase, widgets are simply
+<a href="https://www.polymer-project.org/">Google Polymer Elements</a>. Widgets can be
+standalone or associated to a <a href="#data-source-schema">DataSourceSchema</a> in which
+case when we receive data that is known to conform to a DataSourceSchema, we
+can visualize the data with a call to the <a href="#widget-render">Widget Render</a> API.</p>
 
 <p>A Widget entity has the following attributes:</p>
 

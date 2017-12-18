@@ -78,12 +78,14 @@ Attribute | Type | Description
 
 Accepted `code` format:
 
-- [\<@scope\>/]\<name\>
-- [\<@scope\>/]\<name\>@\<tag\>
-- [\<@scope\>/]\<name\>@\<version\>
-- [\<@scope\>/]\<name\>@\<version range\>
+- \<name\>
+- \<name\>@\<tag\>
+- \<name\>@\<version\>
+- \<name\>@\<version range\>
 - \<git-host\>:\<git-user\>/\<repo-name\>
 - \<git repo url\>
+
+When a `<name>` is used, the module will be pulled from the npm registry whereas if a git url is used it will be used to pull the module.
 
 
 ### Data Source

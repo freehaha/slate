@@ -52,7 +52,7 @@ APIBase itself is provided as a service accessed by the APIBase API and is secti
   "baseUrl": "https://api.github.com"
 }
 ```
-API, Application Program Interface, is a set of routines and protocols for
+Application Program Interface(API), is a set of routines and protocols for
 building software applications. The API is the building block for software
 applications and specifies how software components should interact. An API
 object in APIBase has the following structure:

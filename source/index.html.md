@@ -547,12 +547,14 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
-	"resourceType": "YoutubeVideo",
+http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources -d '{
+	"resourceType": "InvokeExample",
 	"description": "Basic tutorial for Github in Mac and Windows"
 	"data": {
-		"title": "Github Tutorial For Beginners - Github Basics for Mac or Windows & Source Control Basics",
-		"link" : "https://youtu.be/0fKg7e37bQE"
+		"method": "9446bdf1-da5a-4096-98bc-47cfa8c15157",
+		"parameters" : {
+			"user": "freehaha"
+		}
 	}
 }'
 
@@ -593,15 +595,18 @@ Code | Reason | Message
 
 ## List resources of a Method
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources
 ```
 
 > Successful request returns a list of ID of resources:
 
 ```json
 [
-	"6d5dd456-3b04-4590-b51a-c5094c6a5cd7",
-	"3d53d456-3b04-3ab0-b51s-d3012a133d56"
+	"874720ca-c4ea-4704-a776-f23547848eed",
+	"d2cbba9e-7783-4100-a9cf-ee1e0e243d28",
+	"dc56b9b6-f2b1-49b9-ad16-360e993b4cb5",
+	"f108c273-2687-4d6a-9ad1-996277932d27",
+	"c97d5d3c-f417-4869-ab2a-5f1f18893662"
 ]
 ```
 

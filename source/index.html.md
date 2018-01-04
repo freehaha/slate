@@ -115,8 +115,8 @@ Attribute | Type | Example | Description
 \*location | `path`, `query`, `body`, `header` or `form` | "path" | Location where the parameter should be
 \*type | `string`, `number`, `integer`, `boolean`, `array` or `file` | "string" | Type of the parameter
 \*required | boolean | true | Whether the parameter is required or not
-default | same as `type` | "default gist ID" | Default value if the parameter is missing or is `locked`
-locked | boolean | false | Indicate whether the parameter is `locked` or not
+default | same as `type` | "default gist ID" | Default value if the parameter is missing or is `locked`. When omitted, defaults to `null`
+locked | boolean | false | Indicate whether the parameter is `locked` or not. When omitted, defaults to `false`
 
 #### Location
 

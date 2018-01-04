@@ -549,7 +549,7 @@ Code | Reason | Message
 curl -XPOST -H 'Content-Type: application/json'
 http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources -d '{
 	"resourceType": "InvokeExample",
-	"description": "Basic tutorial for Github in Mac and Windows"
+	"description": "an example to retrieve gist from the user 'freehaha'"
 	"data": {
 		"method": "9446bdf1-da5a-4096-98bc-47cfa8c15157",
 		"parameters" : {

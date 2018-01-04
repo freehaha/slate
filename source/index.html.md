@@ -419,7 +419,7 @@ Code | Reason | Message
 ## Retrieve information of a Parameter
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/parameters/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/parameters/d74c24e6-9451-41f6-93be-afdfc20a7f4c
 ```
 
 > Successful request returns an [Parameter object](#parameter):

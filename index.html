@@ -1114,12 +1114,14 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </tr>
 </tbody></table>
 <h2 id='add-a-resource-to-a-method'>Add a Resource to a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
-    "resourceType": "YoutubeVideo",
+http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources -d <span class="s1">'{
+    "resourceType": "InvokeExample",
     "description": "Basic tutorial for Github in Mac and Windows"
     "data": {
-        "title": "Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics",
-        "link" : "https://youtu.be/0fKg7e37bQE"
+        "method": "9446bdf1-da5a-4096-98bc-47cfa8c15157",
+        "parameters" : {
+            "user": "freehaha"
+        }
     }
 }'</span>
 
@@ -1174,14 +1176,17 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <td>resource schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-resources-of-a-method'>List resources of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+<h2 id='list-resources-of-a-method'>List resources of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of resources:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
+    </span><span class="s2">"874720ca-c4ea-4704-a776-f23547848eed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"d2cbba9e-7783-4100-a9cf-ee1e0e243d28"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dc56b9b6-f2b1-49b9-ad16-360e993b4cb5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"f108c273-2687-4d6a-9ad1-996277932d27"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"c97d5d3c-f417-4869-ab2a-5f1f18893662"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Resources that are associated with the Method.</p>

@@ -344,7 +344,7 @@ Code | Reason | Message
 
 ## List resources of a DataSourceSchema
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/resources
 ```
 
 > Successful request returns a list of ID of resources:

@@ -432,14 +432,14 @@ Code | Reason | Message
 ## Retrieve information of a Connector
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b5f922b9-c850-45b7-86c1-0e8bc7371cae
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/e5db6c4c-9315-45f5-8781-0567e5408d5c
 ```
 
 > Successful request returns a [Connector object](#connector):
 
 ```json
 {
-    "id": "b5f922b9-c850-45b7-86c1-0e8bc7371cae",
+    "id": "e5db6c4c-9315-45f5-8781-0567e5408d5c",
     "engine": {
         "method": "npm",
         "code": "https://github.com/mysilver/yooz-connector"

@@ -769,6 +769,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
 <td>404</td>
 <td>API of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
@@ -822,6 +827,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>400</td>
 <td>User input does not match Method schema</td>
@@ -894,6 +904,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
 <td>404</td>
 <td>Method of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
@@ -954,6 +969,11 @@ set, APIBase will always use the default value for the parameter regardless of w
 </thead><tbody>
 <tr>
 <td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
+<td>400</td>
 <td>User input does not match Parameter schema</td>
 <td>schema mismatch</td>
 </tr>
@@ -1001,6 +1021,11 @@ set, APIBase will always use the default value for the parameter regardless of w
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>404</td>
 <td>Parameter of specified <code>id</code> does not exist</td>
@@ -1059,6 +1084,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </thead><tbody>
 <tr>
 <td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
+<td>400</td>
 <td>User input does not match Resource schema</td>
 <td>schema mismatch</td>
 </tr>
@@ -1107,6 +1137,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>404</td>
 <td>API of specified <code>id</code> does not exist</td>
@@ -1167,6 +1202,11 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </thead><tbody>
 <tr>
 <td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
+<td>400</td>
 <td>User input does not match Resource schema</td>
 <td>schema mismatch</td>
 </tr>
@@ -1219,6 +1259,11 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
 <td>404</td>
 <td>Method of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
@@ -1230,45 +1275,40 @@ curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?
 <blockquote>
 <p>if you want to specify a particular field to search, use <code>field:</code> syntax</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code><span class="c"># search for APIs that have 'music' in its description</span>
+<pre class="highlight shell tab-shell"><code><span class="c"># search for APIs that have 'music' in their description</span>
 curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=description:music&amp;type=API'</span>
 </code></pre>
 <blockquote>
-<p>example result</p>
+<p>example result for APIs that have &#39;music&#39; in their description</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Get info about songs given a list of ids"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7e21ca78-34e2-4329-bb18-e35de4b107ea"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://developer.echonest.com/api/v4/song/profile?api_key={apiKey}&amp;format={outputFormat}&amp;id={songId}"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"verb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.programmableweb.com/api/sonos-music"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b7f74f9-38f8-4b1e-a8b8-8d7bcb26cc8b"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sonos Music"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sonos Music"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get user's profile"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07acb558-7626-4bb4-946a-2ddd77c4dbb6"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetProfile"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/users/{id}"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"verb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"baseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.spotify.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Spotify&amp;nbsp;Web API lets your applications fetch data from the Spotify music catalog and manage user&amp;rsquo;s playlists and saved music.&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;&amp;nbsp;&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170333ff-afa7-4dc8-92de-9b8cebe72a34"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spotify"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spotify AB"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Get a User&amp;rsquo;s Profile.&lt;/p&gt;"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fd74bdf-7aa5-46b5-a9d3-63a270691537"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetUserProfile"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1/users/{user_id}"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"verb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e686e6c9-9d17-4834-9344-a2d641c99250"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetOwnProfile"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.pivotaltracker.com/services/v5/me"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"verb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4shared is an online storage and file sharing service that was founded in 2005. Users can upload, store and share all types of files, including music, video, photos and documents.</span><span class="se">\n</span><span class="s2">The 4shared API..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71ca0c6a-cd3a-4f31-b6a8-97ad95f431c4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4Shared"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4Shared"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
+
 </span></code></pre>
 <p>This endpoint performs a keyword search in APIBase. It returns only the first 30 results. To get
 more results, use the <code>page</code> query parameter.</p>
@@ -1416,6 +1456,11 @@ attribute:</p>
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
 <td>404</td>
 <td>Entity of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
@@ -1475,6 +1520,11 @@ return the result instead.</p>
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>404</td>
 <td>Entity of specified <code>id</code> does not exist</td>
@@ -1890,6 +1940,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
 <td>404</td>
 <td>DataSourceSchema of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
@@ -1947,6 +2002,11 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-883
 </thead><tbody>
 <tr>
 <td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
+<td>400</td>
 <td>User input does not match Resource schema</td>
 <td>schema mismatch</td>
 </tr>
@@ -1995,6 +2055,11 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-883
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>404</td>
 <td>DataSourceSchema of specified <code>id</code> does not exist</td>
@@ -2050,6 +2115,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>400</td>
 <td>User input does not match Connector schema</td>
@@ -2121,6 +2191,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
 <td>404</td>
 <td>Connector of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
@@ -2178,6 +2253,11 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 </thead><tbody>
 <tr>
 <td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
+<td>400</td>
 <td>User input does not match Resource schema</td>
 <td>schema mismatch</td>
 </tr>
@@ -2226,6 +2306,11 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>404</td>
 <td>Connector of specified <code>id</code> does not exist</td>
@@ -2290,6 +2375,11 @@ specified by <code>source</code>.</p>
 </thead><tbody>
 <tr>
 <td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
+<td>400</td>
 <td>User input does not match DataSource schema</td>
 <td>schema mismatch</td>
 </tr>
@@ -2349,6 +2439,11 @@ specified by <code>source</code>.</p>
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>404</td>
 <td>DataSource of specified <code>id</code> does not exist</td>
@@ -2459,6 +2554,11 @@ To evaluate the Query and view the result, use the <a href="#display-entity">Dis
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>404</td>
 <td>Query of specified <code>id</code> does not exist</td>
@@ -2765,13 +2865,18 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
 <td>404</td>
 <td>Recipe of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
 </tr>
 </tbody></table>
 <h2 id='run-recipe'>Run Recipe</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f/run
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "parameters": {
@@ -2796,7 +2901,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
 </span></code></pre>
 <p>This endpoint executes a Recipe.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes</code></p>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes/{id}/run</code></p>
 <h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
@@ -3036,6 +3141,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
 <td>404</td>
 <td>Widget of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
@@ -3050,12 +3160,12 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <p>Example using gist-element Widget to render a Gist with id <code>3cac2180f2c0ef43d6c7</code></p>
 </blockquote>
 <pre class="highlight html tab-html"><code><span class="nt">&lt;iframe</span> <span class="na">style=</span><span class="s">"width: 500px; height: 350px; border: none;"</span>
-    <span class="na">src=</span><span class="s">"http://localhost:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"</span><span class="nt">&gt;&lt;/iframe&gt;</span>
+    <span class="na">src=</span><span class="s">"http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"</span><span class="nt">&gt;&lt;/iframe&gt;</span>
 </code></pre>
 <p>The query parameters trailing the URL will be used as parameters to the Widget. Below is an example rendering a gist using the gist-element Widget.
 The actual parameters depend on individual Widget.</p>
 
-<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="http://localhost:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
+<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
 <h2 id='add-a-resource-to-a-widget'>Add a Resource to a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
 http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
     "resourceType": "YoutubeVideo",
@@ -3108,6 +3218,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </thead><tbody>
 <tr>
 <td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
+<td>400</td>
 <td>User input does not match Resource schema</td>
 <td>schema mismatch</td>
 </tr>
@@ -3156,6 +3271,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <th>Message</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
 <tr>
 <td>404</td>
 <td>Widget of specified <code>id</code> does not exist</td>

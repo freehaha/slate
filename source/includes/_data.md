@@ -682,7 +682,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
 		"sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
         "expression": ".rows | map(select(.[1] | tonumber > 200))",
 		"description": "filter out rows where first column <= 200"
-    },'
+    }'
 ```
 
 > Successful requst returns the following response
@@ -723,7 +723,7 @@ Code | Reason | Message
 ## Retrieve information of a Query
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/562be085-604a-4e4e-868b-0f618e9493de
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/101d3d6c-669f-4ee7-b881-a40861ebf9b2
 ```
 
 > Successful request returns a [Query object](#query):
@@ -731,7 +731,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/562be085-604a-4e4e-868b-0f
 ```json
 {
     "_type": "Query",
-    "id": "562be085-604a-4e4e-868b-0f618e9493de",
+    "id": "101d3d6c-669f-4ee7-b881-a40861ebf9b2",
 	"name": "Stock Threshold",
 	"sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
 	"expression": ".rows | map(select(.[1] | tonumber > 200))",

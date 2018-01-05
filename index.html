@@ -1954,12 +1954,12 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </tr>
 </tbody></table>
 <h2 id='add-a-resource-to-a-datasourceschema'>Add a Resource to a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
+http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/resources -d <span class="s1">'{
     "resourceType": "YoutubeVideo",
-    "description": "Github Universe 2017 event video",
+    "description": "Discover Yooz, the cloud-based accounts payable (AP) automation solution that’s intelligent, easy to set up and use, as well as affordable...",
     "data": {
-        "title": "GitHub Universe 2017",
-        "link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+        "title": "Yooz Cloud Accounts Payable Automation Reinvented",
+        "link": "https://www.youtube.com/watch?v=COkRCll0qjU"
     }
 }'</span>
 
@@ -2019,7 +2019,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-883
 <td>resource schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-resources-of-a-datasourceschema'>List resources of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+<h2 id='list-resources-of-a-datasourceschema'>List resources of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/resources
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of resources:</p>
@@ -2460,7 +2460,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
         "sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
         "expression": ".rows | map(select(.[1] | tonumber &gt; 200))",
         "description": "filter out rows where first column &lt;= 200"
-    },'</span>
+    }'</span>
 </code></pre>
 <blockquote>
 <p>Successful requst returns the following response</p>
@@ -2512,14 +2512,14 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-query'>Retrieve information of a Query</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/562be085-604a-4e4e-868b-0f618e9493de
+<h2 id='retrieve-information-of-a-query'>Retrieve information of a Query</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/101d3d6c-669f-4ee7-b881-a40861ebf9b2
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#query">Query object</a>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Query"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"562be085-604a-4e4e-868b-0f618e9493de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101d3d6c-669f-4ee7-b881-a40861ebf9b2"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stock Threshold"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"c9fd63eb-8882-4a42-9919-6326b85f4768"</span><span class="p">],</span><span class="w">
     </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">".rows | map(select(.[1] | tonumber &gt; 200))"</span><span class="p">,</span><span class="w">

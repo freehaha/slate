@@ -150,6 +150,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Widget of specified `id` does not exist | resource not found
 
 ## Render Widget
@@ -166,13 +167,13 @@ This endpoint is an iframe API to render a Widget. To use the endpoint, one must
 
 ```html
 <iframe style="width: 500px; height: 350px; border: none;"
-	src="http://localhost:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
+	src="http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
 ```
 
 The query parameters trailing the URL will be used as parameters to the Widget. Below is an example rendering a gist using the gist-element Widget.
 The actual parameters depend on individual Widget.
 
-<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="http://localhost:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
+<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
 
 ## Add a Resource to a Widget
 
@@ -219,6 +220,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match Resource schema | schema mismatch
 400 | `data` does not match ResourceType schema | resource schema mismatch
 
@@ -258,4 +260,5 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Widget of specified `id` does not exist | resource not found

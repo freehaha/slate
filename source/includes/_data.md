@@ -290,6 +290,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | DataSourceSchema of specified `id` does not exist | resource not found
 
 ## Add a Resource to a DataSourceSchema
@@ -337,6 +338,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match Resource schema | schema mismatch
 400 | `data` does not match ResourceType schema | resource schema mismatch
 
@@ -375,6 +377,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | DataSourceSchema of specified `id` does not exist | resource not found
 
 ## Add Connector
@@ -423,6 +426,7 @@ id | ID of the created Connector entity
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match Connector schema | schema mismatch
 409 | Connector with the specified name already exists | entity of that name already exists
 
@@ -471,6 +475,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Connector of specified `id` does not exist | resource not found
 
 ## Add a Resource to a Connector
@@ -518,6 +523,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match Resource schema | schema mismatch
 400 | `data` does not match ResourceType schema | resource schema mismatch
 
@@ -556,6 +562,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Connector of specified `id` does not exist | resource not found
 
 ## Add DataSource
@@ -611,6 +618,7 @@ id | ID of the created DataSource entity
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match DataSource schema | schema mismatch
 409 | DataSource with the specified name already exists | entity of that name already exists
 
@@ -661,6 +669,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | DataSource of specified `id` does not exist | resource not found
 
 ## Create Query
@@ -753,6 +762,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Query of specified `id` does not exist | resource not found
 
 ## Transformer

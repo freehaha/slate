@@ -159,6 +159,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Entity of specified `id` does not exist | resource not found
 
 ## Display Entity
@@ -209,4 +210,5 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Entity of specified `id` does not exist | resource not found

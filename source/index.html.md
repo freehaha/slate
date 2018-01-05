@@ -264,6 +264,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | API of specified `id` does not exist | resource not found
 
 ## Add a Method to an API
@@ -310,6 +311,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match Method schema | schema mismatch
 
 ## Retrieve information of a Method
@@ -362,6 +364,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Method of specified `id` does not exist | resource not found
 
 
@@ -414,6 +417,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match Parameter schema | schema mismatch
 
 ## Retrieve information of a Parameter
@@ -455,6 +459,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Parameter of specified `id` does not exist | resource not found
 
 ## Add a Resource to an API
@@ -502,6 +507,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match Resource schema | schema mismatch
 400 | `data` does not match ResourceType schema | resource schema mismatch
 
@@ -541,6 +547,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | API of specified `id` does not exist | resource not found
 
 ## Add a Resource to a Method
@@ -590,6 +597,7 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 400 | User input does not match Resource schema | schema mismatch
 400 | `data` does not match ResourceType schema | resource schema mismatch
 
@@ -632,4 +640,5 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Method of specified `id` does not exist | resource not found

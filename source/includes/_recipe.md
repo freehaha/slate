@@ -197,13 +197,14 @@ Possible error codes and reasons:
 
 Code | Reason | Message
 --- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
 404 | Recipe of specified `id` does not exist | resource not found
 
 ## Run Recipe
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f/run
 	-H 'Content-Type: application/json'
 	-d '{
 		"parameters": {
@@ -232,7 +233,7 @@ This endpoint executes a Recipe.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/recipes`
+`POST http://johnsd.cse.unsw.edu.au:3000/recipes/{id}/run`
 
 ### Parameters
 

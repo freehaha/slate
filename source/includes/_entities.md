@@ -10,46 +10,41 @@ curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=Github&type=API
 > if you want to specify a particular field to search, use `field:` syntax
 
 ```shell
-# search for APIs that have 'music' in its description
+# search for APIs that have 'music' in their description
 curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=description:music&type=API'
 ```
 
-> example result
+> example result for APIs that have 'music' in their description
 
 ```json
 [
     {
-        "_type": "Method",
-        "description": "Get info about songs given a list of ids",
-        "id": "7e21ca78-34e2-4329-bb18-e35de4b107ea",
-        "name": "profile",
-        "path": "http://developer.echonest.com/api/v4/song/profile?api_key={apiKey}&format={outputFormat}&id={songId}",
-        "verb": "GET"
+        "_type": "API",
+        "description": "http://www.programmableweb.com/api/sonos-music",
+        "id": "6b7f74f9-38f8-4b1e-a8b8-8d7bcb26cc8b",
+        "name": "Sonos Music",
+        "provider": "Sonos Music",
+        "type": "REST"
     },
     {
-        "_type": "Method",
-        "description": "get user's profile",
-        "id": "07acb558-7626-4bb4-946a-2ddd77c4dbb6",
-        "name": "GetProfile",
-        "path": "/users/{id}",
-        "verb": "GET"
+        "_type": "API",
+        "baseUrl": "https://api.spotify.com",
+        "description": "<p>Spotify&nbsp;Web API lets your applications fetch data from the Spotify music catalog and manage user&rsquo;s playlists and saved music.</p>\n<p>&nbsp;</p>",
+        "id": "170333ff-afa7-4dc8-92de-9b8cebe72a34",
+        "name": "Spotify",
+        "provider": "Spotify AB",
+        "type": "REST"
     },
     {
-        "_type": "Method",
-        "description": "<p>Get a User&rsquo;s Profile.</p>",
-        "id": "2fd74bdf-7aa5-46b5-a9d3-63a270691537",
-        "name": "GetUserProfile",
-        "path": "/v1/users/{user_id}",
-        "verb": "GET"
-    },
-    {
-        "_type": "Method",
-        "id": "e686e6c9-9d17-4834-9344-a2d641c99250",
-        "name": "GetOwnProfile",
-        "path": "https://www.pivotaltracker.com/services/v5/me",
-        "verb": "GET"
+        "_type": "API",
+        "description": "4shared is an online storage and file sharing service that was founded in 2005. Users can upload, store and share all types of files, including music, video, photos and documents.\nThe 4shared API...",
+        "id": "71ca0c6a-cd3a-4f31-b6a8-97ad95f431c4",
+        "name": "4Shared",
+        "provider": "4Shared",
+        "type": "REST"
     }
 ]
+
 ```
 
 This endpoint performs a keyword search in APIBase. It returns only the first 30 results. To get

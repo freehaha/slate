@@ -37,3 +37,19 @@ Attribute | Type | Description
 \*title | string | Title of the invoke example
 \*method | string | ID of the Method
 \*parameters | object | Example parameters
+
+## URL
+
+```json
+{
+	"title": "Using YQL and Open Data Tables",
+	"url": "https://developer.yahoo.com/yql/guide/yql-users-guide.html"
+}
+```
+
+External URL links.
+
+Attribute | Type | Description
+--- | --- | ---
+\*title | string | Title of the URL
+\*url | string | URL of the webpage

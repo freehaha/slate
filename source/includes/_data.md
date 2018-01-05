@@ -387,7 +387,6 @@ Code | Reason | Message
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/connectors
 	-H 'Content-Type: application/json'
 	-d '{
-		"id": "b5f922b9-c850-45b7-86c1-0e8bc7371cae",
 		"engine": {
 			"method": "npm",
 			"code": "https://github.com/mysilver/yooz-connector"

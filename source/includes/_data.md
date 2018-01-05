@@ -46,13 +46,13 @@ Attribute | Type | Description
 
 ```json
 {
-	"id": "629cfe3b-6101-4b5a-a8d9-166cd0e3be82",
-	"_created": 1507270476,
-	"name": "echo-connector"
+	"id": "03c60eb7-7a09-48a5-8595-cf58d0fc6475",
+	"_created": 1445482308,
 	"engine": {
 		"method": "npm",
-		"code":"https://github.com/APIBase/echo-connector.git"
+		"code": "https://github.com/freehaha/socrata-connector.git"
 	},
+	"name": "socrata-connector"
 }
 ```
 
@@ -97,8 +97,8 @@ When a `<name>` is used, the module will be pulled from the npm registry whereas
 		"dataProvider": "https://data.melbourne.vic.gov.au",
 		"resourceId": "vh2v-4nfs"
 	},
-	"description": "testing purpose",
-	"name": "test2"
+	"description": "On-street parking bay sensors",
+	"name": "melborne-street-parking-sensors"
 }
 ```
 
@@ -109,9 +109,9 @@ resource of Socrata. Below lists attribute of a DataSource:
 
 Attribute | Type | Description
 --- | --- | --- | ---
-\*name | string | Name of the Conncetor, must match the name in package.json in the repository
+\*name | string | Name of the DataSource
 \*description | string | Short description of the DataSource
-\*source | object | Configuration for the Connector. This is Connector-specific.
+\*source | object | Configuration for the Connector. This is Connector-specific
 
 
 ### Query
@@ -146,7 +146,7 @@ the result.
 
 Attribute | Type | Description
 --- | --- | --- | ---
-\*name | string | Name of the Conncetor, must match the name in package.json in the repository
+\*name | string | Name of the Query
 \*sources | [ uuid ] | IDs of sources which the expression will be evaluated on. These can be ID of DataSource or Query.
 \*description | string | Short description of the Query
 \*expression | string | A [jq](https://stedolan.github.io/jq/manual/) query expression

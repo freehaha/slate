@@ -297,12 +297,12 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
+http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/resources -d '{
 	"resourceType": "YoutubeVideo",
-	"description": "Github Universe 2017 event video",
+	"description": "Discover Yooz, the cloud-based accounts payable (AP) automation solution that’s intelligent, easy to set up and use, as well as affordable...",
 	"data": {
-		"title": "GitHub Universe 2017",
-		"link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+		"title": "Yooz Cloud Accounts Payable Automation Reinvented",
+		"link": "https://www.youtube.com/watch?v=COkRCll0qjU"
 	}
 }'
 

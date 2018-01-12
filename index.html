@@ -317,9 +317,6 @@
                   <li>
                     <a href="#retrieve-information-of-a-query" class="toc-h2 toc-link" data-title="Retrieve information of a Query">Retrieve information of a Query</a>
                   </li>
-                  <li>
-                    <a href="#transformer-2" class="toc-h2 toc-link" data-title="Transformer">Transformer</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -1759,47 +1756,6 @@ the result.</p>
 <td>A <a href="https://stedolan.github.io/jq/manual/">jq</a> query expression</td>
 </tr>
 </tbody></table>
-<h3 id='transformer'>Transformer</h3>
-<blockquote>
-<p>An example Transformer entity.</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transform data"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id-source&gt;"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id-target&gt;"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"map({text: .body})"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>A Transformer is a query that is designed transform data from one DataSourceSchema to another. Below lists the attributes of a Transformer:</p>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>*source</td>
-<td>uuid</td>
-<td>ID of the source DataSourceSchema</td>
-</tr>
-<tr>
-<td>*target</td>
-<td>uuid</td>
-<td>ID of the target DataSourceSchema</td>
-</tr>
-<tr>
-<td>*description</td>
-<td>string</td>
-<td>Short description of the Transformer</td>
-</tr>
-<tr>
-<td>*expression</td>
-<td>string</td>
-<td>A <a href="https://stedolan.github.io/jq/manual/">jq</a> query expression</td>
-</tr>
-</tbody></table>
 <h2 id='create-datasourceschema'>Create DataSourceSchema</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
     -H <span class="s1">'Content-Type: application/json'</span>
@@ -2567,59 +2523,6 @@ To evaluate the Query and view the result, use the <a href="#display-entity">Dis
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='transformer-2'>Transformer</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/transformer
-    -H <span class="s1">'Content-Type: application/json'</span>
-    -d <span class="s1">'{
-        "description": "tranfrom social text posts to array of text object"
-        "expression": "map({text: .body})"
-        "source": "&lt;source-id&gt;",
-        "target": "&lt;target-id&gt;"
-    },'</span>
-</code></pre>
-<blockquote>
-<p>Successful requst returns the following response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint creates a <a href="#transformer">Transformer</a>.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/transformer</code></p>
-<h3 id='parameters-25'>Parameters</h3>
-<p>A <a href="#query">Query</a> Object.</p>
-<h3 id='response-25'>Response</h3>
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>message</td>
-<td><code>entity created</code></td>
-</tr>
-<tr>
-<td>id</td>
-<td>ID of the created Query entity</td>
-</tr>
-</tbody></table>
-<h3 id='errors-26'>Errors</h3>
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Reason</th>
-<th>Message</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>User input does not match Transformer schema</td>
-<td>schema mismatch</td>
-</tr>
-</tbody></table>
 <h1 id='recipes'>Recipes</h1><h2 id='models-3'>Models</h2><h3 id='recipe'>Recipe</h3>
 <blockquote>
 <p>A Recipe entity</p>
@@ -2766,11 +2669,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a Recipe.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes</code></p>
-<h3 id='parameters-26'>Parameters</h3>
+<h3 id='parameters-25'>Parameters</h3>
 <p>A <a href="#recipe">Recipe</a> Object.</p>
-<h3 id='response-26'>Response</h3>
+<h3 id='response-25'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2786,7 +2689,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 <td>ID of the created Recipe entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-27'>Errors</h3>
+<h3 id='errors-26'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2838,9 +2741,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Recipe.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/recipes/{id}</code></p>
-<h3 id='parameters-27'>Parameters</h3>
+<h3 id='parameters-26'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2854,9 +2757,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 <td>ID of the Recipe</td>
 </tr>
 </tbody></table>
-<h3 id='response-27'>Response</h3>
+<h3 id='response-26'>Response</h3>
 <p>A <a href="#recipe">Recipe</a> Object.</p>
-<h3 id='errors-28'>Errors</h3>
+<h3 id='errors-27'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2902,9 +2805,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint executes a Recipe.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes/{id}/run</code></p>
-<h3 id='parameters-28'>Parameters</h3>
+<h3 id='parameters-27'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2918,11 +2821,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
 <td>Parameter to be passed to the recipe, overwriting any default parameters and will be used as the context</td>
 </tr>
 </tbody></table>
-<h3 id='response-28'>Response</h3>
+<h3 id='response-27'>Response</h3>
 <p>The resulting context of the Recipe. The <code>_result</code> object contains result of
 each opeartion with <code>._result[&quot;0&quot;]</code> being the result of the first operation,
 <code>._result[&quot;1&quot;]</code> being the second and so on.</p>
-<h3 id='errors-29'>Errors</h3>
+<h3 id='errors-28'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -3037,11 +2940,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Widget entity to APIBase.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets</code></p>
-<h3 id='parameters-29'>Parameters</h3>
+<h3 id='parameters-28'>Parameters</h3>
 <p>A <a href="#widget">Widget</a> Object.</p>
-<h3 id='response-29'>Response</h3>
+<h3 id='response-28'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -3057,7 +2960,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of the created Widget object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-30'>Errors</h3>
+<h3 id='errors-29'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3102,9 +3005,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Widget.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}</code></p>
-<h3 id='parameters-30'>Parameters</h3>
+<h3 id='parameters-29'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3118,7 +3021,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='response-30'>Response</h3>
+<h3 id='response-29'>Response</h3>
 <p>A <a href="#widget">Widget</a> Object with related <code>resources</code>.</p>
 
 <table><thead>
@@ -3132,7 +3035,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of Resources of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='errors-31'>Errors</h3>
+<h3 id='errors-30'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3155,7 +3058,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </tbody></table>
 <h2 id='render-widget'>Render Widget</h2>
 <p>This endpoint is an iframe API to render a Widget. To use the endpoint, one must use the endpoint URL in the iframe in order to render the widget.</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/render?{parameters}={value}</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <blockquote>
@@ -3188,11 +3091,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Resource to a Widget.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources</code></p>
-<h3 id='parameters-31'>Parameters</h3>
+<h3 id='parameters-30'>Parameters</h3>
 <p>A <a href="#resource">Resource</a> Object.</p>
-<h3 id='response-31'>Response</h3>
+<h3 id='response-30'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -3208,7 +3111,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <td>ID of the created Resource object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-32'>Errors</h3>
+<h3 id='errors-31'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3245,9 +3148,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Resources that are associated with the Widget.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources</code></p>
-<h3 id='parameters-32'>Parameters</h3>
+<h3 id='parameters-31'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3261,9 +3164,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <td>ID of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='response-32'>Response</h3>
+<h3 id='response-31'>Response</h3>
 <p>An array of <a href="#resource">Resource objects</a> related to the Widget.</p>
-<h3 id='errors-33'>Errors</h3>
+<h3 id='errors-32'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>

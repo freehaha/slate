@@ -151,28 +151,6 @@ Attribute | Type | Description
 \*description | string | Short description of the Query
 \*expression | string | A [jq](https://stedolan.github.io/jq/manual/) query expression
 
-### Transformer
-
-> An example Transformer entity.
-
-```json
-{
-	"description": "transform data",
-	"source": "<id-source>",
-	"target": "<id-target>",
-	"expression": "map({text: .body})"
-}
-```
-
-A Transformer is a query that is designed transform data from one DataSourceSchema to another. Below lists the attributes of a Transformer:
-
-Attribute | Type | Description
---- | --- | --- | ---
-\*source | uuid | ID of the source DataSourceSchema
-\*target | uuid | ID of the target DataSourceSchema
-\*description | string | Short description of the Transformer
-\*expression | string | A [jq](https://stedolan.github.io/jq/manual/) query expression
-
 
 ## Create DataSourceSchema
 
@@ -763,49 +741,3 @@ Code | Reason | Message
 --- | --- | ---
 400 | provided `id` is not a valid UUID | malformed UUID
 404 | Query of specified `id` does not exist | resource not found
-
-## Transformer
-
-```shell
-# Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/transformer
-	-H 'Content-Type: application/json'
-	-d '{
-		"description": "tranfrom social text posts to array of text object"
-        "expression": "map({text: .body})"
-		"source": "<source-id>",
-		"target": "<target-id>"
-    },'
-```
-
-> Successful requst returns the following response
-
-```json
-{
-	"message": "entity created",
-	"id": "<id_of_created_entity>"
-}
-```
-
-This endpoint creates a [Transformer](#transformer).
-
-### HTTP Request
-
-`POST http://johnsd.cse.unsw.edu.au:3000/transformer`
-
-### Parameters
-
-A [Query](#query) Object.
-
-### Response
-
-Attribute | Description
---- | ---
-message | `entity created`
-id | ID of the created Query entity
-
-### Errors
-
-Code | Reason | Message
---- | --- | ---
-400 | User input does not match Transformer schema | schema mismatch

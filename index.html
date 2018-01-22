@@ -251,6 +251,9 @@
                     <a href="#add-a-resource-to-an-api" class="toc-h2 toc-link" data-title="Add a Resource to an API">Add a Resource to an API</a>
                   </li>
                   <li>
+                    <a href="#retrieve-information-of-a-resource" class="toc-h2 toc-link" data-title="Retrieve information of a Resource">Retrieve information of a Resource</a>
+                  </li>
+                  <li>
                     <a href="#list-resources-of-an-api" class="toc-h2 toc-link" data-title="List resources of an API">List resources of an API</a>
                   </li>
                   <li>
@@ -1098,6 +1101,80 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <td>resource schema mismatch</td>
 </tr>
 </tbody></table>
+<h2 id='retrieve-information-of-a-resource'>Retrieve information of a Resource</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/resources/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
+</code></pre>
+<blockquote>
+<p>Successful request returns a Resource object:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_rtName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YoutubeVideo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.youtube.com/embed/VUaBfYCmJls"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What Is Github"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"resourcetype"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"1cd0a97d-195c-43ca-815f-4740ce1e7e97"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a Resource and can be used to retrieve any resources regardless of
+the entity the resource is added to.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/resources/{id}</code></p>
+<h3 id='parameters-8'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>uuid</td>
+<td>ID of the Resource</td>
+</tr>
+</tbody></table>
+<h3 id='response-8'>Response</h3>
+<p>A <a href="#resource">Resource</a> Object with related <code>resourcetype</code>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>resourcetype</td>
+<td>ID of the resource type</td>
+</tr>
+<tr>
+<td>_rtName</td>
+<td>Name fo the resource type</td>
+</tr>
+</tbody></table>
+<h3 id='errors-8'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>provided <code>id</code> is not a valid UUID</td>
+<td>malformed UUID</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Resource of specified <code>id</code> does not exist</td>
+<td>resource not found</td>
+</tr>
+</tbody></table>
 <h2 id='list-resources-of-an-api'>List resources of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
 </code></pre>
 <blockquote>
@@ -1109,9 +1186,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Resources that are associated with the API.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}/resources</code></p>
-<h3 id='parameters-8'>Parameters</h3>
+<h3 id='parameters-9'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1125,9 +1202,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <td>ID of the API</td>
 </tr>
 </tbody></table>
-<h3 id='response-8'>Response</h3>
+<h3 id='response-9'>Response</h3>
 <p>An array of IDs of <a href="#resource">Resource objects</a> related to the API.</p>
-<h3 id='errors-8'>Errors</h3>
+<h3 id='errors-9'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1170,11 +1247,11 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Resource to a Method.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources</code></p>
-<h3 id='parameters-9'>Parameters</h3>
+<h3 id='parameters-10'>Parameters</h3>
 <p>A <a href="#resource">Resource</a> Object.</p>
-<h3 id='response-9'>Response</h3>
+<h3 id='response-10'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -1190,7 +1267,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 <td>ID of the created Resource object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-9'>Errors</h3>
+<h3 id='errors-10'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1230,9 +1307,9 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Resources that are associated with the Method.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources</code></p>
-<h3 id='parameters-10'>Parameters</h3>
+<h3 id='parameters-11'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1246,9 +1323,9 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 <td>ID of the Method</td>
 </tr>
 </tbody></table>
-<h3 id='response-10'>Response</h3>
+<h3 id='response-11'>Response</h3>
 <p>An array of IDs of <a href="#resource">Resource objects</a> related to the Method.</p>
-<h3 id='errors-10'>Errors</h3>
+<h3 id='errors-11'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1312,7 +1389,7 @@ curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?
 </span></code></pre>
 <p>This endpoint performs a keyword search in APIBase. It returns only the first 30 results. To get
 more results, use the <code>page</code> query parameter.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/search</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -1342,9 +1419,9 @@ more results, use the <code>page</code> query parameter.</p>
 <td>Page number, starting from 1</td>
 </tr>
 </tbody></table>
-<h3 id='response-11'>Response</h3>
+<h3 id='response-12'>Response</h3>
 <p>An array of entities that match the search criteria. Maximum 30 entities.</p>
-<h3 id='errors-11'>Errors</h3>
+<h3 id='errors-12'>Errors</h3>
 <p>N/A</p>
 <h2 id='retrieving-arbitrary-entity'>Retrieving arbitrary entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4'</span>
 </code></pre>
@@ -1399,9 +1476,9 @@ more results, use the <code>page</code> query parameter.</p>
 <p>This endpoint lets you get an entity regardless of its type. For example can use
 this endpoint to retrieve an API, Method or DataSourceSchema...  Related
 entities will also be retrieved. To change this behavior, use the <code>brief=true</code> query parameter.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}</code></p>
-<h3 id='parameters-11'>Parameters</h3>
+<h3 id='parameters-12'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1420,7 +1497,7 @@ entities will also be retrieved. To change this behavior, use the <code>brief=tr
 <td><code>true</code> to retrieve only the entity in question, otherwise all related entities will be retrieved</td>
 </tr>
 </tbody></table>
-<h3 id='response-12'>Response</h3>
+<h3 id='response-13'>Response</h3>
 <p>In addition to the attributes of the entity, this endpoint also returns an
 <code>_relation</code> array if <code>brief=false</code>(default). <code>The _relation</code> array list
 entities related to the entity, each containing the following
@@ -1445,7 +1522,7 @@ attribute:</p>
 <td>The related entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-12'>Errors</h3>
+<h3 id='errors-13'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1494,9 +1571,9 @@ Similar to the <a href="#retrieving-arbitrary-entity">Retrieving arbitrary entit
 endpoint can also retrieve an arbitrary entity but if the entity represents an
 executable object, for example a <a href="#query">Query</a>, then the entity will be executed/run and
 return the result instead.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}/display</code></p>
-<h3 id='parameters-12'>Parameters</h3>
+<h3 id='parameters-13'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1510,7 +1587,7 @@ return the result instead.</p>
 <td>ID of the entity in question</td>
 </tr>
 </tbody></table>
-<h3 id='errors-13'>Errors</h3>
+<h3 id='errors-14'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1786,11 +1863,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A DataSourceSchema describes the schema of data coming from a source so that we can understand and explore the structure of the data.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas</code></p>
-<h3 id='parameters-13'>Parameters</h3>
+<h3 id='parameters-14'>Parameters</h3>
 <p>A <a href="#data-source-schema">DataSourceSchema</a> Object.</p>
-<h3 id='response-13'>Response</h3>
+<h3 id='response-14'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -1806,7 +1883,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>ID of the created DataSourceSchema entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-14'>Errors</h3>
+<h3 id='errors-15'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -1854,9 +1931,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a DataSourceSchema.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}</code></p>
-<h3 id='parameters-14'>Parameters</h3>
+<h3 id='parameters-15'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1870,7 +1947,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>ID of the DataSourceSchema</td>
 </tr>
 </tbody></table>
-<h3 id='response-14'>Response</h3>
+<h3 id='response-15'>Response</h3>
 <p>An <a href="#data-source-schema">DataSourceSchema</a> Object with related <code>connectors</code> and <code>resources</code>.</p>
 
 <table><thead>
@@ -1888,7 +1965,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>ID of Resources associated to the DataSourceSchema</td>
 </tr>
 </tbody></table>
-<h3 id='errors-15'>Errors</h3>
+<h3 id='errors-16'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1929,11 +2006,11 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Resource to a DataSourceSchema.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources</code></p>
-<h3 id='parameters-15'>Parameters</h3>
+<h3 id='parameters-16'>Parameters</h3>
 <p>A <a href="#resource">Resource</a> Object.</p>
-<h3 id='response-15'>Response</h3>
+<h3 id='response-16'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -1949,7 +2026,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 <td>ID of the created Resource object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-16'>Errors</h3>
+<h3 id='errors-17'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1986,9 +2063,9 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Resources that are associated with the DataSourceSchema.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources</code></p>
-<h3 id='parameters-16'>Parameters</h3>
+<h3 id='parameters-17'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2002,9 +2079,9 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 <td>ID of the DataSourceSchema</td>
 </tr>
 </tbody></table>
-<h3 id='response-16'>Response</h3>
+<h3 id='response-17'>Response</h3>
 <p>An array of IDs of <a href="#resource">Resource objects</a> related to the DataSourceSchema.</p>
-<h3 id='errors-17'>Errors</h3>
+<h3 id='errors-18'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2045,11 +2122,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Connector to a DataSourceSchema</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/connectors</code></p>
-<h3 id='parameters-17'>Parameters</h3>
+<h3 id='parameters-18'>Parameters</h3>
 <p>A <a href="#connector">Connector</a> Object.</p>
-<h3 id='response-17'>Response</h3>
+<h3 id='response-18'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2065,7 +2142,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <td>ID of the created Connector entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-18'>Errors</h3>
+<h3 id='errors-19'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2104,9 +2181,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Connector.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}</code></p>
-<h3 id='parameters-18'>Parameters</h3>
+<h3 id='parameters-19'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2120,7 +2197,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <td>ID of the Connector</td>
 </tr>
 </tbody></table>
-<h3 id='response-18'>Response</h3>
+<h3 id='response-19'>Response</h3>
 <p>A <a href="#connector">Connector</a> Object with related <code>resources</code> and <code>datasources</code>.</p>
 
 <table><thead>
@@ -2138,7 +2215,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <td>ID of DataSources that use this Connector</td>
 </tr>
 </tbody></table>
-<h3 id='errors-19'>Errors</h3>
+<h3 id='errors-20'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2179,11 +2256,11 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Resource to a Connector.</p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources</code></p>
-<h3 id='parameters-19'>Parameters</h3>
+<h3 id='parameters-20'>Parameters</h3>
 <p>A <a href="#resource">Resource</a> Object.</p>
-<h3 id='response-19'>Response</h3>
+<h3 id='response-20'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2199,7 +2276,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 <td>ID of the created Resource object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-20'>Errors</h3>
+<h3 id='errors-21'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2236,9 +2313,9 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Resources that are associated with the Connector.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources</code></p>
-<h3 id='parameters-20'>Parameters</h3>
+<h3 id='parameters-21'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2252,9 +2329,9 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 <td>ID of the Connector</td>
 </tr>
 </tbody></table>
-<h3 id='response-20'>Response</h3>
+<h3 id='response-21'>Response</h3>
 <p>An array of IDs of <a href="#resource">Resource objects</a> related to the Connector.</p>
-<h3 id='errors-21'>Errors</h3>
+<h3 id='errors-22'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2303,11 +2380,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/3c7814c3-0e0c-4cd3-85c
 </span></code></pre>
 <p>This endpoint adds a DataSource using specified Connector, creating an instance of Connector with configuration
 specified by <code>source</code>.</p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/datasources</code></p>
-<h3 id='parameters-21'>Parameters</h3>
+<h3 id='parameters-22'>Parameters</h3>
 <p>A <a href="#data-source">DataSource</a> Object.</p>
-<h3 id='response-21'>Response</h3>
+<h3 id='response-22'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2323,7 +2400,7 @@ specified by <code>source</code>.</p>
 <td>ID of the created DataSource entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-22'>Errors</h3>
+<h3 id='errors-23'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2369,9 +2446,9 @@ specified by <code>source</code>.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a DataSource.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasources/{id}</code></p>
-<h3 id='parameters-22'>Parameters</h3>
+<h3 id='parameters-23'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2385,9 +2462,9 @@ specified by <code>source</code>.</p>
 <td>ID of the DataSource</td>
 </tr>
 </tbody></table>
-<h3 id='response-22'>Response</h3>
+<h3 id='response-23'>Response</h3>
 <p>A <a href="#data-source-schema">DataSource</a> Object.</p>
-<h3 id='errors-23'>Errors</h3>
+<h3 id='errors-24'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2429,11 +2506,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
 <p>A Query allows one to evaluate an <code>expression</code> on one or more DataSources or Queries. Upon being
 created, the query is not immediately executed and returns only the entity created message. To
 evaluate the Query and view the result, use the <a href="#display-entity">Display Entity</a> endpoint.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/queries</code></p>
-<h3 id='parameters-23'>Parameters</h3>
+<h3 id='parameters-24'>Parameters</h3>
 <p>A <a href="#query">Query</a> Object.</p>
-<h3 id='response-23'>Response</h3>
+<h3 id='response-24'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2449,7 +2526,7 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 <td>ID of the created Query entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-24'>Errors</h3>
+<h3 id='errors-25'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2484,9 +2561,9 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 </span></code></pre>
 <p>This endpoint retrieves a Query. Note that this endpoint only retrieves the query expression, not the evaluated result.
 To evaluate the Query and view the result, use the <a href="#display-entity">Display Entity</a> endpoint.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/queries/{id}</code></p>
-<h3 id='parameters-24'>Parameters</h3>
+<h3 id='parameters-25'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2500,9 +2577,9 @@ To evaluate the Query and view the result, use the <a href="#display-entity">Dis
 <td>ID of the Query</td>
 </tr>
 </tbody></table>
-<h3 id='response-24'>Response</h3>
+<h3 id='response-25'>Response</h3>
 <p>An <a href="#query">Query</a> Object.</p>
-<h3 id='errors-25'>Errors</h3>
+<h3 id='errors-26'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2669,11 +2746,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a Recipe.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes</code></p>
-<h3 id='parameters-25'>Parameters</h3>
+<h3 id='parameters-26'>Parameters</h3>
 <p>A <a href="#recipe">Recipe</a> Object.</p>
-<h3 id='response-25'>Response</h3>
+<h3 id='response-26'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2689,7 +2766,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 <td>ID of the created Recipe entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-26'>Errors</h3>
+<h3 id='errors-27'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2741,9 +2818,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Recipe.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/recipes/{id}</code></p>
-<h3 id='parameters-26'>Parameters</h3>
+<h3 id='parameters-27'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2757,9 +2834,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 <td>ID of the Recipe</td>
 </tr>
 </tbody></table>
-<h3 id='response-26'>Response</h3>
+<h3 id='response-27'>Response</h3>
 <p>A <a href="#recipe">Recipe</a> Object.</p>
-<h3 id='errors-27'>Errors</h3>
+<h3 id='errors-28'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2805,9 +2882,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint executes a Recipe.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes/{id}/run</code></p>
-<h3 id='parameters-27'>Parameters</h3>
+<h3 id='parameters-28'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2821,11 +2898,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
 <td>Parameter to be passed to the recipe, overwriting any default parameters and will be used as the context</td>
 </tr>
 </tbody></table>
-<h3 id='response-27'>Response</h3>
+<h3 id='response-28'>Response</h3>
 <p>The resulting context of the Recipe. The <code>_result</code> object contains result of
 each opeartion with <code>._result[&quot;0&quot;]</code> being the result of the first operation,
 <code>._result[&quot;1&quot;]</code> being the second and so on.</p>
-<h3 id='errors-28'>Errors</h3>
+<h3 id='errors-29'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2940,11 +3017,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Widget entity to APIBase.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets</code></p>
-<h3 id='parameters-28'>Parameters</h3>
+<h3 id='parameters-29'>Parameters</h3>
 <p>A <a href="#widget">Widget</a> Object.</p>
-<h3 id='response-28'>Response</h3>
+<h3 id='response-29'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2960,7 +3037,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of the created Widget object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-29'>Errors</h3>
+<h3 id='errors-30'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3005,9 +3082,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Widget.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}</code></p>
-<h3 id='parameters-29'>Parameters</h3>
+<h3 id='parameters-30'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3021,7 +3098,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='response-29'>Response</h3>
+<h3 id='response-30'>Response</h3>
 <p>A <a href="#widget">Widget</a> Object with related <code>resources</code>.</p>
 
 <table><thead>
@@ -3035,7 +3112,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of Resources of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='errors-30'>Errors</h3>
+<h3 id='errors-31'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3058,7 +3135,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </tbody></table>
 <h2 id='render-widget'>Render Widget</h2>
 <p>This endpoint is an iframe API to render a Widget. To use the endpoint, one must use the endpoint URL in the iframe in order to render the widget.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/render?{parameters}={value}</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <blockquote>
@@ -3091,11 +3168,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Resource to a Widget.</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources</code></p>
-<h3 id='parameters-30'>Parameters</h3>
+<h3 id='parameters-31'>Parameters</h3>
 <p>A <a href="#resource">Resource</a> Object.</p>
-<h3 id='response-30'>Response</h3>
+<h3 id='response-31'>Response</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -3111,7 +3188,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <td>ID of the created Resource object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-31'>Errors</h3>
+<h3 id='errors-32'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3148,9 +3225,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Resources that are associated with the Widget.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources</code></p>
-<h3 id='parameters-31'>Parameters</h3>
+<h3 id='parameters-32'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3164,9 +3241,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <td>ID of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='response-31'>Response</h3>
+<h3 id='response-32'>Response</h3>
 <p>An array of <a href="#resource">Resource objects</a> related to the Widget.</p>
-<h3 id='errors-32'>Errors</h3>
+<h3 id='errors-33'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>

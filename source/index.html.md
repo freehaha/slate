@@ -511,6 +511,56 @@ Code | Reason | Message
 400 | User input does not match Resource schema | schema mismatch
 400 | `data` does not match ResourceType schema | resource schema mismatch
 
+## Retrieve information of a Resource
+```shell
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/resources/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
+```
+
+> Successful request returns a Resource object:
+
+```json
+{
+	"_rtName": "YoutubeVideo",
+	"id": "6d5dd456-3b04-4590-b51a-c5094c6a5cd7",
+	"data": {
+		"link": "https://www.youtube.com/embed/VUaBfYCmJls",
+		"title": "What Is Github"
+	},
+	"resourcetype": [
+		"1cd0a97d-195c-43ca-815f-4740ce1e7e97"
+	]
+}
+```
+This endpoint retrieves a Resource and can be used to retrieve any resources regardless of
+the entity the resource is added to.
+
+### HTTP Request
+
+`GET http://johnsd.cse.unsw.edu.au:3000/resources/{id}`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the Resource
+
+### Response
+
+A [Resource](#resource) Object with related `resourcetype`.
+
+Attribute | Description
+--------- | ----------- |
+resourcetype | ID of the resource type
+\_rtName | Name fo the resource type
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
+404 | Resource of specified `id` does not exist | resource not found
+
 ## List resources of an API
 ```shell
 curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources

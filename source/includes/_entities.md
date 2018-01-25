@@ -73,54 +73,35 @@ N/A
 ## Retrieving arbitrary entity
 
 ```shell
-curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4'
+curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/b1c73190-553e-4453-a672-394e83feb417'
 ```
 
 > successful request returns the entity:
 
 ```json
 {
-    "_type": "API",
-    "type": "REST",
-    "baseUrl": "https://api.github.com",
-    "description": "github",
-    "id": "ee1db224-3331-4b8a-bc11-8839b4e5d6b4",
-    "methods": [
-        "07acb558-7626-4bb4-946a-2ddd77c4dbb6",
-        "9446bdf1-da5a-4096-98bc-47cfa8c15157",
-        "df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"
-    ],
-    "name": "Github",
-    "provider": "http://github.com",
-    "resources": [
-        "6d5dd456-3b04-4590-b51a-c5094c6a5cd7"
+    "id": "b1c73190-553e-4453-a672-394e83feb417",
+    "expression": "map(select(.sepalLength > 5))",
+    "description": "get all data where sepalLength is greater than 5",
+    "name": "GetsLenGt5",
+    "sources": [
+        "576927bb-7cb3-4c75-81b0-7c1e67a724a1"
     ],
     "_relations": [
         {
-            "direction": "in",
-            "target": {
-                "_created": 1404866573,
-                "_id": 33,
-                "_type": "CategoryFolder",
-                "description": "root node",
-                "id": "55cdee12-c49a-46f6-909c-98f983c79a92",
-                "name": "APIs"
-            },
-            "type": "CONTAINS"
-        },
-        {
+            "type": "USE_SOURCE",
             "direction": "out",
             "target": {
-                "_created": 1432536694,
-                "_id": 38932,
-                "_type": "Operation",
-                "id": "df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb",
-                "method": "PUT",
-                "name": "MergePR",
-                "path": "/repos/{owner}/{repo}/pulls/{number}/merge"
+                "id": "576927bb-7cb3-4c75-81b0-7c1e67a724a1",
+                "_created": 1516863793,
+                "source": "{}",
+                "description": "original UCL iris data",
+                "name": "UCL iris data",
+                "_id": 103679,
+                "_type": "DataSource"
             },
-            "type": "HAS_METHOD"
-        },
+            "_mapping": {}
+        }
     ]
 }
 ```
@@ -165,28 +146,35 @@ Code | Reason | Message
 ## Display Entity
 
 ```shell
-curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/display'
+curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/b1c73190-553e-4453-a672-394e83feb417/display'
 ```
 > successful request returns the entity:
 
 ```json
-{
-    "_type": "API",
-    "id": "ee1db224-3331-4b8a-bc11-8839b4e5d6b4",
-    "baseUrl": "https://api.github.com",
-    "description": "github",
-    "methods": [
-        "07acb558-7626-4bb4-946a-2ddd77c4dbb6",
-        "9446bdf1-da5a-4096-98bc-47cfa8c15157",
-        "df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"
-    ],
-    "name": "Github",
-    "provider": "http://github.com",
-    "resources": [
-        "6d5dd456-3b04-4590-b51a-c5094c6a5cd7"
-    ],
-    "type": "REST"
-}
+[
+    {
+        "sepalLength": 5.1,
+        "sepalWidth": 3.5,
+        "petalLength": 1.4,
+        "petalWidth": 0.2,
+        "class": "Iris-setosa"
+    },
+    {
+        "sepalLength": 5.4,
+        "sepalWidth": 3.9,
+        "petalLength": 1.7,
+        "petalWidth": 0.4,
+        "class": "Iris-setosa"
+    },
+    {
+        "sepalLength": 5.4,
+        "sepalWidth": 3.7,
+        "petalLength": 1.5,
+        "petalWidth": 0.2,
+        "class": "Iris-setosa"
+    },
+	...
+]
 ```
 
 This endpoint shows arbitrary entity and interprets/executes it if applicable.

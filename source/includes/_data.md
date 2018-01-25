@@ -159,22 +159,32 @@ Property | Type | Description
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 	-H 'Content-Type: application/json'
 	-d '{
+		"name": "Iris Dataset",
+		"description": "iris dataset from UCI Machine Learning Repository. https://archive.ics.uci.edu/ml/datasets/Iris",
 		"schema": {
-			"properties": {
-				"query": {
-					"type": "string"
-				},
-				"results": {
-					"type": "array"
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"sepalLength": {
+						"type": "number"
+					},
+					"sepalWidth": {
+						"type": "number"
+					},
+					"petalLength": {
+						"type": "number"
+					},
+					"petalWidth": {
+						"type": "number"
+					},
+					"class": {
+						"type": "string"
+					}
 				}
-			},
-			"required": [
-				"query"
-			]
-		},
-		"description": "string",
-		"name": "Yooz Rest API Schema",
-	}'
+			}
+		}
+	}''
 ```
 
 > Successful requst returns the following response
@@ -213,32 +223,40 @@ Code | Reason | Message
 ## Retrieve information of a DataSourceSchema
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f
 ```
 
 > Successful request returns a [DataSourceSchema object](#data-source-schema):
 
 ```json
 {
-    "id": "56e3e7af-8268-445f-91ed-63eabb0e5314",
+    "id": "3fafc259-5abb-4780-8807-5663d374290f",
     "schema": {
-        "properties": {
-            "query": {
-                "type": "string"
-            },
-            "results": {
-                "type": "array"
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "sepalLength": {
+                    "type": "number"
+                },
+                "sepalWidth": {
+                    "type": "number"
+                },
+                "petalLength": {
+                    "type": "number"
+                },
+                "petalWidth": {
+                    "type": "number"
+                },
+                "class": {
+                    "type": "string"
+                }
             }
-        },
-        "required": [
-            "query"
-        ]
+        }
     },
-    "description": "string",
-    "name": "Yooz Rest API Schema",
-    "connectors": [
-        "b5f922b9-c850-45b7-86c1-0e8bc7371cae"
-    ],
+    "description": "iris dataset from UCI Machine Learning Repository. https://archive.ics.uci.edu/ml/datasets/Iris",
+    "name": "Iris Dataset",
+	"connectors": [],
     "artifacts": []
 }
 ```
@@ -275,12 +293,12 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/artifacts -d '{
-	"artifactType": "YoutubeVideo",
-	"description": "Discover Yooz, the cloud-based accounts payable (AP) automation solution that’s intelligent, easy to set up and use, as well as affordable...",
+http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts -d '{
+	"artifactType": "URL",
+	"description": "UCI Machine Learning reporitory web page for Iris Data Set",
 	"data": {
-		"title": "Yooz Cloud Accounts Payable Automation Reinvented",
-		"link": "https://www.youtube.com/watch?v=COkRCll0qjU"
+		"title": "UCI Machine Learning Repository: Iris Data Set",
+		"url": "https://archive.ics.uci.edu/ml/datasets/Iris"
 	}
 }'
 
@@ -322,15 +340,14 @@ Code | Reason | Message
 
 ## List artifacts of a DataSourceSchema
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/artifacts
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts
 ```
 
 > Successful request returns a list of ID of artifacts:
 
 ```json
 [
-	"6d5dd456-3b04-4590-b51a-c5094c6a5cd7",
-	"3d53d456-3b04-3ab0-b51s-d3012a133d56"
+    "f91b3f17-8b45-4370-997e-883c66d3c418"
 ]
 ```
 
@@ -362,14 +379,15 @@ Code | Reason | Message
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/connectors
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/connectors
 	-H 'Content-Type: application/json'
 	-d '{
+		"name": "iris-data-connector",
+		"description": "iris dataset from UCI Machine Learning Repository. https://archive.ics.uci.edu/ml/datasets/Iris",
 		"engine": {
 			"method": "npm",
-			"code": "https://github.com/mysilver/yooz-connector"
-		},
-		"name": "yooz-api-connector"
+			"code": "https://github.com/APIBase/iris-data-connector.git"
+		}
 	}'
 ```
 
@@ -410,19 +428,21 @@ Code | Reason | Message
 ## Retrieve information of a Connector
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/e5db6c4c-9315-45f5-8781-0567e5408d5c
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839
 ```
 
 > Successful request returns a [Connector object](#connector):
 
 ```json
 {
-    "id": "e5db6c4c-9315-45f5-8781-0567e5408d5c",
+    "id": "b3ae7391-264c-4424-adad-fcc8836da839",
     "engine": {
         "method": "npm",
-        "code": "https://github.com/mysilver/yooz-connector"
+        "code": "https://github.com/APIBase/iris-data-connector.git"
     },
-    "name": "yooz-api-connector",
+    "name": "iris-data-connector",
+    "datasources": [],
+    "artifacts": []
 }
 ```
 
@@ -459,7 +479,7 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d '{
+http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts -d '{
 	"artifactType": "YoutubeVideo",
 	"description": "Github Universe 2017 event video",
 	"data": {
@@ -506,7 +526,7 @@ Code | Reason | Message
 
 ## List artifacts of a Connector
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts
 ```
 
 > Successful request returns a list of ID of artifacts:
@@ -546,24 +566,16 @@ Code | Reason | Message
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/3c7814c3-0e0c-4cd3-85cd-f288b9e85174/datasources
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/datasources
 	-H 'Content-Type: application/json'
 	-d '{
-		"name": "TestData1",
-		"description": "testing data 1",
-		"source": [
-			{
-				"name": "abc",
-				"id": 1
-			},
-			{
-				"name": "def",
-				"id": 1
-			}
-		]
+		"name": "UCL iris data",
+		"description": "original UCL iris data",
+		"source": {}
 	}'
 ```
 
+> In this case, the connector iris-data-connector doesn't take any parameter so the `source` parameter is left blank.
 > Successful requst returns the following response
 
 ```json
@@ -602,26 +614,17 @@ Code | Reason | Message
 ## Retrieve information of a DataSource
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/c9fd63eb-8882-4a42-9919-6326b85f4768
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/576927bb-7cb3-4c75-81b0-7c1e67a724a1
 ```
 
 > Successful request returns a [DataSource object](#data-source):
 
 ```json
 {
-    "id": "c9fd63eb-8882-4a42-9919-6326b85f4768",
-	"name": "TestData1",
-	"description": "testing data 1",
-	"source": [
-		{
-			"name": "abc",
-			"id": 1
-		},
-		{
-			"name": "def",
-			"id": 1
-		}
-	]
+    "id": "576927bb-7cb3-4c75-81b0-7c1e67a724a1",
+    "source": {},
+    "description": "original UCL iris data",
+    "name": "UCL iris data"
 }
 ```
 
@@ -656,11 +659,11 @@ Code | Reason | Message
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
 	-H 'Content-Type: application/json'
 	-d '{
-        "name": "Stock Threshold",
-		"sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
-        "expression": ".rows | map(select(.[1] | tonumber > 200))",
-		"description": "filter out rows where first column <= 200"
-    }'
+		"expression": "map(select(.sepalLength > 5))",
+		"description": "get all data where sepalLength is greater than 5",
+		"name": "GetsLenGt5",
+		"sources": ["576927bb-7cb3-4c75-81b0-7c1e67a724a1"]
+	}'
 ```
 
 > Successful requst returns the following response
@@ -701,19 +704,20 @@ Code | Reason | Message
 ## Retrieve information of a Query
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/101d3d6c-669f-4ee7-b881-a40861ebf9b2
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/b1c73190-553e-4453-a672-394e83feb417
 ```
 
 > Successful request returns a [Query object](#query):
 
 ```json
 {
-    "_type": "Query",
-    "id": "101d3d6c-669f-4ee7-b881-a40861ebf9b2",
-	"name": "Stock Threshold",
-	"sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
-	"expression": ".rows | map(select(.[1] | tonumber > 200))",
-	"description": "filter out rows where first column <= 200"
+	"id": "b1c73190-553e-4453-a672-394e83feb417",
+    "expression": "map(select(.sepalLength > 5))",
+    "description": "get all data where sepalLength is greater than 5",
+    "name": "GetsLenGt5",
+    "sources": [
+        "576927bb-7cb3-4c75-81b0-7c1e67a724a1"
+    ]
 }
 ```
 

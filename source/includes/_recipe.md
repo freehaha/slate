@@ -1,4 +1,4 @@
-# Recipes
+# Recipe
 ## Models
 ### Recipe
 

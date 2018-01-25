@@ -179,7 +179,7 @@ The actual parameters depend on individual Widget.
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
+http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/resources -d '{
 	"resourceType": "YoutubeVideo",
 	"description": "Basic tutorial for Github in Mac and Windows"
 	"data": {

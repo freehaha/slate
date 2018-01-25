@@ -14,7 +14,6 @@ includes:
   - data
   - recipe
   - widget
-  - resourcetypes
 
 search: true
 ---

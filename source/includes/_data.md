@@ -1,6 +1,6 @@
 # Data
 
-## Models
+## Definitions
 
 ### Data Source Schema
 

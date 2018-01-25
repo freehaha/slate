@@ -1,6 +1,6 @@
 # Widget
 
-## Models
+## Definitions
 
 ### Widget
 

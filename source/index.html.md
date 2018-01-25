@@ -37,7 +37,7 @@ APIBase itself is provided as a service accessed by the APIBase API and is secti
 
 # API Manipulation
 
-## Models
+## Definitions
 
 ### API
 

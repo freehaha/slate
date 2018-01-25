@@ -1,5 +1,5 @@
 # Recipe
-## Models
+## Definitions
 ### Recipe
 
 > A Recipe entity

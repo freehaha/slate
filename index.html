@@ -248,19 +248,19 @@
                     <a href="#retrieve-information-of-a-parameter" class="toc-h2 toc-link" data-title="Retrieve information of a Parameter">Retrieve information of a Parameter</a>
                   </li>
                   <li>
-                    <a href="#add-a-resource-to-an-api" class="toc-h2 toc-link" data-title="Add a Resource to an API">Add a Resource to an API</a>
+                    <a href="#add-an-artifact-to-an-api" class="toc-h2 toc-link" data-title="Add an Artifact to an API">Add an Artifact to an API</a>
                   </li>
                   <li>
-                    <a href="#retrieve-information-of-a-resource" class="toc-h2 toc-link" data-title="Retrieve information of a Resource">Retrieve information of a Resource</a>
+                    <a href="#retrieve-information-of-an-artifact" class="toc-h2 toc-link" data-title="Retrieve information of an Artifact">Retrieve information of an Artifact</a>
                   </li>
                   <li>
-                    <a href="#list-resources-of-an-api" class="toc-h2 toc-link" data-title="List resources of an API">List resources of an API</a>
+                    <a href="#list-artifacts-of-an-api" class="toc-h2 toc-link" data-title="List artifacts of an API">List artifacts of an API</a>
                   </li>
                   <li>
-                    <a href="#add-a-resource-to-a-method" class="toc-h2 toc-link" data-title="Add a Resource to a Method">Add a Resource to a Method</a>
+                    <a href="#add-an-artifact-to-a-method" class="toc-h2 toc-link" data-title="Add an Artifact to a Method">Add an Artifact to a Method</a>
                   </li>
                   <li>
-                    <a href="#list-resources-of-a-method" class="toc-h2 toc-link" data-title="List resources of a Method">List resources of a Method</a>
+                    <a href="#list-artifacts-of-a-method" class="toc-h2 toc-link" data-title="List artifacts of a Method">List artifacts of a Method</a>
                   </li>
               </ul>
           </li>
@@ -291,10 +291,10 @@
                     <a href="#retrieve-information-of-a-datasourceschema" class="toc-h2 toc-link" data-title="Retrieve information of a DataSourceSchema">Retrieve information of a DataSourceSchema</a>
                   </li>
                   <li>
-                    <a href="#add-a-resource-to-a-datasourceschema" class="toc-h2 toc-link" data-title="Add a Resource to a DataSourceSchema">Add a Resource to a DataSourceSchema</a>
+                    <a href="#add-an-artifact-to-a-datasourceschema" class="toc-h2 toc-link" data-title="Add an Artifact to a DataSourceSchema">Add an Artifact to a DataSourceSchema</a>
                   </li>
                   <li>
-                    <a href="#list-resources-of-a-datasourceschema" class="toc-h2 toc-link" data-title="List resources of a DataSourceSchema">List resources of a DataSourceSchema</a>
+                    <a href="#list-artifacts-of-a-datasourceschema" class="toc-h2 toc-link" data-title="List artifacts of a DataSourceSchema">List artifacts of a DataSourceSchema</a>
                   </li>
                   <li>
                     <a href="#add-connector" class="toc-h2 toc-link" data-title="Add Connector">Add Connector</a>
@@ -303,10 +303,10 @@
                     <a href="#retrieve-information-of-a-connector" class="toc-h2 toc-link" data-title="Retrieve information of a Connector">Retrieve information of a Connector</a>
                   </li>
                   <li>
-                    <a href="#add-a-resource-to-a-connector" class="toc-h2 toc-link" data-title="Add a Resource to a Connector">Add a Resource to a Connector</a>
+                    <a href="#add-an-artifact-to-a-connector" class="toc-h2 toc-link" data-title="Add an Artifact to a Connector">Add an Artifact to a Connector</a>
                   </li>
                   <li>
-                    <a href="#list-resources-of-a-connector" class="toc-h2 toc-link" data-title="List resources of a Connector">List resources of a Connector</a>
+                    <a href="#list-artifacts-of-a-connector" class="toc-h2 toc-link" data-title="List artifacts of a Connector">List artifacts of a Connector</a>
                   </li>
                   <li>
                     <a href="#add-datasource" class="toc-h2 toc-link" data-title="Add DataSource">Add DataSource</a>
@@ -355,10 +355,10 @@
                     <a href="#render-widget" class="toc-h2 toc-link" data-title="Render Widget">Render Widget</a>
                   </li>
                   <li>
-                    <a href="#add-a-resource-to-a-widget" class="toc-h2 toc-link" data-title="Add a Resource to a Widget">Add a Resource to a Widget</a>
+                    <a href="#add-an-artifact-to-a-widget" class="toc-h2 toc-link" data-title="Add an Artifact to a Widget">Add an Artifact to a Widget</a>
                   </li>
                   <li>
-                    <a href="#list-resources-of-a-widget" class="toc-h2 toc-link" data-title="List resources of a Widget">List resources of a Widget</a>
+                    <a href="#list-artifacts-of-a-widget" class="toc-h2 toc-link" data-title="List artifacts of a Widget">List artifacts of a Widget</a>
                   </li>
               </ul>
           </li>
@@ -587,8 +587,8 @@ If it is set, APIBase will always use the <code>default</code> value for that pa
 <td>In HTTP body, serialized as standard x-www-form-urlencoded format</td>
 </tr>
 </tbody></table>
-<h3 id='resource'>Resource</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YoutubeVideo"</span><span class="p">,</span><span class="w">
+<h3 id='artifact'>Artifact</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"artifactType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YoutubeVideo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"video tutorial of using Github"</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics"</span><span class="p">,</span><span class="w">
@@ -596,14 +596,14 @@ If it is set, APIBase will always use the <code>default</code> value for that pa
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>A Resource encapsulates information related to APIs, Methods and other entities to
-explain and enrich the entities.  Resources could be of various types. For
-example, there are <code>YoutubeVideo</code> resources that represent videos hosted in
-Youtube and <code>InvokeExample</code> resources that show example parameters for invoking a
-Method. Resources can be added to various entities to provide additional
+<p>A Artifact encapsulates information related to APIs, Methods and other entities to
+explain and enrich the entities.  Artifacts could be of various types. For
+example, there are <code>YoutubeVideo</code> artifacts that represent videos hosted in
+Youtube and <code>InvokeExample</code> artifacts that show example parameters for invoking a
+Method. Artifacts can be added to various entities to provide additional
 information about the entities.</p>
 
-<p>A Resource has the following properties:</p>
+<p>A Artifact has the following properties:</p>
 
 <table><thead>
 <tr>
@@ -615,21 +615,21 @@ information about the entities.</p>
 <tr>
 <td>*description</td>
 <td>string</td>
-<td>Description of the resource</td>
+<td>Description of the artifact</td>
 </tr>
 <tr>
 <td>*data</td>
 <td>any</td>
-<td>The actual data of the resource</td>
+<td>The actual data of the artifact</td>
 </tr>
 <tr>
-<td>*resourceType</td>
-<td>ResourceType</td>
-<td>The type of Resource which schema <code>data</code> will be validated against. See a list of available <code>resourceType</code> and their schema <a href="#resourcetypes">here</a></td>
+<td>*artifactType</td>
+<td>ArtifactType</td>
+<td>The type of Artifact which schema <code>data</code> will be validated against. See a list of available <code>artifactType</code> and their schema <a href="#artifacttypes">here</a></td>
 </tr>
 </tbody></table>
-<h3 id='resource-types'>Resource Types</h3>
-<p>Below is a list of resource types available when creating a Resource:</p>
+<h3 id='artifact-types'>Artifact Types</h3>
+<p>Below is a list of artifact types available when creating an Artifact:</p>
 <h3 id='youtubevideo'>YoutubeVideo</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://youtu.be/0fKg7e37bQE"</span><span class="w">
@@ -792,7 +792,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://github.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"artifacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="w">
     </span><span class="p">],</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -815,7 +815,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 </tr>
 </tbody></table>
 <h3 id='response-2'>Response</h3>
-<p>An <a href="#api">API</a> Object with related <code>methods</code> and <code>resources</code>.</p>
+<p>An <a href="#api">API</a> Object with related <code>methods</code> and <code>artifacts</code>.</p>
 
 <table><thead>
 <tr>
@@ -828,8 +828,8 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <td>ID of Methods of the API</td>
 </tr>
 <tr>
-<td>resources</td>
-<td>ID of Resources of the API</td>
+<td>artifacts</td>
+<td>ID of Artifacts of the API</td>
 </tr>
 </tbody></table>
 <h3 id='errors-2'>Errors</h3>
@@ -926,7 +926,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
         </span><span class="s2">"8ca7b0c7-bda0-4667-9f74-f67897cef67f"</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/gists/{gistId}"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"artifacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"55394b28-b162-4355-b65b-6574b1956c77"</span><span class="w">
     </span><span class="p">],</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -950,7 +950,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 </tr>
 </tbody></table>
 <h3 id='response-4'>Response</h3>
-<p>An <a href="#method">Method</a> Object with related <code>parameters</code> and <code>resources</code>.</p>
+<p>An <a href="#method">Method</a> Object with related <code>parameters</code> and <code>artifacts</code>.</p>
 
 <table><thead>
 <tr>
@@ -963,8 +963,8 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <td>ID of Parameters of the API</td>
 </tr>
 <tr>
-<td>resources</td>
-<td>ID of Resources of the API</td>
+<td>artifacts</td>
+<td>ID of Artifacts of the API</td>
 </tr>
 </tbody></table>
 <h3 id='errors-4'>Errors</h3>
@@ -1106,9 +1106,9 @@ set, APIBase will always use the default value for the parameter regardless of w
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='add-a-resource-to-an-api'>Add a Resource to an API</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
-    "resourceType": "YoutubeVideo",
+<h2 id='add-an-artifact-to-an-api'>Add an Artifact to an API</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d <span class="s1">'{
+    "artifactType": "YoutubeVideo",
     "description": "Github Universe 2017 event video",
     "data": {
         "title": "GitHub Universe 2017",
@@ -1125,11 +1125,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint adds a Resource to an API.</p>
+<p>This endpoint adds an Artifact to an API.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/resources</code></p>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/artifacts</code></p>
 <h3 id='parameters-7'>Parameters</h3>
-<p>A <a href="#resource">Resource</a> Object.</p>
+<p>An <a href="#artifact">Artifact</a> Object.</p>
 <h3 id='response-7'>Response</h3>
 <table><thead>
 <tr>
@@ -1143,7 +1143,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </tr>
 <tr>
 <td>id</td>
-<td>ID of the created Resource object</td>
+<td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
 <h3 id='errors-7'>Errors</h3>
@@ -1163,19 +1163,19 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 </tr>
 <tr>
 <td>400</td>
-<td>User input does not match Resource schema</td>
+<td>User input does not match Artifact schema</td>
 <td>schema mismatch</td>
 </tr>
 <tr>
 <td>400</td>
-<td><code>data</code> does not match ResourceType schema</td>
-<td>resource schema mismatch</td>
+<td><code>data</code> does not match ArtifactType schema</td>
+<td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-resource'>Retrieve information of a Resource</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/resources/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
+<h2 id='retrieve-information-of-an-artifact'>Retrieve information of an Artifact</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/artifacts/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
 </code></pre>
 <blockquote>
-<p>Successful request returns a Resource object:</p>
+<p>Successful request returns an Artifact object:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"_rtName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YoutubeVideo"</span><span class="p">,</span><span class="w">
@@ -1184,15 +1184,15 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
         </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.youtube.com/embed/VUaBfYCmJls"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What Is Github"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"resourcetype"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"artifacttype"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"1cd0a97d-195c-43ca-815f-4740ce1e7e97"</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a Resource and can be used to retrieve any resources regardless of
-the entity the resource is added to.</p>
+<p>This endpoint retrieves an Artifact and can be used to retrieve any artifacts regardless of
+the entity the artifact is added to.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/resources/{id}</code></p>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/artifacts/{id}</code></p>
 <h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1204,11 +1204,11 @@ the entity the resource is added to.</p>
 <tr>
 <td>id</td>
 <td>uuid</td>
-<td>ID of the Resource</td>
+<td>ID of the Artifact</td>
 </tr>
 </tbody></table>
 <h3 id='response-8'>Response</h3>
-<p>A <a href="#resource">Resource</a> Object with related <code>resourcetype</code>.</p>
+<p>An <a href="#artifact">Artifact</a> Object with related <code>artifacttype</code>.</p>
 
 <table><thead>
 <tr>
@@ -1217,12 +1217,12 @@ the entity the resource is added to.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>resourcetype</td>
-<td>ID of the resource type</td>
+<td>artifacttype</td>
+<td>ID of the artifact type</td>
 </tr>
 <tr>
 <td>_rtName</td>
-<td>Name fo the resource type</td>
+<td>Name fo the artifact type</td>
 </tr>
 </tbody></table>
 <h3 id='errors-8'>Errors</h3>
@@ -1242,23 +1242,23 @@ the entity the resource is added to.</p>
 </tr>
 <tr>
 <td>404</td>
-<td>Resource of specified <code>id</code> does not exist</td>
+<td>Artifact of specified <code>id</code> does not exist</td>
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='list-resources-of-an-api'>List resources of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+<h2 id='list-artifacts-of-an-api'>List artifacts of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
 </code></pre>
 <blockquote>
-<p>Successful request returns a list of ID of resources:</p>
+<p>Successful request returns a list of ID of artifacts:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves an array of Resources that are associated with the API.</p>
+<p>This endpoint retrieves an array of Artifacts that are associated with the API.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}/resources</code></p>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}/artifacts</code></p>
 <h3 id='parameters-9'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1274,7 +1274,7 @@ the entity the resource is added to.</p>
 </tr>
 </tbody></table>
 <h3 id='response-9'>Response</h3>
-<p>An array of IDs of <a href="#resource">Resource objects</a> related to the API.</p>
+<p>An array of IDs of <a href="#artifact">Artifact objects</a> related to the API.</p>
 <h3 id='errors-9'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
@@ -1296,9 +1296,9 @@ the entity the resource is added to.</p>
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='add-a-resource-to-a-method'>Add a Resource to a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources -d <span class="s1">'{
-    "resourceType": "InvokeExample",
+<h2 id='add-an-artifact-to-a-method'>Add an Artifact to a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts -d <span class="s1">'{
+    "artifactType": "InvokeExample",
     "description": "an example to retrieve gist from the user '</span>freehaha<span class="s1">'"
     "data": {
         "method": "9446bdf1-da5a-4096-98bc-47cfa8c15157",
@@ -1317,11 +1317,11 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint adds a Resource to a Method.</p>
+<p>This endpoint adds an Artifact to a Method.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources</code></p>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/artifacts</code></p>
 <h3 id='parameters-10'>Parameters</h3>
-<p>A <a href="#resource">Resource</a> Object.</p>
+<p>An <a href="#artifact">Artifact</a> Object.</p>
 <h3 id='response-10'>Response</h3>
 <table><thead>
 <tr>
@@ -1335,7 +1335,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </tr>
 <tr>
 <td>id</td>
-<td>ID of the created Resource object</td>
+<td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
 <h3 id='errors-10'>Errors</h3>
@@ -1355,19 +1355,19 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </tr>
 <tr>
 <td>400</td>
-<td>User input does not match Resource schema</td>
+<td>User input does not match Artifact schema</td>
 <td>schema mismatch</td>
 </tr>
 <tr>
 <td>400</td>
-<td><code>data</code> does not match ResourceType schema</td>
-<td>resource schema mismatch</td>
+<td><code>data</code> does not match ArtifactType schema</td>
+<td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-resources-of-a-method'>List resources of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources
+<h2 id='list-artifacts-of-a-method'>List artifacts of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts
 </code></pre>
 <blockquote>
-<p>Successful request returns a list of ID of resources:</p>
+<p>Successful request returns a list of ID of artifacts:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="s2">"874720ca-c4ea-4704-a776-f23547848eed"</span><span class="p">,</span><span class="w">
@@ -1377,9 +1377,9 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
     </span><span class="s2">"c97d5d3c-f417-4869-ab2a-5f1f18893662"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves an array of Resources that are associated with the Method.</p>
+<p>This endpoint retrieves an array of Artifacts that are associated with the Method.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources</code></p>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/artifacts</code></p>
 <h3 id='parameters-11'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1395,7 +1395,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </tr>
 </tbody></table>
 <h3 id='response-11'>Response</h3>
-<p>An array of IDs of <a href="#resource">Resource objects</a> related to the Method.</p>
+<p>An array of IDs of <a href="#artifact">Artifact objects</a> related to the Method.</p>
 <h3 id='errors-11'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
@@ -1747,7 +1747,7 @@ return the result instead.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A Connector is a module that allows APIBase to retrieve data from 3rd party services. For example, the socrata-connector
-allows APIBase to retrieve data from Socrata given a resource id, which is then available to perfrom a <a href="#query">Query</a>.</p>
+allows APIBase to retrieve data from Socrata given an artifact id, which is then available to perfrom a <a href="#query">Query</a>.</p>
 
 <p>Below lists properties of a Connector:</p>
 
@@ -1824,7 +1824,7 @@ allows APIBase to retrieve data from Socrata given a resource id, which is then 
 <p>A Data Source is an instance of Connector with specific configuration. For
 example, one can create a Data Source using the Socrata Connector and configure
 it so that when accessed, the Data Source returns the data inside a specific
-resource of Socrata. Below lists property of a DataSource:</p>
+artifact of Socrata. Below lists property of a DataSource:</p>
 
 <table><thead>
 <tr>
@@ -1998,7 +1998,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
     </span><span class="s2">"connectors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"b5f922b9-c850-45b7-86c1-0e8bc7371cae"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="s2">"artifacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a DataSourceSchema.</p>
@@ -2019,7 +2019,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </tr>
 </tbody></table>
 <h3 id='response-15'>Response</h3>
-<p>An <a href="#data-source-schema">DataSourceSchema</a> Object with related <code>connectors</code> and <code>resources</code>.</p>
+<p>An <a href="#data-source-schema">DataSourceSchema</a> Object with related <code>connectors</code> and <code>artifacts</code>.</p>
 
 <table><thead>
 <tr>
@@ -2032,8 +2032,8 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>ID of Connectors available for the DataSourceSchema</td>
 </tr>
 <tr>
-<td>resources</td>
-<td>ID of Resources associated to the DataSourceSchema</td>
+<td>artifacts</td>
+<td>ID of Artifacts associated to the DataSourceSchema</td>
 </tr>
 </tbody></table>
 <h3 id='errors-16'>Errors</h3>
@@ -2057,9 +2057,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='add-a-resource-to-a-datasourceschema'>Add a Resource to a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/resources -d <span class="s1">'{
-    "resourceType": "YoutubeVideo",
+<h2 id='add-an-artifact-to-a-datasourceschema'>Add an Artifact to a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/artifacts -d <span class="s1">'{
+    "artifactType": "YoutubeVideo",
     "description": "Discover Yooz, the cloud-based accounts payable (AP) automation solution that’s intelligent, easy to set up and use, as well as affordable...",
     "data": {
         "title": "Yooz Cloud Accounts Payable Automation Reinvented",
@@ -2076,11 +2076,11 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint adds a Resource to a DataSourceSchema.</p>
+<p>This endpoint adds an Artifact to a DataSourceSchema.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources</code></p>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/artifacts</code></p>
 <h3 id='parameters-16'>Parameters</h3>
-<p>A <a href="#resource">Resource</a> Object.</p>
+<p>An <a href="#artifact">Artifact</a> Object.</p>
 <h3 id='response-16'>Response</h3>
 <table><thead>
 <tr>
@@ -2094,7 +2094,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 </tr>
 <tr>
 <td>id</td>
-<td>ID of the created Resource object</td>
+<td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
 <h3 id='errors-17'>Errors</h3>
@@ -2114,28 +2114,28 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 </tr>
 <tr>
 <td>400</td>
-<td>User input does not match Resource schema</td>
+<td>User input does not match Artifact schema</td>
 <td>schema mismatch</td>
 </tr>
 <tr>
 <td>400</td>
-<td><code>data</code> does not match ResourceType schema</td>
-<td>resource schema mismatch</td>
+<td><code>data</code> does not match ArtifactType schema</td>
+<td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-resources-of-a-datasourceschema'>List resources of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/resources
+<h2 id='list-artifacts-of-a-datasourceschema'>List artifacts of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/artifacts
 </code></pre>
 <blockquote>
-<p>Successful request returns a list of ID of resources:</p>
+<p>Successful request returns a list of ID of artifacts:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves an array of Resources that are associated with the DataSourceSchema.</p>
+<p>This endpoint retrieves an array of Artifacts that are associated with the DataSourceSchema.</p>
 <h3 id='http-request-18'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources</code></p>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/artifacts</code></p>
 <h3 id='parameters-17'>Parameters</h3>
 <table><thead>
 <tr>
@@ -2151,7 +2151,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 </tr>
 </tbody></table>
 <h3 id='response-17'>Response</h3>
-<p>An array of IDs of <a href="#resource">Resource objects</a> related to the DataSourceSchema.</p>
+<p>An array of IDs of <a href="#artifact">Artifact objects</a> related to the DataSourceSchema.</p>
 <h3 id='errors-18'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
@@ -2269,7 +2269,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 </tr>
 </tbody></table>
 <h3 id='response-19'>Response</h3>
-<p>A <a href="#connector">Connector</a> Object with related <code>resources</code> and <code>datasources</code>.</p>
+<p>A <a href="#connector">Connector</a> Object with related <code>artifacts</code> and <code>datasources</code>.</p>
 
 <table><thead>
 <tr>
@@ -2278,8 +2278,8 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 </tr>
 </thead><tbody>
 <tr>
-<td>resources</td>
-<td>ID of Resources associated with the Connector</td>
+<td>artifacts</td>
+<td>ID of Artifacts associated with the Connector</td>
 </tr>
 <tr>
 <td>datasources</td>
@@ -2307,9 +2307,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='add-a-resource-to-a-connector'>Add a Resource to a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d <span class="s1">'{
-    "resourceType": "YoutubeVideo",
+<h2 id='add-an-artifact-to-a-connector'>Add an Artifact to a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d <span class="s1">'{
+    "artifactType": "YoutubeVideo",
     "description": "Github Universe 2017 event video",
     "data": {
         "title": "GitHub Universe 2017",
@@ -2326,11 +2326,11 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint adds a Resource to a Connector.</p>
+<p>This endpoint adds an Artifact to a Connector.</p>
 <h3 id='http-request-21'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources</code></p>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/artifacts</code></p>
 <h3 id='parameters-20'>Parameters</h3>
-<p>A <a href="#resource">Resource</a> Object.</p>
+<p>An <a href="#artifact">Artifact</a> Object.</p>
 <h3 id='response-20'>Response</h3>
 <table><thead>
 <tr>
@@ -2344,7 +2344,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 </tr>
 <tr>
 <td>id</td>
-<td>ID of the created Resource object</td>
+<td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
 <h3 id='errors-21'>Errors</h3>
@@ -2364,28 +2364,28 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 </tr>
 <tr>
 <td>400</td>
-<td>User input does not match Resource schema</td>
+<td>User input does not match Artifact schema</td>
 <td>schema mismatch</td>
 </tr>
 <tr>
 <td>400</td>
-<td><code>data</code> does not match ResourceType schema</td>
-<td>resource schema mismatch</td>
+<td><code>data</code> does not match ArtifactType schema</td>
+<td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-resources-of-a-connector'>List resources of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+<h2 id='list-artifacts-of-a-connector'>List artifacts of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
 </code></pre>
 <blockquote>
-<p>Successful request returns a list of ID of resources:</p>
+<p>Successful request returns a list of ID of artifacts:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves an array of Resources that are associated with the Connector.</p>
+<p>This endpoint retrieves an array of Artifacts that are associated with the Connector.</p>
 <h3 id='http-request-22'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources</code></p>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/artifacts</code></p>
 <h3 id='parameters-21'>Parameters</h3>
 <table><thead>
 <tr>
@@ -2401,7 +2401,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 </tr>
 </tbody></table>
 <h3 id='response-21'>Response</h3>
-<p>An array of IDs of <a href="#resource">Resource objects</a> related to the Connector.</p>
+<p>An array of IDs of <a href="#artifact">Artifact objects</a> related to the Connector.</p>
 <h3 id='errors-22'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
@@ -3146,7 +3146,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
             </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7e8bec3fd8cd3789ddd681a38068e655"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"artifacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"gist"</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -3170,7 +3170,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </tr>
 </tbody></table>
 <h3 id='response-30'>Response</h3>
-<p>A <a href="#widget">Widget</a> Object with related <code>resources</code>.</p>
+<p>A <a href="#widget">Widget</a> Object with related <code>artifacts</code>.</p>
 
 <table><thead>
 <tr>
@@ -3179,8 +3179,8 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </tr>
 </thead><tbody>
 <tr>
-<td>resources</td>
-<td>ID of Resources of the Widget</td>
+<td>artifacts</td>
+<td>ID of Artifacts of the Widget</td>
 </tr>
 </tbody></table>
 <h3 id='errors-31'>Errors</h3>
@@ -3219,9 +3219,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 The actual parameters depend on individual Widget.</p>
 
 <iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
-<h2 id='add-a-resource-to-a-widget'>Add a Resource to a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/resources -d <span class="s1">'{
-    "resourceType": "YoutubeVideo",
+<h2 id='add-an-artifact-to-a-widget'>Add an Artifact to a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
+http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts -d <span class="s1">'{
+    "artifactType": "YoutubeVideo",
     "description": "Basic tutorial for Github in Mac and Windows",
     "data": {
         "title": "Github Tutorial For Beginners - Github Basics for Mac or Windows &amp; Source Control Basics",
@@ -3238,11 +3238,11 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint adds a Resource to a Widget.</p>
+<p>This endpoint adds an Artifact to a Widget.</p>
 <h3 id='http-request-33'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources</code></p>
+<p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/artifacts</code></p>
 <h3 id='parameters-31'>Parameters</h3>
-<p>A <a href="#resource">Resource</a> Object.</p>
+<p>An <a href="#artifact">Artifact</a> Object.</p>
 <h3 id='response-31'>Response</h3>
 <table><thead>
 <tr>
@@ -3256,7 +3256,7 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 </tr>
 <tr>
 <td>id</td>
-<td>ID of the created Resource object</td>
+<td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
 <h3 id='errors-32'>Errors</h3>
@@ -3276,28 +3276,28 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 </tr>
 <tr>
 <td>400</td>
-<td>User input does not match Resource schema</td>
+<td>User input does not match Artifact schema</td>
 <td>schema mismatch</td>
 </tr>
 <tr>
 <td>400</td>
-<td><code>data</code> does not match ResourceType schema</td>
-<td>resource schema mismatch</td>
+<td><code>data</code> does not match ArtifactType schema</td>
+<td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-resources-of-a-widget'>List resources of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/resources
+<h2 id='list-artifacts-of-a-widget'>List artifacts of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts
 </code></pre>
 <blockquote>
-<p>Successful request returns a list of ID of resources:</p>
+<p>Successful request returns a list of ID of artifacts:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves an array of Resources that are associated with the Widget.</p>
+<p>This endpoint retrieves an array of Artifacts that are associated with the Widget.</p>
 <h3 id='http-request-34'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources</code></p>
+<p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/artifacts</code></p>
 <h3 id='parameters-32'>Parameters</h3>
 <table><thead>
 <tr>
@@ -3313,7 +3313,7 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 </tr>
 </tbody></table>
 <h3 id='response-32'>Response</h3>
-<p>An array of <a href="#resource">Resource objects</a> related to the Widget.</p>
+<p>An array of <a href="#artifact">Artifact objects</a> related to the Widget.</p>
 <h3 id='errors-33'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 

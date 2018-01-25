@@ -35,7 +35,7 @@ APIBase itself is provided as a service accessed by the APIBase API and is secti
 - Recipe: methods to create/run recipes
 - Widget: methods to add/render widgets
 
-# API Manipulation
+# API
 
 ## Definitions
 

@@ -1494,53 +1494,34 @@ more results, use the <code>page</code> query parameter.</p>
 <p>An array of entities that match the search criteria. Maximum 30 entities.</p>
 <h3 id='errors-12'>Errors</h3>
 <p>N/A</p>
-<h2 id='retrieving-arbitrary-entity'>Retrieving arbitrary entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4'</span>
+<h2 id='retrieving-arbitrary-entity'>Retrieving arbitrary entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/b1c73190-553e-4453-a672-394e83feb417'</span>
 </code></pre>
 <blockquote>
 <p>successful request returns the entity:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.github.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ee1db224-3331-4b8a-bc11-8839b4e5d6b4"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"07acb558-7626-4bb4-946a-2ddd77c4dbb6"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"9446bdf1-da5a-4096-98bc-47cfa8c15157"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://github.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1c73190-553e-4453-a672-394e83feb417"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"map(select(.sepalLength &gt; 5))"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get all data where sepalLength is greater than 5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetsLenGt5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"576927bb-7cb3-4c75-81b0-7c1e67a724a1"</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"_relations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1404866573</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CategoryFolder"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root node"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55cdee12-c49a-46f6-909c-98f983c79a92"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APIs"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTAINS"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USE_SOURCE"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1432536694</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38932</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Operation"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MergePR"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/repos/{owner}/{repo}/pulls/{number}/merge"</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576927bb-7cb3-4c75-81b0-7c1e67a724a1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1516863793</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{}"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"original UCL iris data"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UCL iris data"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103679</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DataSource"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HAS_METHOD"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"_mapping"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1614,28 +1595,35 @@ property:</p>
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='display-entity'>Display Entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/display'</span>
+<h2 id='display-entity'>Display Entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/b1c73190-553e-4453-a672-394e83feb417/display'</span>
 </code></pre>
 <blockquote>
 <p>successful request returns the entity:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ee1db224-3331-4b8a-bc11-8839b4e5d6b4"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.github.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"07acb558-7626-4bb4-946a-2ddd77c4dbb6"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"9446bdf1-da5a-4096-98bc-47cfa8c15157"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"df5f4ae2-e80c-48c1-a641-7d6b2d02d5cb"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Github"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://github.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REST"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sepalLength"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sepalWidth"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"petalLength"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"petalWidth"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Iris-setosa"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sepalLength"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sepalWidth"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"petalLength"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"petalWidth"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Iris-setosa"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sepalLength"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sepalWidth"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"petalLength"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"petalWidth"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Iris-setosa"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint shows arbitrary entity and interprets/executes it if applicable.
 Similar to the <a href="#retrieving-arbitrary-entity">Retrieving arbitrary entity</a> endpoint, this
@@ -1908,23 +1896,33 @@ the result.</p>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
+        "name": "Iris Dataset",
+        "description": "iris dataset from UCI Machine Learning Repository. https://archive.ics.uci.edu/ml/datasets/Iris",
         "schema": {
-            "properties": {
-                "query": {
-                    "type": "string"
-                },
-                "results": {
-                    "type": "array"
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "sepalLength": {
+                        "type": "number"
+                    },
+                    "sepalWidth": {
+                        "type": "number"
+                    },
+                    "petalLength": {
+                        "type": "number"
+                    },
+                    "petalWidth": {
+                        "type": "number"
+                    },
+                    "class": {
+                        "type": "string"
+                    }
                 }
-            },
-            "required": [
-                "query"
-            ]
-        },
-        "description": "string",
-        "name": "Yooz Rest API Schema",
-    }'</span>
-</code></pre>
+            }
+        }
+    }''
+</span></code></pre>
 <blockquote>
 <p>Successful requst returns the following response</p>
 </blockquote>
@@ -1973,31 +1971,39 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-datasourceschema'>Retrieve information of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314
+<h2 id='retrieve-information-of-a-datasourceschema'>Retrieve information of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#data-source-schema">DataSourceSchema object</a>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56e3e7af-8268-445f-91ed-63eabb0e5314"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3fafc259-5abb-4780-8807-5663d374290f"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"sepalLength"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"sepalWidth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"petalLength"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"petalWidth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"class"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"query"</span><span class="w">
-        </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yooz Rest API Schema"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"connectors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"b5f922b9-c850-45b7-86c1-0e8bc7371cae"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iris dataset from UCI Machine Learning Repository. https://archive.ics.uci.edu/ml/datasets/Iris"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Iris Dataset"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"connectors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"artifacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2058,12 +2064,12 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </tr>
 </tbody></table>
 <h2 id='add-an-artifact-to-a-datasourceschema'>Add an Artifact to a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/artifacts -d <span class="s1">'{
-    "artifactType": "YoutubeVideo",
-    "description": "Discover Yooz, the cloud-based accounts payable (AP) automation solution that’s intelligent, easy to set up and use, as well as affordable...",
+http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts -d <span class="s1">'{
+    "artifactType": "URL",
+    "description": "UCI Machine Learning reporitory web page for Iris Data Set",
     "data": {
-        "title": "Yooz Cloud Accounts Payable Automation Reinvented",
-        "link": "https://www.youtube.com/watch?v=COkRCll0qjU"
+        "title": "UCI Machine Learning Repository: Iris Data Set",
+        "url": "https://archive.ics.uci.edu/ml/datasets/Iris"
     }
 }'</span>
 
@@ -2123,14 +2129,13 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 <td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-artifacts-of-a-datasourceschema'>List artifacts of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/artifacts
+<h2 id='list-artifacts-of-a-datasourceschema'>List artifacts of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of artifacts:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="s2">"6d5dd456-3b04-4590-b51a-c5094c6a5cd7"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"3d53d456-3b04-3ab0-b51s-d3012a133d56"</span><span class="w">
+    </span><span class="s2">"f91b3f17-8b45-4370-997e-883c66d3c418"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Artifacts that are associated with the DataSourceSchema.</p>
@@ -2174,14 +2179,15 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 </tr>
 </tbody></table>
 <h2 id='add-connector'>Add Connector</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/connectors
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/connectors
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
+        "name": "iris-data-connector",
+        "description": "iris dataset from UCI Machine Learning Repository. https://archive.ics.uci.edu/ml/datasets/Iris",
         "engine": {
             "method": "npm",
-            "code": "https://github.com/mysilver/yooz-connector"
-        },
-        "name": "yooz-api-connector"
+            "code": "https://github.com/APIBase/iris-data-connector.git"
+        }
     }'</span>
 </code></pre>
 <blockquote>
@@ -2237,18 +2243,20 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-connector'>Retrieve information of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/e5db6c4c-9315-45f5-8781-0567e5408d5c
+<h2 id='retrieve-information-of-a-connector'>Retrieve information of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#connector">Connector object</a>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5db6c4c-9315-45f5-8781-0567e5408d5c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b3ae7391-264c-4424-adad-fcc8836da839"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"engine"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"npm"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/mysilver/yooz-connector"</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/APIBase/iris-data-connector.git"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yooz-api-connector"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iris-data-connector"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"datasources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"artifacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Connector.</p>
@@ -2308,7 +2316,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 </tr>
 </tbody></table>
 <h2 id='add-an-artifact-to-a-connector'>Add an Artifact to a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d <span class="s1">'{
+http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts -d <span class="s1">'{
     "artifactType": "YoutubeVideo",
     "description": "Github Universe 2017 event video",
     "data": {
@@ -2373,7 +2381,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 <td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-artifacts-of-a-connector'>List artifacts of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
+<h2 id='list-artifacts-of-a-connector'>List artifacts of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of artifacts:</p>
@@ -2424,25 +2432,17 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 </tr>
 </tbody></table>
 <h2 id='add-datasource'>Add DataSource</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/3c7814c3-0e0c-4cd3-85cd-f288b9e85174/datasources
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/datasources
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
-        "name": "TestData1",
-        "description": "testing data 1",
-        "source": [
-            {
-                "name": "abc",
-                "id": 1
-            },
-            {
-                "name": "def",
-                "id": 1
-            }
-        ]
+        "name": "UCL iris data",
+        "description": "original UCL iris data",
+        "source": {}
     }'</span>
 </code></pre>
 <blockquote>
-<p>Successful requst returns the following response</p>
+<p>In this case, the connector iris-data-connector doesn&#39;t take any parameter so the <code>source</code> parameter is left blank.
+Successful requst returns the following response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entity created"</span><span class="p">,</span><span class="w">
@@ -2495,25 +2495,16 @@ specified by <code>source</code>.</p>
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-datasource'>Retrieve information of a DataSource</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/c9fd63eb-8882-4a42-9919-6326b85f4768
+<h2 id='retrieve-information-of-a-datasource'>Retrieve information of a DataSource</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/576927bb-7cb3-4c75-81b0-7c1e67a724a1
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#data-source">DataSource object</a>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c9fd63eb-8882-4a42-9919-6326b85f4768"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TestData1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testing data 1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"def"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"576927bb-7cb3-4c75-81b0-7c1e67a724a1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"original UCL iris data"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UCL iris data"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a DataSource.</p>
@@ -2560,10 +2551,10 @@ specified by <code>source</code>.</p>
 curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
-        "name": "Stock Threshold",
-        "sources": ["c9fd63eb-8882-4a42-9919-6326b85f4768"],
-        "expression": ".rows | map(select(.[1] | tonumber &gt; 200))",
-        "description": "filter out rows where first column &lt;= 200"
+        "expression": "map(select(.sepalLength &gt; 5))",
+        "description": "get all data where sepalLength is greater than 5",
+        "name": "GetsLenGt5",
+        "sources": ["576927bb-7cb3-4c75-81b0-7c1e67a724a1"]
     }'</span>
 </code></pre>
 <blockquote>
@@ -2616,18 +2607,19 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-query'>Retrieve information of a Query</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/101d3d6c-669f-4ee7-b881-a40861ebf9b2
+<h2 id='retrieve-information-of-a-query'>Retrieve information of a Query</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/b1c73190-553e-4453-a672-394e83feb417
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#query">Query object</a>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Query"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101d3d6c-669f-4ee7-b881-a40861ebf9b2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stock Threshold"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"c9fd63eb-8882-4a42-9919-6326b85f4768"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">".rows | map(select(.[1] | tonumber &gt; 200))"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filter out rows where first column &lt;= 200"</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1c73190-553e-4453-a672-394e83feb417"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"map(select(.sepalLength &gt; 5))"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get all data where sepalLength is greater than 5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetsLenGt5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"576927bb-7cb3-4c75-81b0-7c1e67a724a1"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Query. Note that this endpoint only retrieves the query expression, not the evaluated result.

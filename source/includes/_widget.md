@@ -159,7 +159,7 @@ This endpoint is an iframe API to render a Widget. To use the endpoint, one must
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/render?{parameters}={value}`
+`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/render?{parameter}={value}`
 
 ### Query Parameters
 

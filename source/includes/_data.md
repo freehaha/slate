@@ -34,7 +34,7 @@
 
 Data Source Schema is a schema describing data coming from a source so that we can understand the structure of the data.
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | --- | ---
 \*name | string | Name of the Data Source Schema
 \*description | string | Short description of the Data Source Schema
@@ -59,9 +59,9 @@ Attribute | Type | Description
 A Connector is a module that allows APIBase to retrieve data from 3rd party services. For example, the socrata-connector
 allows APIBase to retrieve data from Socrata given a resource id, which is then available to perfrom a [Query](#query).
 
-Below lists attributes of a Connector:
+Below lists properties of a Connector:
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | --- | ---
 \*name | string | Name of the Conncetor, must match the name in package.json in the repository
 \*description | string | Short description of the Connector
@@ -71,7 +71,7 @@ Attribute | Type | Description
 The `engine` object describe how APIBase can use the connector. As of now we only support npm packages.
 
 ##### npm
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | --- | ---
 \*method | string | Always `npm`
 \*code | string | URL accepted by [npm install](https://docs.npmjs.com/cli/install), listed below
@@ -105,9 +105,9 @@ When a `<name>` is used, the module will be pulled from the npm registry whereas
 A Data Source is an instance of Connector with specific configuration. For
 example, one can create a Data Source using the Socrata Connector and configure
 it so that when accessed, the Data Source returns the data inside a specific
-resource of Socrata. Below lists attribute of a DataSource:
+resource of Socrata. Below lists property of a DataSource:
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | --- | ---
 \*name | string | Name of the DataSource
 \*description | string | Short description of the DataSource
@@ -144,7 +144,7 @@ not be immediately executed and thus will not return the result. Instead, the
 [Display Entity](#display-entity) should be used to execute the Query and view
 the result.
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | --- | ---
 \*name | string | Name of the Query
 \*sources | [ uuid ] | IDs of sources which the expression will be evaluated on. These can be ID of DataSource or Query.
@@ -198,7 +198,7 @@ A [DataSourceSchema](#data-source-schema) Object.
 
 ### Response
 
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created DataSourceSchema entity
@@ -258,7 +258,7 @@ id | uuid | ID of the DataSourceSchema
 
 An [DataSourceSchema](#data-source-schema) Object with related `connectors` and `resources`.
 
-Attribute | Description
+Property | Description
 --------- | ----------- |
 connectors | ID of Connectors available for the DataSourceSchema
 resources | ID of Resources associated to the DataSourceSchema
@@ -306,7 +306,7 @@ This endpoint adds a Resource to a DataSourceSchema.
 A [Resource](#resource) Object.
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Resource object
@@ -394,7 +394,7 @@ A [Connector](#connector) Object.
 
 ### Response
 
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Connector entity
@@ -442,7 +442,7 @@ id | uuid | ID of the Connector
 
 A [Connector](#connector) Object with related `resources` and `datasources`.
 
-Attribute | Description
+Property | Description
 --------- | ----------- |
 resources | ID of Resources associated with the Connector
 datasources | ID of DataSources that use this Connector
@@ -490,7 +490,7 @@ This endpoint adds a Resource to a Connector.
 A [Resource](#resource) Object.
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Resource object
@@ -586,7 +586,7 @@ A [DataSource](#data-source) Object.
 
 ### Response
 
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created DataSource entity
@@ -686,7 +686,7 @@ A [Query](#query) Object.
 
 ### Response
 
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Query entity

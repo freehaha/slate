@@ -142,12 +142,12 @@ brief | bool | `true` to retrieve only the entity in question, otherwise all rel
 
 ### Response
 
-In addition to the attributes of the entity, this endpoint also returns an
+In addition to the properties of the entity, this endpoint also returns an
 `_relation` array if `brief=false`(default). `The _relation` array list
 entities related to the entity, each containing the following
-attribute:
+property:
 
-Attribute | Description
+Property | Description
 --------- | ----------- |
 type | The relationship of the two entities
 direction | `in` or `out` indicating the direction of their relationship

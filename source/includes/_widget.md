@@ -32,9 +32,9 @@ standalone or associated to a [DataSourceSchema](#data-source-schema) in which
 case when we receive data that is known to conform to a DataSourceSchema, we
 can visualize the data with a call to the [Widget Render](#widget-render) API.
 
-A Widget entity has the following attributes:
+A Widget entity has the following properties:
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | --- | ---
 \*name | string | Name of the Widget
 \*framework | string | `polymer` is the only supported value here at the moment
@@ -85,7 +85,7 @@ This endpoint adds a Widget entity to APIBase.
 A [Widget](#widget) Object.
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Widget object
@@ -141,7 +141,7 @@ id | uuid | ID of the Widget
 
 A [Widget](#widget) Object with related `resources`.
 
-Attribute | Description
+Property | Description
 --------- | ----------- |
 resources | ID of Resources of the Widget
 
@@ -210,7 +210,7 @@ A [Resource](#resource) Object.
 
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Resource object

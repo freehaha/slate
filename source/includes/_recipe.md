@@ -36,9 +36,9 @@
 }
 ```
 
-A Recipe is a sequence of actions to be executed with optionally conditions. It consists of following attributes:
+A Recipe is a sequence of actions to be executed with optionally conditions. It consists of following properties:
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | --- | ---
 \*name | string | Name of the Recipe
 \*operations | object | Object containing Methods that are used in the recipe and their alias as key. They can also refer to other Recipes.
@@ -47,9 +47,9 @@ parameters | object | The context used throughout the recipe
 
 #### Sequence
 
-`sequence` contains an array of actions to be run. Each action is described by an object with the following attributes:
+`sequence` contains an array of actions to be run. Each action is described by an object with the following properties:
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | --- | ---
 \*operation | string | Name of the action to be executed, can be the aliases specified in `operations` or special operator prefixed with `$`, listed below.
 \*parameters | object | Parameters of the `operations`
@@ -127,7 +127,7 @@ A [Recipe](#recipe) Object.
 
 ### Response
 
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Recipe entity

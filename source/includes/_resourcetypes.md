@@ -13,7 +13,7 @@ Below are a list of resource types available when creating a Resource:
 
 References to Youtube videos.
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | ---
 \*title | string | Title of the video
 \*link | string | URL to the Youtube video
@@ -32,7 +32,7 @@ Attribute | Type | Description
 
 Example for invoking a Method.
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | ---
 \*title | string | Title of the invoke example
 \*method | string | ID of the Method
@@ -49,7 +49,7 @@ Attribute | Type | Description
 
 External URL links.
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | ---
 \*title | string | Title of the URL
 \*url | string | URL of the webpage

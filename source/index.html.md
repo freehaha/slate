@@ -56,7 +56,7 @@ building software applications. The API is the building block for software
 applications and specifies how software components should interact. An API
 object in APIBase has the following structure:
 
-Attribute | Type | Example | Description
+Property | Type | Example | Description
 --- | --- | --- | ---
 \*name | string | "Github" | Name of the API
 type | string | "REST" | Type of the API, always `REST`
@@ -67,7 +67,7 @@ tags | ["strings"] | ["development", "git"] | List of tags that identify the API
 \*baseUrl |string | "https://api.github.com" | Base URL of the API
 
 <aside class="notice">
-Attributes marked with * are required
+Properties marked with * are required
 </aside>
 
 ### Method
@@ -83,9 +83,9 @@ Attributes marked with * are required
 
 A Method describes an endpoint of an API. For example, the [Get a single
 gist](https://developer.github.com/v3/gists/#get-a-single-gist) of Github API
-is a Method in the Github API. Methods contains the following attributes:
+is a Method in the Github API. Methods contains the following properties:
 
-Attribute | Type | Example | Description
+Property | Type | Example | Description
 --- | --- | --- | ---
 \*name | string | "GetGist" | Name of the Method
 \*method | `POST`, `GET`, `PUT` or `DELETE` | "GET" | HTTP method used
@@ -104,11 +104,11 @@ Attribute | Type | Example | Description
 ```
 
 Parameters describes what are the inputs required/available for the Method. A Method can have multiple Parameters
-and in different `locations`. `locked` attribute indicates whether the parameter is intended to be changed by user or not.
+and in different `locations`. `locked` property indicates whether the parameter is intended to be changed by user or not.
 If it is set, APIBase will always use the `default` value for that parameter regardless of what users input.
 
 
-Attribute | Type | Example | Description
+Property | Type | Example | Description
 --- | --- | --- | ---
 \*name | string |  "gistId" | Name of the parameter
 \*location | `path`, `query`, `body`, `header` or `form` | "path" | Location where the parameter should be
@@ -119,7 +119,7 @@ locked | boolean | false | Indicate whether the parameter is `locked` or not. Wh
 
 #### Location
 
-The `location` attribute indicates how the Parameter should be sent when invoking the endpoint.
+The `location` property indicates how the Parameter should be sent when invoking the endpoint.
 
 Location | Example
 --- | --- | --- | ---
@@ -150,9 +150,9 @@ Youtube and `InvokeExample` resources that show example parameters for invoking 
 Method. Resources can be added to various entities to provide additional
 information about the entities.
 
-A Resource has the following attributes:
+A Resource has the following properties:
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | ---
 \*description | string | Description of the resource
 \*data | any | The actual data of the resource
@@ -173,7 +173,7 @@ Below is a list of resource types available when creating a Resource:
 
 References to Youtube videos.
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | ---
 \*title | string | Title of the video
 \*link | string | URL to the Youtube video
@@ -192,7 +192,7 @@ Attribute | Type | Description
 
 Example for invoking a Method.
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | ---
 \*title | string | Title of the invoke example
 \*method | string | ID of the Method
@@ -209,7 +209,7 @@ Attribute | Type | Description
 
 External URL links.
 
-Attribute | Type | Description
+Property | Type | Description
 --- | --- | ---
 \*title | string | Title of the URL
 \*url | string | URL of the webpage
@@ -255,7 +255,7 @@ This endpoint adds an API entity to APIBase.
 An [API](#api) Object.
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created API object
@@ -309,7 +309,7 @@ id | uuid | ID of the API
 
 An [API](#api) Object with related `methods` and `resources`.
 
-Attribute | Description
+Property | Description
 --------- | ----------- |
 methods | ID of Methods of the API
 resources | ID of Resources of the API
@@ -356,7 +356,7 @@ This endpoint adds a Method entity to an API.
 A [Method](#method) object.
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Method object
@@ -409,7 +409,7 @@ id | uuid | ID of the Method
 
 An [Method](#method) Object with related `parameters` and `resources`.
 
-Attribute | Description
+Property | Description
 --------- | ----------- |
 parameters | ID of Parameters of the API
 resources | ID of Resources of the API
@@ -448,7 +448,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 
 Parameters describe the parameters of a Method, their types, whether they are optional and the place
 where the parameters should be placed (in url as path/query, in the header, or in the request body).
-Locked attribute indicates whether the parameter is intended to be changed by users or not. If it is
+Locked property indicates whether the parameter is intended to be changed by users or not. If it is
 set, APIBase will always use the default value for the parameter regardless of what users input.
 
 This endpoint adds a Parameter entity to a Method.
@@ -462,7 +462,7 @@ A [Parameter](#parameter) Object.
 
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Parameter object
@@ -552,7 +552,7 @@ A [Resource](#resource) Object.
 
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Resource object
@@ -603,7 +603,7 @@ id | uuid | ID of the Resource
 
 A [Resource](#resource) Object with related `resourcetype`.
 
-Attribute | Description
+Property | Description
 --------- | ----------- |
 resourcetype | ID of the resource type
 \_rtName | Name fo the resource type
@@ -692,7 +692,7 @@ A [Resource](#resource) Object.
 
 
 ### Response
-Attribute | Description
+Property | Description
 --- | ---
 message | `entity created`
 id | ID of the created Resource object

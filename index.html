@@ -404,7 +404,7 @@ object in APIBase has the following structure:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Example</th>
 <th>Description</th>
@@ -455,7 +455,7 @@ object in APIBase has the following structure:</p>
 </tbody></table>
 
 <aside class="notice">
-Attributes marked with * are required
+Properties marked with * are required
 </aside>
 <h3 id='method'>Method</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetGist”,
@@ -466,11 +466,11 @@ Attributes marked with * are required
 </span></code></pre>
 <p>A Method describes an endpoint of an API. For example, the <a href="https://developer.github.com/v3/gists/#get-a-single-gist">Get a single
 gist</a> of Github API
-is a Method in the Github API. Methods contains the following attributes:</p>
+is a Method in the Github API. Methods contains the following properties:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Example</th>
 <th>Description</th>
@@ -509,12 +509,12 @@ is a Method in the Github API. Methods contains the following attributes:</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Parameters describes what are the inputs required/available for the Method. A Method can have multiple Parameters
-and in different <code>locations</code>. <code>locked</code> attribute indicates whether the parameter is intended to be changed by user or not.
+and in different <code>locations</code>. <code>locked</code> property indicates whether the parameter is intended to be changed by user or not.
 If it is set, APIBase will always use the <code>default</code> value for that parameter regardless of what users input.</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Example</th>
 <th>Description</th>
@@ -558,7 +558,7 @@ If it is set, APIBase will always use the <code>default</code> value for that pa
 </tr>
 </tbody></table>
 <h4 id='location'>Location</h4>
-<p>The <code>location</code> attribute indicates how the Parameter should be sent when invoking the endpoint.</p>
+<p>The <code>location</code> property indicates how the Parameter should be sent when invoking the endpoint.</p>
 
 <table><thead>
 <tr>
@@ -603,11 +603,11 @@ Youtube and <code>InvokeExample</code> resources that show example parameters fo
 Method. Resources can be added to various entities to provide additional
 information about the entities.</p>
 
-<p>A Resource has the following attributes:</p>
+<p>A Resource has the following properties:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -639,7 +639,7 @@ information about the entities.</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -667,7 +667,7 @@ information about the entities.</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -697,7 +697,7 @@ information about the entities.</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -741,7 +741,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <h3 id='response'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -819,7 +819,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -878,7 +878,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <h3 id='response-3'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -954,7 +954,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1007,7 +1007,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 </span></code></pre>
 <p>Parameters describe the parameters of a Method, their types, whether they are optional and the place
 where the parameters should be placed (in url as path/query, in the header, or in the request body).
-Locked attribute indicates whether the parameter is intended to be changed by users or not. If it is
+Locked property indicates whether the parameter is intended to be changed by users or not. If it is
 set, APIBase will always use the default value for the parameter regardless of what users input.</p>
 
 <p>This endpoint adds a Parameter entity to a Method.</p>
@@ -1018,7 +1018,7 @@ set, APIBase will always use the default value for the parameter regardless of w
 <h3 id='response-5'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1133,7 +1133,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <h3 id='response-7'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1212,7 +1212,7 @@ the entity the resource is added to.</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1325,7 +1325,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 <h3 id='response-10'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1569,14 +1569,14 @@ entities will also be retrieved. To change this behavior, use the <code>brief=tr
 </tr>
 </tbody></table>
 <h3 id='response-13'>Response</h3>
-<p>In addition to the attributes of the entity, this endpoint also returns an
+<p>In addition to the properties of the entity, this endpoint also returns an
 <code>_relation</code> array if <code>brief=false</code>(default). <code>The _relation</code> array list
 entities related to the entity, each containing the following
-attribute:</p>
+property:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1711,7 +1711,7 @@ return the result instead.</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -1749,11 +1749,11 @@ return the result instead.</p>
 <p>A Connector is a module that allows APIBase to retrieve data from 3rd party services. For example, the socrata-connector
 allows APIBase to retrieve data from Socrata given a resource id, which is then available to perfrom a <a href="#query">Query</a>.</p>
 
-<p>Below lists attributes of a Connector:</p>
+<p>Below lists properties of a Connector:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -1779,7 +1779,7 @@ allows APIBase to retrieve data from Socrata given a resource id, which is then 
 <h5 id='npm'>npm</h5>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -1824,11 +1824,11 @@ allows APIBase to retrieve data from Socrata given a resource id, which is then 
 <p>A Data Source is an instance of Connector with specific configuration. For
 example, one can create a Data Source using the Socrata Connector and configure
 it so that when accessed, the Data Source returns the data inside a specific
-resource of Socrata. Below lists attribute of a DataSource:</p>
+resource of Socrata. Below lists property of a DataSource:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -1878,7 +1878,7 @@ the result.</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -1941,7 +1941,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <h3 id='response-14'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2023,7 +2023,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2084,7 +2084,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 <h3 id='response-16'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2200,7 +2200,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 <h3 id='response-18'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2273,7 +2273,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-4
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2334,7 +2334,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 <h3 id='response-20'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2458,7 +2458,7 @@ specified by <code>source</code>.</p>
 <h3 id='response-22'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2584,7 +2584,7 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 <h3 id='response-24'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2705,11 +2705,11 @@ To evaluate the Query and view the result, use the <a href="#display-entity">Dis
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>A Recipe is a sequence of actions to be executed with optionally conditions. It consists of following attributes:</p>
+<p>A Recipe is a sequence of actions to be executed with optionally conditions. It consists of following properties:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -2736,11 +2736,11 @@ To evaluate the Query and view the result, use the <a href="#display-entity">Dis
 </tr>
 </tbody></table>
 <h4 id='sequence'>Sequence</h4>
-<p><code>sequence</code> contains an array of actions to be run. Each action is described by an object with the following attributes:</p>
+<p><code>sequence</code> contains an array of actions to be run. Each action is described by an object with the following properties:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -2824,7 +2824,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 <h3 id='response-26'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3020,11 +3020,11 @@ standalone or associated to a <a href="#data-source-schema">DataSourceSchema</a>
 case when we receive data that is known to conform to a DataSourceSchema, we
 can visualize the data with a call to the <a href="#widget-render">Widget Render</a> API.</p>
 
-<p>A Widget entity has the following attributes:</p>
+<p>A Widget entity has the following properties:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -3095,7 +3095,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <h3 id='response-29'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3174,7 +3174,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3246,7 +3246,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 <h3 id='response-31'>Response</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Property</th>
 <th>Description</th>
 </tr>
 </thead><tbody>

@@ -130,11 +130,11 @@ body | In HTTP body, serialized as JSON
 form | In HTTP body, serialized as standard x-www-form-urlencoded format
 
 
-### Resource
+### Artifact
 
 ```json
 {
-	"resourceType": "YoutubeVideo",
+	"artifactType": "YoutubeVideo",
 	"description": "video tutorial of using Github"
 	"data": {
 		"title": "Github Tutorial For Beginners - Github Basics for Mac or Windows & Source Control Basics",
@@ -143,24 +143,24 @@ form | In HTTP body, serialized as standard x-www-form-urlencoded format
 }
 ```
 
-A Resource encapsulates information related to APIs, Methods and other entities to
-explain and enrich the entities.  Resources could be of various types. For
-example, there are `YoutubeVideo` resources that represent videos hosted in
-Youtube and `InvokeExample` resources that show example parameters for invoking a
-Method. Resources can be added to various entities to provide additional
+A Artifact encapsulates information related to APIs, Methods and other entities to
+explain and enrich the entities.  Artifacts could be of various types. For
+example, there are `YoutubeVideo` artifacts that represent videos hosted in
+Youtube and `InvokeExample` artifacts that show example parameters for invoking a
+Method. Artifacts can be added to various entities to provide additional
 information about the entities.
 
-A Resource has the following properties:
+A Artifact has the following properties:
 
 Property | Type | Description
 --- | --- | ---
-\*description | string | Description of the resource
-\*data | any | The actual data of the resource
-\*resourceType | ResourceType | The type of Resource which schema `data` will be validated against. See a list of available `resourceType` and their schema [here](#resourcetypes)
+\*description | string | Description of the artifact
+\*data | any | The actual data of the artifact
+\*artifactType | ArtifactType | The type of Artifact which schema `data` will be validated against. See a list of available `artifactType` and their schema [here](#artifacttypes)
 
-### Resource Types
+### Artifact Types
 
-Below is a list of resource types available when creating a Resource:
+Below is a list of artifact types available when creating an Artifact:
 
 ### YoutubeVideo
 
@@ -288,7 +288,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b
     ],
     "name": "Github",
     "provider": "http://github.com",
-    "resources": [
+    "artifacts": [
         "6d5dd456-3b04-4590-b51a-c5094c6a5cd7"
     ],
 }
@@ -307,12 +307,12 @@ id | uuid | ID of the API
 
 ### Response
 
-An [API](#api) Object with related `methods` and `resources`.
+An [API](#api) Object with related `methods` and `artifacts`.
 
 Property | Description
 --------- | ----------- |
 methods | ID of Methods of the API
-resources | ID of Resources of the API
+artifacts | ID of Artifacts of the API
 
 ### Errors
 Possible error codes and reasons:
@@ -386,7 +386,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-51
         "8ca7b0c7-bda0-4667-9f74-f67897cef67f"
     ],
     "path": "/gists/{gistId}",
-    "resources": [
+    "artifacts": [
         "55394b28-b162-4355-b65b-6574b1956c77"
     ],
 }
@@ -407,12 +407,12 @@ id | uuid | ID of the Method
 
 ### Response
 
-An [Method](#method) Object with related `parameters` and `resources`.
+An [Method](#method) Object with related `parameters` and `artifacts`.
 
 Property | Description
 --------- | ----------- |
 parameters | ID of Parameters of the API
-resources | ID of Resources of the API
+artifacts | ID of Artifacts of the API
 
 ### Errors
 Possible error codes and reasons:
@@ -517,12 +517,12 @@ Code | Reason | Message
 400 | provided `id` is not a valid UUID | malformed UUID
 404 | Parameter of specified `id` does not exist | resource not found
 
-## Add a Resource to an API
+## Add an Artifact to an API
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
-	"resourceType": "YoutubeVideo",
+http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d '{
+	"artifactType": "YoutubeVideo",
 	"description": "Github Universe 2017 event video",
 	"data": {
 		"title": "GitHub Universe 2017",
@@ -541,21 +541,21 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/res
 }
 ```
 
-This endpoint adds a Resource to an API.
+This endpoint adds an Artifact to an API.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/resources`
+`POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/artifacts`
 
 ### Parameters
-A [Resource](#resource) Object.
+An [Artifact](#artifact) Object.
 
 
 ### Response
 Property | Description
 --- | ---
 message | `entity created`
-id | ID of the created Resource object
+id | ID of the created Artifact object
 
 ### Errors
 Possible error codes and reasons:
@@ -563,15 +563,15 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 400 | provided `id` is not a valid UUID | malformed UUID
-400 | User input does not match Resource schema | schema mismatch
-400 | `data` does not match ResourceType schema | resource schema mismatch
+400 | User input does not match Artifact schema | schema mismatch
+400 | `data` does not match ArtifactType schema | artifact schema mismatch
 
-## Retrieve information of a Resource
+## Retrieve information of an Artifact
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/resources/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/artifacts/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
 ```
 
-> Successful request returns a Resource object:
+> Successful request returns an Artifact object:
 
 ```json
 {
@@ -581,32 +581,32 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/resources/6d5dd456-3b04-4590-b51a-
 		"link": "https://www.youtube.com/embed/VUaBfYCmJls",
 		"title": "What Is Github"
 	},
-	"resourcetype": [
+	"artifacttype": [
 		"1cd0a97d-195c-43ca-815f-4740ce1e7e97"
 	]
 }
 ```
-This endpoint retrieves a Resource and can be used to retrieve any resources regardless of
-the entity the resource is added to.
+This endpoint retrieves an Artifact and can be used to retrieve any artifacts regardless of
+the entity the artifact is added to.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/resources/{id}`
+`GET http://johnsd.cse.unsw.edu.au:3000/artifacts/{id}`
 
 ### Parameters
 
 Parameter | Type | Description
 --- | --- | --- | ---
-id | uuid | ID of the Resource
+id | uuid | ID of the Artifact
 
 ### Response
 
-A [Resource](#resource) Object with related `resourcetype`.
+An [Artifact](#artifact) Object with related `artifacttype`.
 
 Property | Description
 --------- | ----------- |
-resourcetype | ID of the resource type
-\_rtName | Name fo the resource type
+artifacttype | ID of the artifact type
+\_rtName | Name fo the artifact type
 
 ### Errors
 Possible error codes and reasons:
@@ -614,14 +614,14 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 400 | provided `id` is not a valid UUID | malformed UUID
-404 | Resource of specified `id` does not exist | resource not found
+404 | Artifact of specified `id` does not exist | resource not found
 
-## List resources of an API
+## List artifacts of an API
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
 ```
 
-> Successful request returns a list of ID of resources:
+> Successful request returns a list of ID of artifacts:
 
 ```json
 [
@@ -630,11 +630,11 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b
 ]
 ```
 
-This endpoint retrieves an array of Resources that are associated with the API.
+This endpoint retrieves an array of Artifacts that are associated with the API.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}/resources`
+`GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}/artifacts`
 
 ### Parameters
 
@@ -644,7 +644,7 @@ id | uuid | ID of the API
 
 ### Response
 
-An array of IDs of [Resource objects](#resource) related to the API.
+An array of IDs of [Artifact objects](#artifact) related to the API.
 
 
 ### Errors
@@ -655,12 +655,12 @@ Code | Reason | Message
 400 | provided `id` is not a valid UUID | malformed UUID
 404 | API of specified `id` does not exist | resource not found
 
-## Add a Resource to a Method
+## Add an Artifact to a Method
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources -d '{
-	"resourceType": "InvokeExample",
+http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts -d '{
+	"artifactType": "InvokeExample",
 	"description": "an example to retrieve gist from the user 'freehaha'"
 	"data": {
 		"method": "9446bdf1-da5a-4096-98bc-47cfa8c15157",
@@ -681,21 +681,21 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 }
 ```
 
-This endpoint adds a Resource to a Method.
+This endpoint adds an Artifact to a Method.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources`
+`POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/artifacts`
 
 ### Parameters
-A [Resource](#resource) Object.
+An [Artifact](#artifact) Object.
 
 
 ### Response
 Property | Description
 --- | ---
 message | `entity created`
-id | ID of the created Resource object
+id | ID of the created Artifact object
 
 ### Errors
 Possible error codes and reasons:
@@ -703,15 +703,15 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 400 | provided `id` is not a valid UUID | malformed UUID
-400 | User input does not match Resource schema | schema mismatch
-400 | `data` does not match ResourceType schema | resource schema mismatch
+400 | User input does not match Artifact schema | schema mismatch
+400 | `data` does not match ArtifactType schema | artifact schema mismatch
 
-## List resources of a Method
+## List artifacts of a Method
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/resources
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts
 ```
 
-> Successful request returns a list of ID of resources:
+> Successful request returns a list of ID of artifacts:
 
 ```json
 [
@@ -723,11 +723,11 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47
 ]
 ```
 
-This endpoint retrieves an array of Resources that are associated with the Method.
+This endpoint retrieves an array of Artifacts that are associated with the Method.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/resources`
+`GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/artifacts`
 
 ### Parameters
 
@@ -737,7 +737,7 @@ id | uuid | ID of the Method
 
 ### Response
 
-An array of IDs of [Resource objects](#resource) related to the Method.
+An array of IDs of [Artifact objects](#artifact) related to the Method.
 
 
 ### Errors

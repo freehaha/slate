@@ -57,7 +57,7 @@ Property | Type | Description
 ```
 
 A Connector is a module that allows APIBase to retrieve data from 3rd party services. For example, the socrata-connector
-allows APIBase to retrieve data from Socrata given a resource id, which is then available to perfrom a [Query](#query).
+allows APIBase to retrieve data from Socrata given an artifact id, which is then available to perfrom a [Query](#query).
 
 Below lists properties of a Connector:
 
@@ -105,7 +105,7 @@ When a `<name>` is used, the module will be pulled from the npm registry whereas
 A Data Source is an instance of Connector with specific configuration. For
 example, one can create a Data Source using the Socrata Connector and configure
 it so that when accessed, the Data Source returns the data inside a specific
-resource of Socrata. Below lists property of a DataSource:
+artifact of Socrata. Below lists property of a DataSource:
 
 Property | Type | Description
 --- | --- | --- | ---
@@ -239,7 +239,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-44
     "connectors": [
         "b5f922b9-c850-45b7-86c1-0e8bc7371cae"
     ],
-    "resources": []
+    "artifacts": []
 }
 ```
 This endpoint retrieves a DataSourceSchema.
@@ -256,12 +256,12 @@ id | uuid | ID of the DataSourceSchema
 
 ### Response
 
-An [DataSourceSchema](#data-source-schema) Object with related `connectors` and `resources`.
+An [DataSourceSchema](#data-source-schema) Object with related `connectors` and `artifacts`.
 
 Property | Description
 --------- | ----------- |
 connectors | ID of Connectors available for the DataSourceSchema
-resources | ID of Resources associated to the DataSourceSchema
+artifacts | ID of Artifacts associated to the DataSourceSchema
 
 ### Errors
 Possible error codes and reasons:
@@ -271,12 +271,12 @@ Code | Reason | Message
 400 | provided `id` is not a valid UUID | malformed UUID
 404 | DataSourceSchema of specified `id` does not exist | resource not found
 
-## Add a Resource to a DataSourceSchema
+## Add an Artifact to a DataSourceSchema
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/resources -d '{
-	"resourceType": "YoutubeVideo",
+http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/artifacts -d '{
+	"artifactType": "YoutubeVideo",
 	"description": "Discover Yooz, the cloud-based accounts payable (AP) automation solution that’s intelligent, easy to set up and use, as well as affordable...",
 	"data": {
 		"title": "Yooz Cloud Accounts Payable Automation Reinvented",
@@ -295,21 +295,21 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63e
 }
 ```
 
-This endpoint adds a Resource to a DataSourceSchema.
+This endpoint adds an Artifact to a DataSourceSchema.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources`
+`POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/artifacts`
 
 ### Parameters
 
-A [Resource](#resource) Object.
+An [Artifact](#artifact) Object.
 
 ### Response
 Property | Description
 --- | ---
 message | `entity created`
-id | ID of the created Resource object
+id | ID of the created Artifact object
 
 ### Errors
 Possible error codes and reasons:
@@ -317,15 +317,15 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 400 | provided `id` is not a valid UUID | malformed UUID
-400 | User input does not match Resource schema | schema mismatch
-400 | `data` does not match ResourceType schema | resource schema mismatch
+400 | User input does not match Artifact schema | schema mismatch
+400 | `data` does not match ArtifactType schema | artifact schema mismatch
 
-## List resources of a DataSourceSchema
+## List artifacts of a DataSourceSchema
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/resources
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-445f-91ed-63eabb0e5314/artifacts
 ```
 
-> Successful request returns a list of ID of resources:
+> Successful request returns a list of ID of artifacts:
 
 ```json
 [
@@ -334,11 +334,11 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/56e3e7af-8268-44
 ]
 ```
 
-This endpoint retrieves an array of Resources that are associated with the DataSourceSchema.
+This endpoint retrieves an array of Artifacts that are associated with the DataSourceSchema.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/resources`
+`GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/artifacts`
 
 ### Parameters
 
@@ -348,7 +348,7 @@ id | uuid | ID of the DataSourceSchema
 
 ### Response
 
-An array of IDs of [Resource objects](#resource) related to the DataSourceSchema.
+An array of IDs of [Artifact objects](#artifact) related to the DataSourceSchema.
 
 ### Errors
 Possible error codes and reasons:
@@ -440,11 +440,11 @@ id | uuid | ID of the Connector
 
 ### Response
 
-A [Connector](#connector) Object with related `resources` and `datasources`.
+A [Connector](#connector) Object with related `artifacts` and `datasources`.
 
 Property | Description
 --------- | ----------- |
-resources | ID of Resources associated with the Connector
+artifacts | ID of Artifacts associated with the Connector
 datasources | ID of DataSources that use this Connector
 
 ### Errors
@@ -455,12 +455,12 @@ Code | Reason | Message
 400 | provided `id` is not a valid UUID | malformed UUID
 404 | Connector of specified `id` does not exist | resource not found
 
-## Add a Resource to a Connector
+## Add an Artifact to a Connector
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources -d '{
-	"resourceType": "YoutubeVideo",
+http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d '{
+	"artifactType": "YoutubeVideo",
 	"description": "Github Universe 2017 event video",
 	"data": {
 		"title": "GitHub Universe 2017",
@@ -479,21 +479,21 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6
 }
 ```
 
-This endpoint adds a Resource to a Connector.
+This endpoint adds an Artifact to a Connector.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources`
+`POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/artifacts`
 
 ### Parameters
 
-A [Resource](#resource) Object.
+An [Artifact](#artifact) Object.
 
 ### Response
 Property | Description
 --- | ---
 message | `entity created`
-id | ID of the created Resource object
+id | ID of the created Artifact object
 
 ### Errors
 Possible error codes and reasons:
@@ -501,15 +501,15 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 400 | provided `id` is not a valid UUID | malformed UUID
-400 | User input does not match Resource schema | schema mismatch
-400 | `data` does not match ResourceType schema | resource schema mismatch
+400 | User input does not match Artifact schema | schema mismatch
+400 | `data` does not match ArtifactType schema | artifact schema mismatch
 
-## List resources of a Connector
+## List artifacts of a Connector
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/resources
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
 ```
 
-> Successful request returns a list of ID of resources:
+> Successful request returns a list of ID of artifacts:
 
 ```json
 [
@@ -518,11 +518,11 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/ee1db224-3331-4b8a-bc11
 ]
 ```
 
-This endpoint retrieves an array of Resources that are associated with the Connector.
+This endpoint retrieves an array of Artifacts that are associated with the Connector.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/resources`
+`GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/artifacts`
 
 ### Parameters
 
@@ -532,7 +532,7 @@ id | uuid | ID of the Connector
 
 ### Response
 
-An array of IDs of [Resource objects](#resource) related to the Connector.
+An array of IDs of [Artifact objects](#artifact) related to the Connector.
 
 ### Errors
 Possible error codes and reasons:

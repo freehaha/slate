@@ -118,7 +118,7 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6
             "default": "7e8bec3fd8cd3789ddd681a38068e655"
         }
     },
-	"resources": [],
+	"artifacts": [],
     "tags": [
         "gist"
     ]
@@ -139,11 +139,11 @@ id | uuid | ID of the Widget
 
 ### Response
 
-A [Widget](#widget) Object with related `resources`.
+A [Widget](#widget) Object with related `artifacts`.
 
 Property | Description
 --------- | ----------- |
-resources | ID of Resources of the Widget
+artifacts | ID of Artifacts of the Widget
 
 ### Errors
 Possible error codes and reasons:
@@ -175,12 +175,12 @@ The actual parameters depend on individual Widget.
 
 <iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
 
-## Add a Resource to a Widget
+## Add an Artifact to a Widget
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/resources -d '{
-	"resourceType": "YoutubeVideo",
+http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts -d '{
+	"artifactType": "YoutubeVideo",
 	"description": "Basic tutorial for Github in Mac and Windows",
 	"data": {
 		"title": "Github Tutorial For Beginners - Github Basics for Mac or Windows & Source Control Basics",
@@ -199,21 +199,21 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 }
 ```
 
-This endpoint adds a Resource to a Widget.
+This endpoint adds an Artifact to a Widget.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources`
+`POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/artifacts`
 
 ### Parameters
-A [Resource](#resource) Object.
+An [Artifact](#artifact) Object.
 
 
 ### Response
 Property | Description
 --- | ---
 message | `entity created`
-id | ID of the created Resource object
+id | ID of the created Artifact object
 
 ### Errors
 Possible error codes and reasons:
@@ -221,15 +221,15 @@ Possible error codes and reasons:
 Code | Reason | Message
 --- | --- | ---
 400 | provided `id` is not a valid UUID | malformed UUID
-400 | User input does not match Resource schema | schema mismatch
-400 | `data` does not match ResourceType schema | resource schema mismatch
+400 | User input does not match Artifact schema | schema mismatch
+400 | `data` does not match ArtifactType schema | artifact schema mismatch
 
-## List resources of a Widget
+## List artifacts of a Widget
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/resources
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts
 ```
 
-> Successful request returns a list of ID of resources:
+> Successful request returns a list of ID of artifacts:
 
 ```json
 [
@@ -238,11 +238,11 @@ curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6
 ]
 ```
 
-This endpoint retrieves an array of Resources that are associated with the Widget.
+This endpoint retrieves an array of Artifacts that are associated with the Widget.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/resources`
+`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/artifacts`
 
 ### Parameters
 
@@ -252,7 +252,7 @@ id | uuid | ID of the Widget
 
 ### Response
 
-An array of [Resource objects](#resource) related to the Widget.
+An array of [Artifact objects](#artifact) related to the Widget.
 
 
 ### Errors

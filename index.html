@@ -2565,6 +2565,18 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_created_entity&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>More complicated query, used to prepare data for the google-chart widget.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
+    -H <span class="s1">'Content-Type: application/json'</span>
+    -d <span class="s1">'{
+        "expression": "group_by(.class) | map(map([ .sepalLength, .sepalWidth, .class ])) | [[\"sepalLength\", .[0][0][2], .[1][0][2], .[2][0][2]]] + (.[0] | map([.[0], .[1], null, null])) + (.[1] | map([.[0], null, .[1], null])) + (.[2] | map([.[0], null, null, .[1]]))",
+        "description": "query iris data to render in chart",
+        "name": "VisualIrisData",
+        "sources": ["576927bb-7cb3-4c75-81b0-7c1e67a724a1"]
+    }'</span>
+</code></pre>
 <p>A Query allows one to evaluate an <code>expression</code> on one or more DataSources or Queries. Upon being
 created, the query is not immediately executed and returns only the entity created message. To
 evaluate the Query and view the result, use the <a href="#display-entity">Display Entity</a> endpoint.</p>
@@ -3121,27 +3133,40 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-widget'>Retrieve information of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4
+<h2 id='retrieve-information-of-a-widget'>Retrieve information of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#widget">Widget object</a>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9a038994-16c2-4d2a-bb79-e6c8261d0cd4"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gist-element"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"framework"</span><span class="p">:</span><span class="w"> </span><span class="s2">"polymer"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sourceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/freehaha/gist-element.git"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"display a single-file gist"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"sourceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git://github.com/GoogleWebComponents/google-chart"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"google chart widget"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"google-chart"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"gistId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7e8bec3fd8cd3789ddd681a38068e655"</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"enum"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"area"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"bubble"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"candlestick"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"column"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"combo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"geo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"histogram"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pie"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"scatter"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"stepped-area"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"treemap"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"artifacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"gist"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"artifacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Widget.</p>
@@ -3205,12 +3230,15 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <p>Example using gist-element Widget to render a Gist with id <code>3cac2180f2c0ef43d6c7</code></p>
 </blockquote>
 <pre class="highlight html tab-html"><code><span class="nt">&lt;iframe</span> <span class="na">style=</span><span class="s">"width: 500px; height: 350px; border: none;"</span>
-    <span class="na">src=</span><span class="s">"http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"</span><span class="nt">&gt;&lt;/iframe&gt;</span>
+    <span class="na">src=</span><span class="s">"https://apibase.freehaha.org/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba/render?type=scatter&amp;options={%22hAxis%22:%20{%22title%22:%20%22sepal%20width%22},%20%22vAxis%22:%20{%22title%22:%20%22sepal%20length%22}}&amp;data=query://7e221af2-df53-4124-aad7-8b81b4da8c56"</span><span class="nt">&gt;&lt;/iframe&gt;</span>
 </code></pre>
-<p>The query parameters trailing the URL will be used as parameters to the Widget. Below is an example rendering a gist using the gist-element Widget.
-The actual parameters depend on individual Widget.</p>
+<p>The query parameters trailing the URL will be used as parameters to the Widget. Values can also be a query, with the format <code>query://&lt;id&gt;</code>. When specified this way, the query will be executed and
+the result used as the value for the widget. For example, in the example on the right, <code>data=query://7e221af2-df53-4124-aad7-8b81b4da8c56</code>, will use the result of the query <code>7e221af2-df53-4124-aad7-8b81b4da8c56</code>
+as <code>data</code> parameter for google-chart.</p>
 
-<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="https://apibase.freehaha.org/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
+<p>Below is an example rendering the iris-data-set using the google-chart Widget.  The actual parameters depend on individual Widget.</p>
+
+<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="https://apibase.freehaha.org/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba/render?type=scatter&options={%22hAxis%22:%20{%22title%22:%20%22sepal%20width%22},%20%22vAxis%22:%20{%22title%22:%20%22sepal%20length%22}}&data=query://7e221af2-df53-4124-aad7-8b81b4da8c56"></iframe>
 <h2 id='add-an-artifact-to-a-widget'>Add an Artifact to a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
 http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts -d <span class="s1">'{
     "artifactType": "YoutubeVideo",

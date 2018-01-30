@@ -675,6 +675,20 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
 }
 ```
 
+> More complicated query, used to prepare data for the google-chart widget.
+
+```shell
+curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
+	-H 'Content-Type: application/json'
+	-d '{
+		"expression": "group_by(.class) | map(map([ .sepalLength, .sepalWidth, .class ])) | [[\"sepalLength\", .[0][0][2], .[1][0][2], .[2][0][2]]] + (.[0] | map([.[0], .[1], null, null])) + (.[1] | map([.[0], null, .[1], null])) + (.[2] | map([.[0], null, null, .[1]]))",
+		"description": "query iris data to render in chart",
+		"name": "VisualIrisData",
+		"sources": ["576927bb-7cb3-4c75-81b0-7c1e67a724a1"]
+	}'
+```
+
+
 A Query allows one to evaluate an `expression` on one or more DataSources or Queries. Upon being
 created, the query is not immediately executed and returns only the entity created message. To
 evaluate the Query and view the result, use the [Display Entity](#display-entity) endpoint.

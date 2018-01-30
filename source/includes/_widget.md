@@ -100,28 +100,41 @@ Code | Reason | Message
 
 ## Retrieve information of a Widget
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4
+curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba
 ```
 
 > Successful request returns a [Widget object](#widget):
 
 ``` json
 {
-    "id": "9a038994-16c2-4d2a-bb79-e6c8261d0cd4",
-    "name": "gist-element",
-    "framework": "polymer",
-    "sourceCode": "https://github.com/freehaha/gist-element.git",
-    "description": "display a single-file gist",
-    "parameters": {
-        "gistId": {
-            "type": "string",
-            "default": "7e8bec3fd8cd3789ddd681a38068e655"
-        }
-    },
-	"artifacts": [],
-    "tags": [
-        "gist"
-    ]
+	"id": "f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba",
+	"tags": [],
+	"sourceCode": "git://github.com/GoogleWebComponents/google-chart",
+	"description": "google chart widget",
+	"name": "google-chart",
+	"parameters": {
+		"type": {
+			"enum": [
+			"area",
+			"bar",
+			"bubble",
+			"candlestick",
+			"column",
+			"combo",
+			"geo",
+			"histogram",
+			"line",
+			"pie",
+			"scatter",
+			"stepped-area",
+			"treemap"
+		]
+		},
+		"data": {
+			"type": "array"
+		}
+	},
+	"artifacts": []
 }
 ```
 
@@ -167,13 +180,16 @@ This endpoint is an iframe API to render a Widget. To use the endpoint, one must
 
 ```html
 <iframe style="width: 500px; height: 350px; border: none;"
-	src="http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
+	src="https://apibase.freehaha.org/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba/render?type=scatter&options={%22hAxis%22:%20{%22title%22:%20%22sepal%20width%22},%20%22vAxis%22:%20{%22title%22:%20%22sepal%20length%22}}&data=query://7e221af2-df53-4124-aad7-8b81b4da8c56"></iframe>
 ```
 
-The query parameters trailing the URL will be used as parameters to the Widget. Below is an example rendering a gist using the gist-element Widget.
-The actual parameters depend on individual Widget.
+The query parameters trailing the URL will be used as parameters to the Widget. Values can also be a query, with the format `query://<id>`. When specified this way, the query will be executed and
+the result used as the value for the widget. For example, in the example on the right, `data=query://7e221af2-df53-4124-aad7-8b81b4da8c56`, will use the result of the query `7e221af2-df53-4124-aad7-8b81b4da8c56`
+as `data` parameter for google-chart.
 
-<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="https://apibase.freehaha.org/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/render?gistId=4992826"></iframe>
+Below is an example rendering the iris-data-set using the google-chart Widget.  The actual parameters depend on individual Widget.
+
+<iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="https://apibase.freehaha.org/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba/render?type=scatter&options={%22hAxis%22:%20{%22title%22:%20%22sepal%20width%22},%20%22vAxis%22:%20{%22title%22:%20%22sepal%20length%22}}&data=query://7e221af2-df53-4124-aad7-8b81b4da8c56"></iframe>
 
 ## Add an Artifact to a Widget
 

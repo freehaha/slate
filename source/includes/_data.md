@@ -480,11 +480,11 @@ Code | Reason | Message
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
 http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts -d '{
-	"artifactType": "YoutubeVideo",
-	"description": "Github Universe 2017 event video",
+	"artifactType": "URL",
+	"description": "link to the iris data set from UCI Machine Learning Repository",
 	"data": {
-		"title": "GitHub Universe 2017",
-		"link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+		"title": "Iris Data Set",
+		"link": "https://archive.ics.uci.edu/ml/datasets/iris"
 	}
 }'
 

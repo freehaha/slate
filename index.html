@@ -2412,11 +2412,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4
 </tbody></table>
 <h2 id='add-an-artifact-to-a-connector'>Add an Artifact to a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
 http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts -d <span class="s1">'{
-    "artifactType": "YoutubeVideo",
-    "description": "Github Universe 2017 event video",
+    "artifactType": "URL",
+    "description": "link to the iris data set from UCI Machine Learning Repository",
     "data": {
-        "title": "GitHub Universe 2017",
-        "link": "https://www.youtube.com/watch?v=53qGVTSUoFA"
+        "title": "Iris Data Set",
+        "link": "https://archive.ics.uci.edu/ml/datasets/iris"
     }
 }'</span>
 

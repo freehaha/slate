@@ -517,6 +517,70 @@ Code | Reason | Message
 400 | provided `id` is not a valid UUID | malformed UUID
 404 | Parameter of specified `id` does not exist | resource not found
 
+## Invoke a Method
+
+```shell
+curl -XPOST -H 'Content-Type: application/json'
+http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/invoke -d '{
+	"params": {
+		"id": "freehaha"
+	}
+}'
+
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"statusCode": 200,
+	"body": {
+		"login": "freehaha",
+		"id": 80036,
+		"...": "..."
+	},
+	"headers": {
+		"date": "Mon, 05 Mar 2018 05:33:01 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "1137",
+		"...": "..."
+	},
+	"request": {
+	    "method": "GET",
+		"...": "..."
+	}
+}
+```
+
+This endpoint invokes a Method, sending a HTTP request to the API and then return the results.
+
+### HTTP Request
+
+`POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/invoke`
+
+### Parameters
+
+Parameter | Type | Description
+--- | --- | --- | ---
+id | uuid | ID of the Method
+params | object | An object containing the parameters to use while invoking the Method where the keys are the names of the parameters.
+
+
+### Response
+Property | Description
+--- | ---
+statusCode | HTTP status code returned by the Method
+body | body returned by the Method
+headers | HTTP header returned
+request | HTTP request that was sent
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | provided `id` is not a valid UUID | malformed UUID
+
 ## Add an Artifact to an API
 
 ```shell

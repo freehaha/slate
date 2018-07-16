@@ -1931,6 +1931,16 @@ artifact of Socrata. Below lists property of a DataSource:</p>
 <td>object</td>
 <td>Configuration for the Connector. This is Connector-specific</td>
 </tr>
+<tr>
+<td>*creator</td>
+<td>string</td>
+<td>creator of the datasource</td>
+</tr>
+<tr>
+<td>*license</td>
+<td>string</td>
+<td>License of the datasource</td>
+</tr>
 </tbody></table>
 <h3 id='query'>Query</h3>
 <blockquote>
@@ -1953,11 +1963,23 @@ artifact of Socrata. Below lists property of a DataSource:</p>
     </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">".rows | map(select(.[1] | tonumber &gt; 200))"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>SQL query</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filter 200"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id1"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filter out rows where first column &lt;= 200"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sql: SELECT * FROM {TBL} WHERE field &lt;= 200"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A Query entity describe a <a href="https://stedolan.github.io/jq/manual/">jq</a> query
 expression to be executed on a DataSource.  When a Query is created, it will
 not be immediately executed and thus will not return the result. Instead, the
 <a href="#display-entity">Display Entity</a> should be used to execute the Query and view
 the result.</p>
+
+<p>To use a SQL query instead of a jq query, prefix the expression with <code>sql:</code>. The table with the corresponding data will be named <code>{TBL}</code>.</p>
 
 <table><thead>
 <tr>

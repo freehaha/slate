@@ -112,6 +112,8 @@ Property | Type | Description
 \*name | string | Name of the DataSource
 \*description | string | Short description of the DataSource
 \*source | object | Configuration for the Connector. This is Connector-specific
+\*creator | string | creator of the datasource
+\*license | string | License of the datasource
 
 
 ### Query
@@ -138,11 +140,24 @@ Property | Type | Description
 }
 ```
 
+> SQL query
+
+```json
+{
+	"name": "filter 200",
+	"sources": ["id1"],
+	"description": "filter out rows where first column <= 200",
+	"expression": "sql: SELECT * FROM {TBL} WHERE field <= 200"
+}
+```
+
 A Query entity describe a [jq](https://stedolan.github.io/jq/manual/) query
 expression to be executed on a DataSource.  When a Query is created, it will
 not be immediately executed and thus will not return the result. Instead, the
 [Display Entity](#display-entity) should be used to execute the Query and view
 the result.
+
+To use a SQL query instead of a jq query, prefix the expression with `sql: `. The table with the corresponding data will be named `{TBL}`.
 
 Property | Type | Description
 --- | --- | --- | ---

@@ -230,6 +230,9 @@
                     <a href="#definitions" class="toc-h2 toc-link" data-title="Definitions">Definitions</a>
                   </li>
                   <li>
+                    <a href="#import-an-api-via-swagger-v2-or-openapi-v2" class="toc-h2 toc-link" data-title="Import an API via Swagger(v2, or OpenAPI v2)">Import an API via Swagger(v2, or OpenAPI v2)</a>
+                  </li>
+                  <li>
                     <a href="#add-an-api" class="toc-h2 toc-link" data-title="Add an API">Add an API</a>
                   </li>
                   <li>
@@ -716,8 +719,56 @@ information about the entities.</p>
 <td>URL of the webpage</td>
 </tr>
 </tbody></table>
+<h2 id='import-an-api-via-swagger-v2-or-openapi-v2'>Import an API via Swagger(v2, or OpenAPI v2)</h2><pre class="highlight shell tab-shell"><code><span class="c"># swagger.json is the json file (utf-8 encoded)</span>
+curl -XPOST http://apibase.au.ngrok.io/import/swaggerv2.json -Ffile<span class="o">=</span>@swagger.json
+</code></pre>
+<blockquote>
+<p>Successful requst returns the following response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"importing 18 operations..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id_of_api&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint imports an API from OpenAPI documentation format v2, formerly known as Swagger v2. </p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/import/swaggerv2.json</code></p>
+<h3 id='parameters'>Parameters</h3>
+<p>Form Data <code>file</code>, A Swagger documentation JSON object.</p>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td><code>importing # operations</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the API object to be created</td>
+</tr>
+</tbody></table>
+<h3 id='errors'>Errors</h3>
+<p>Possible error codes and reasons:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Reason</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>the swagger document provided is invalid or is not a valid JSON</td>
+<td>invalid parameter</td>
+</tr>
+</tbody></table>
 <h2 id='add-an-api'>Add an API</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
+curl -XPOST http://apibase.au.ngrok.io/apis
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
       "name": "Github",
@@ -737,11 +788,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds an API entity to APIBase.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis</code></p>
-<h3 id='parameters'>Parameters</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/apis</code></p>
+<h3 id='parameters-2'>Parameters</h3>
 <p>An <a href="#api">API</a> Object.</p>
-<h3 id='response'>Response</h3>
+<h3 id='response-2'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -757,7 +808,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <td>ID of the created API object</td>
 </tr>
 </tbody></table>
-<h3 id='errors'>Errors</h3>
+<h3 id='errors-2'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -778,7 +829,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-an-api'>Retrieve information of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
+<h2 id='retrieve-information-of-an-api'>Retrieve information of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
 </code></pre>
 <blockquote>
 <p>Successful request returns an API object:</p>
@@ -801,9 +852,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an API.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}</code></p>
-<h3 id='parameters-2'>Parameters</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/apis/{id}</code></p>
+<h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -817,7 +868,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <td>ID of the API</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h3 id='response-3'>Response</h3>
 <p>An <a href="#api">API</a> Object with related <code>methods</code> and <code>artifacts</code>.</p>
 
 <table><thead>
@@ -835,7 +886,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 <td>ID of Artifacts of the API</td>
 </tr>
 </tbody></table>
-<h3 id='errors-2'>Errors</h3>
+<h3 id='errors-3'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -858,7 +909,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
 </tbody></table>
 <h2 id='add-a-method-to-an-api'>Add a Method to an API</h2><pre class="highlight shell tab-shell"><code><span class="c">#</span>
 curl -XPOST -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/methods -d <span class="s1">'{
+http://apibase.au.ngrok.io/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/methods -d <span class="s1">'{
   "name": "GetGist”,
   "method": "POST",
   "path": "/gist/{gistId}",
@@ -874,11 +925,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Method entity to an API.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/methods</code></p>
-<h3 id='parameters-3'>Parameters</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/apis/{id}/methods</code></p>
+<h3 id='parameters-4'>Parameters</h3>
 <p>A <a href="#method">Method</a> object.</p>
-<h3 id='response-3'>Response</h3>
+<h3 id='response-4'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -894,7 +945,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <td>ID of the created Method object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-3'>Errors</h3>
+<h3 id='errors-4'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -915,7 +966,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <td>schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-method'>Retrieve information of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c
+<h2 id='retrieve-information-of-a-method'>Retrieve information of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/methods/99d64f8e-eace-417d-8cea-511621aaf57c
 </code></pre>
 <blockquote>
 <p>Successful request returns an <a href="#method">Method object</a>:</p>
@@ -936,9 +987,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 
 </span></code></pre>
 <p>This endpoint retrieves a Method.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}</code></p>
-<h3 id='parameters-4'>Parameters</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/methods/{id}</code></p>
+<h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -952,7 +1003,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <td>ID of the Method</td>
 </tr>
 </tbody></table>
-<h3 id='response-4'>Response</h3>
+<h3 id='response-5'>Response</h3>
 <p>An <a href="#method">Method</a> Object with related <code>parameters</code> and <code>artifacts</code>.</p>
 
 <table><thead>
@@ -970,7 +1021,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 <td>ID of Artifacts of the API</td>
 </tr>
 </tbody></table>
-<h3 id='errors-4'>Errors</h3>
+<h3 id='errors-5'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -992,7 +1043,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/met
 </tr>
 </tbody></table>
 <h2 id='add-a-parameter-to-a-method'>Add a Parameter to a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/parameters -d <span class="s1">'{
+http://apibase.au.ngrok.io/methods/99d64f8e-eace-417d-8cea-511621aaf57c/parameters -d <span class="s1">'{
   "name": "gistId",
   "location": "path",
   "type": "string",
@@ -1014,11 +1065,11 @@ Locked property indicates whether the parameter is intended to be changed by use
 set, APIBase will always use the default value for the parameter regardless of what users input.</p>
 
 <p>This endpoint adds a Parameter entity to a Method.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/parameters</code></p>
-<h3 id='parameters-5'>Parameters</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/methods/{id}/parameters</code></p>
+<h3 id='parameters-6'>Parameters</h3>
 <p>A <a href="#parameter">Parameter</a> Object.</p>
-<h3 id='response-5'>Response</h3>
+<h3 id='response-6'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -1034,7 +1085,7 @@ set, APIBase will always use the default value for the parameter regardless of w
 <td>ID of the created Parameter object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-5'>Errors</h3>
+<h3 id='errors-6'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1055,7 +1106,7 @@ set, APIBase will always use the default value for the parameter regardless of w
 <td>schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-parameter'>Retrieve information of a Parameter</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/parameters/d74c24e6-9451-41f6-93be-afdfc20a7f4c
+<h2 id='retrieve-information-of-a-parameter'>Retrieve information of a Parameter</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/parameters/d74c24e6-9451-41f6-93be-afdfc20a7f4c
 </code></pre>
 <blockquote>
 <p>Successful request returns an <a href="#parameter">Parameter object</a>:</p>
@@ -1070,9 +1121,9 @@ set, APIBase will always use the default value for the parameter regardless of w
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an Parameter.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/parameters/{id}</code></p>
-<h3 id='parameters-6'>Parameters</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/parameters/{id}</code></p>
+<h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1086,9 +1137,9 @@ set, APIBase will always use the default value for the parameter regardless of w
 <td>ID of the Parameter</td>
 </tr>
 </tbody></table>
-<h3 id='response-6'>Response</h3>
+<h3 id='response-7'>Response</h3>
 <p>A <a href="#parameter">Parameter</a> Object.</p>
-<h3 id='errors-6'>Errors</h3>
+<h3 id='errors-7'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1110,7 +1161,7 @@ set, APIBase will always use the default value for the parameter regardless of w
 </tr>
 </tbody></table>
 <h2 id='invoke-a-method'>Invoke a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/invoke -d <span class="s1">'{
+http://apibase.au.ngrok.io/methods/99d64f8e-eace-417d-8cea-511621aaf57c/invoke -d <span class="s1">'{
     "params": {
         "id": "freehaha"
     }
@@ -1140,9 +1191,9 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint invokes a Method, sending a HTTP request to the API and then return the results.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/invoke</code></p>
-<h3 id='parameters-7'>Parameters</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/methods/{id}/invoke</code></p>
+<h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1161,7 +1212,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 <td>An object containing the parameters to use while invoking the Method where the keys are the names of the parameters.</td>
 </tr>
 </tbody></table>
-<h3 id='response-7'>Response</h3>
+<h3 id='response-8'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -1185,7 +1236,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 <td>HTTP request that was sent</td>
 </tr>
 </tbody></table>
-<h3 id='errors-7'>Errors</h3>
+<h3 id='errors-8'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1202,7 +1253,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/
 </tr>
 </tbody></table>
 <h2 id='add-an-artifact-to-an-api'>Add an Artifact to an API</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d <span class="s1">'{
+http://apibase.au.ngrok.io/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d <span class="s1">'{
     "artifactType": "YoutubeVideo",
     "description": "Github Universe 2017 event video",
     "data": {
@@ -1221,11 +1272,11 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/art
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds an Artifact to an API.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/artifacts</code></p>
-<h3 id='parameters-8'>Parameters</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/apis/{id}/artifacts</code></p>
+<h3 id='parameters-9'>Parameters</h3>
 <p>An <a href="#artifact">Artifact</a> Object.</p>
-<h3 id='response-8'>Response</h3>
+<h3 id='response-9'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -1241,7 +1292,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/art
 <td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-8'>Errors</h3>
+<h3 id='errors-9'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1267,7 +1318,7 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/art
 <td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-an-artifact'>Retrieve information of an Artifact</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/artifacts/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
+<h2 id='retrieve-information-of-an-artifact'>Retrieve information of an Artifact</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/artifacts/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
 </code></pre>
 <blockquote>
 <p>Successful request returns an Artifact object:</p>
@@ -1286,9 +1337,9 @@ http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/art
 </span></code></pre>
 <p>This endpoint retrieves an Artifact and can be used to retrieve any artifacts regardless of
 the entity the artifact is added to.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/artifacts/{id}</code></p>
-<h3 id='parameters-9'>Parameters</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/artifacts/{id}</code></p>
+<h3 id='parameters-10'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1302,7 +1353,7 @@ the entity the artifact is added to.</p>
 <td>ID of the Artifact</td>
 </tr>
 </tbody></table>
-<h3 id='response-9'>Response</h3>
+<h3 id='response-10'>Response</h3>
 <p>An <a href="#artifact">Artifact</a> Object with related <code>artifacttype</code>.</p>
 
 <table><thead>
@@ -1320,7 +1371,7 @@ the entity the artifact is added to.</p>
 <td>Name fo the artifact type</td>
 </tr>
 </tbody></table>
-<h3 id='errors-9'>Errors</h3>
+<h3 id='errors-10'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1341,7 +1392,7 @@ the entity the artifact is added to.</p>
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='list-artifacts-of-an-api'>List artifacts of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
+<h2 id='list-artifacts-of-an-api'>List artifacts of an API</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of artifacts:</p>
@@ -1352,9 +1403,9 @@ the entity the artifact is added to.</p>
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Artifacts that are associated with the API.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}/artifacts</code></p>
-<h3 id='parameters-10'>Parameters</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/apis/{id}/artifacts</code></p>
+<h3 id='parameters-11'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1368,9 +1419,9 @@ the entity the artifact is added to.</p>
 <td>ID of the API</td>
 </tr>
 </tbody></table>
-<h3 id='response-10'>Response</h3>
+<h3 id='response-11'>Response</h3>
 <p>An array of IDs of <a href="#artifact">Artifact objects</a> related to the API.</p>
-<h3 id='errors-10'>Errors</h3>
+<h3 id='errors-11'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1392,7 +1443,7 @@ the entity the artifact is added to.</p>
 </tr>
 </tbody></table>
 <h2 id='add-an-artifact-to-a-method'>Add an Artifact to a Method</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts -d <span class="s1">'{
+http://apibase.au.ngrok.io/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts -d <span class="s1">'{
     "artifactType": "InvokeExample",
     "description": "an example to retrieve gist from the user '</span>freehaha<span class="s1">'"
     "data": {
@@ -1413,11 +1464,11 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds an Artifact to a Method.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/artifacts</code></p>
-<h3 id='parameters-11'>Parameters</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/methods/{id}/artifacts</code></p>
+<h3 id='parameters-12'>Parameters</h3>
 <p>An <a href="#artifact">Artifact</a> Object.</p>
-<h3 id='response-11'>Response</h3>
+<h3 id='response-12'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -1433,7 +1484,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 <td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-11'>Errors</h3>
+<h3 id='errors-12'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1459,7 +1510,7 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 <td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-artifacts-of-a-method'>List artifacts of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts
+<h2 id='list-artifacts-of-a-method'>List artifacts of a Method</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of artifacts:</p>
@@ -1473,9 +1524,9 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Artifacts that are associated with the Method.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/artifacts</code></p>
-<h3 id='parameters-12'>Parameters</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/methods/{id}/artifacts</code></p>
+<h3 id='parameters-13'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1489,9 +1540,9 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 <td>ID of the Method</td>
 </tr>
 </tbody></table>
-<h3 id='response-12'>Response</h3>
+<h3 id='response-13'>Response</h3>
 <p>An array of IDs of <a href="#artifact">Artifact objects</a> related to the Method.</p>
-<h3 id='errors-12'>Errors</h3>
+<h3 id='errors-13'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1513,13 +1564,13 @@ http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/
 </tr>
 </tbody></table>
 <h1 id='entity'>Entity</h1><h2 id='entity-search'>Entity search</h2><pre class="highlight shell tab-shell"><code><span class="c"># search for API with the 'Github' keyword</span>
-curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=Github&amp;type=API'</span>
+curl -XGET <span class="s1">'http://apibase.au.ngrok.io/entities/search?q=Github&amp;type=API'</span>
 </code></pre>
 <blockquote>
 <p>if you want to specify a particular field to search, use <code>field:</code> syntax</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># search for APIs that have 'music' in their description</span>
-curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=description:music&amp;type=API'</span>
+curl -XGET <span class="s1">'http://apibase.au.ngrok.io/entities/search?q=description:music&amp;type=API'</span>
 </code></pre>
 <blockquote>
 <p>example result for APIs that have &#39;music&#39; in their description</p>
@@ -1555,8 +1606,8 @@ curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/search?
 </span></code></pre>
 <p>This endpoint performs a keyword search in APIBase. It returns only the first 30 results. To get
 more results, use the <code>page</code> query parameter.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/search</code></p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/entities/search</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1585,11 +1636,11 @@ more results, use the <code>page</code> query parameter.</p>
 <td>Page number, starting from 1</td>
 </tr>
 </tbody></table>
-<h3 id='response-13'>Response</h3>
+<h3 id='response-14'>Response</h3>
 <p>An array of entities that match the search criteria. Maximum 30 entities.</p>
-<h3 id='errors-13'>Errors</h3>
+<h3 id='errors-14'>Errors</h3>
 <p>N/A</p>
-<h2 id='retrieving-arbitrary-entity'>Retrieving arbitrary entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/b1c73190-553e-4453-a672-394e83feb417'</span>
+<h2 id='retrieving-arbitrary-entity'>Retrieving arbitrary entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://apibase.au.ngrok.io/entities/b1c73190-553e-4453-a672-394e83feb417'</span>
 </code></pre>
 <blockquote>
 <p>successful request returns the entity:</p>
@@ -1623,9 +1674,9 @@ more results, use the <code>page</code> query parameter.</p>
 <p>This endpoint lets you get an entity regardless of its type. For example can use
 this endpoint to retrieve an API, Method or DataSourceSchema...  Related
 entities will also be retrieved. To change this behavior, use the <code>brief=true</code> query parameter.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}</code></p>
-<h3 id='parameters-13'>Parameters</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/entities/{id}</code></p>
+<h3 id='parameters-14'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1644,7 +1695,7 @@ entities will also be retrieved. To change this behavior, use the <code>brief=tr
 <td><code>true</code> to retrieve only the entity in question, otherwise all related entities will be retrieved</td>
 </tr>
 </tbody></table>
-<h3 id='response-14'>Response</h3>
+<h3 id='response-15'>Response</h3>
 <p>In addition to the properties of the entity, this endpoint also returns an
 <code>_relation</code> array if <code>brief=false</code>(default). <code>The _relation</code> array list
 entities related to the entity, each containing the following
@@ -1669,7 +1720,7 @@ property:</p>
 <td>The related entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-14'>Errors</h3>
+<h3 id='errors-15'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -1690,7 +1741,7 @@ property:</p>
 <td>resource not found</td>
 </tr>
 </tbody></table>
-<h2 id='display-entity'>Display Entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://johnsd.cse.unsw.edu.au:3000/entities/b1c73190-553e-4453-a672-394e83feb417/display'</span>
+<h2 id='display-entity'>Display Entity</h2><pre class="highlight shell tab-shell"><code>curl -XGET <span class="s1">'http://apibase.au.ngrok.io/entities/b1c73190-553e-4453-a672-394e83feb417/display'</span>
 </code></pre>
 <blockquote>
 <p>successful request returns the entity:</p>
@@ -1725,9 +1776,9 @@ Similar to the <a href="#retrieving-arbitrary-entity">Retrieving arbitrary entit
 endpoint can also retrieve an arbitrary entity but if the entity represents an
 executable object, for example a <a href="#query">Query</a>, then the entity will be executed/run and
 return the result instead.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}/display</code></p>
-<h3 id='parameters-14'>Parameters</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/entities/{id}/display</code></p>
+<h3 id='parameters-15'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1741,7 +1792,7 @@ return the result instead.</p>
 <td>ID of the entity in question</td>
 </tr>
 </tbody></table>
-<h3 id='errors-15'>Errors</h3>
+<h3 id='errors-16'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2010,7 +2061,7 @@ the result.</p>
 </tr>
 </tbody></table>
 <h2 id='create-datasourceschema'>Create DataSourceSchema</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
+curl -XPOST http://apibase.au.ngrok.io/datasourceschemas
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "name": "Iris Dataset",
@@ -2049,11 +2100,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A DataSourceSchema describes the schema of data coming from a source so that we can understand and explore the structure of the data.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas</code></p>
-<h3 id='parameters-15'>Parameters</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/datasourceschemas</code></p>
+<h3 id='parameters-16'>Parameters</h3>
 <p>A <a href="#data-source-schema">DataSourceSchema</a> Object.</p>
-<h3 id='response-15'>Response</h3>
+<h3 id='response-16'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -2069,7 +2120,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>ID of the created DataSourceSchema entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-16'>Errors</h3>
+<h3 id='errors-17'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2088,7 +2139,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-datasourceschema'>Retrieve information of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f
+<h2 id='retrieve-information-of-a-datasourceschema'>Retrieve information of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#data-source-schema">DataSourceSchema object</a>:</p>
@@ -2125,9 +2176,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a DataSourceSchema.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}</code></p>
-<h3 id='parameters-16'>Parameters</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/datasourceschemas/{id}</code></p>
+<h3 id='parameters-17'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2141,7 +2192,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>ID of the DataSourceSchema</td>
 </tr>
 </tbody></table>
-<h3 id='response-16'>Response</h3>
+<h3 id='response-17'>Response</h3>
 <p>An <a href="#data-source-schema">DataSourceSchema</a> Object with related <code>connectors</code> and <code>artifacts</code>.</p>
 
 <table><thead>
@@ -2159,7 +2210,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 <td>ID of Artifacts associated to the DataSourceSchema</td>
 </tr>
 </tbody></table>
-<h3 id='errors-17'>Errors</h3>
+<h3 id='errors-18'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2181,7 +2232,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
 </tr>
 </tbody></table>
 <h2 id='add-an-artifact-to-a-datasourceschema'>Add an Artifact to a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts -d <span class="s1">'{
+http://apibase.au.ngrok.io/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts -d <span class="s1">'{
     "artifactType": "URL",
     "description": "UCI Machine Learning reporitory web page for Iris Data Set",
     "data": {
@@ -2200,11 +2251,11 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-566
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds an Artifact to a DataSourceSchema.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/artifacts</code></p>
-<h3 id='parameters-17'>Parameters</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/datasourceschemas/{id}/artifacts</code></p>
+<h3 id='parameters-18'>Parameters</h3>
 <p>An <a href="#artifact">Artifact</a> Object.</p>
-<h3 id='response-17'>Response</h3>
+<h3 id='response-18'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -2220,7 +2271,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-566
 <td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-18'>Errors</h3>
+<h3 id='errors-19'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2246,7 +2297,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-566
 <td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-artifacts-of-a-datasourceschema'>List artifacts of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts
+<h2 id='list-artifacts-of-a-datasourceschema'>List artifacts of a DataSourceSchema</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of artifacts:</p>
@@ -2256,9 +2307,9 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-566
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Artifacts that are associated with the DataSourceSchema.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/artifacts</code></p>
-<h3 id='parameters-18'>Parameters</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/datasourceschemas/{id}/artifacts</code></p>
+<h3 id='parameters-19'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2272,9 +2323,9 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-566
 <td>ID of the DataSourceSchema</td>
 </tr>
 </tbody></table>
-<h3 id='response-18'>Response</h3>
+<h3 id='response-19'>Response</h3>
 <p>An array of IDs of <a href="#artifact">Artifact objects</a> related to the DataSourceSchema.</p>
-<h3 id='errors-19'>Errors</h3>
+<h3 id='errors-20'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2296,7 +2347,7 @@ http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-566
 </tr>
 </tbody></table>
 <h2 id='add-connector'>Add Connector</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/connectors
+curl -XPOST http://apibase.au.ngrok.io/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/connectors
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "name": "iris-data-connector",
@@ -2316,11 +2367,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Connector to a DataSourceSchema</p>
-<h3 id='http-request-20'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/connectors</code></p>
-<h3 id='parameters-19'>Parameters</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/datasourceschemas/{id}/connectors</code></p>
+<h3 id='parameters-20'>Parameters</h3>
 <p>A <a href="#connector">Connector</a> Object.</p>
-<h3 id='response-19'>Response</h3>
+<h3 id='response-20'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -2336,7 +2387,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4
 <td>ID of the created Connector entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-20'>Errors</h3>
+<h3 id='errors-21'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2360,7 +2411,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-connector'>Retrieve information of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839
+<h2 id='retrieve-information-of-a-connector'>Retrieve information of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/connectors/b3ae7391-264c-4424-adad-fcc8836da839
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#connector">Connector object</a>:</p>
@@ -2377,9 +2428,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Connector.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}</code></p>
-<h3 id='parameters-20'>Parameters</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/connectors/{id}</code></p>
+<h3 id='parameters-21'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2393,7 +2444,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4
 <td>ID of the Connector</td>
 </tr>
 </tbody></table>
-<h3 id='response-20'>Response</h3>
+<h3 id='response-21'>Response</h3>
 <p>A <a href="#connector">Connector</a> Object with related <code>artifacts</code> and <code>datasources</code>.</p>
 
 <table><thead>
@@ -2411,7 +2462,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4
 <td>ID of DataSources that use this Connector</td>
 </tr>
 </tbody></table>
-<h3 id='errors-21'>Errors</h3>
+<h3 id='errors-22'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2433,7 +2484,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4
 </tr>
 </tbody></table>
 <h2 id='add-an-artifact-to-a-connector'>Add an Artifact to a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts -d <span class="s1">'{
+http://apibase.au.ngrok.io/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts -d <span class="s1">'{
     "artifactType": "URL",
     "description": "link to the iris data set from UCI Machine Learning Repository",
     "data": {
@@ -2452,11 +2503,11 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da8
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds an Artifact to a Connector.</p>
-<h3 id='http-request-22'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/artifacts</code></p>
-<h3 id='parameters-21'>Parameters</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/connectors/{id}/artifacts</code></p>
+<h3 id='parameters-22'>Parameters</h3>
 <p>An <a href="#artifact">Artifact</a> Object.</p>
-<h3 id='response-21'>Response</h3>
+<h3 id='response-22'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -2472,7 +2523,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da8
 <td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-22'>Errors</h3>
+<h3 id='errors-23'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2498,7 +2549,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da8
 <td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-artifacts-of-a-connector'>List artifacts of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts
+<h2 id='list-artifacts-of-a-connector'>List artifacts of a Connector</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of artifacts:</p>
@@ -2509,9 +2560,9 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da8
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Artifacts that are associated with the Connector.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/artifacts</code></p>
-<h3 id='parameters-22'>Parameters</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/connectors/{id}/artifacts</code></p>
+<h3 id='parameters-23'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2525,9 +2576,9 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da8
 <td>ID of the Connector</td>
 </tr>
 </tbody></table>
-<h3 id='response-22'>Response</h3>
+<h3 id='response-23'>Response</h3>
 <p>An array of IDs of <a href="#artifact">Artifact objects</a> related to the Connector.</p>
-<h3 id='errors-23'>Errors</h3>
+<h3 id='errors-24'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2549,7 +2600,7 @@ http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da8
 </tr>
 </tbody></table>
 <h2 id='add-datasource'>Add DataSource</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/datasources
+curl -XPOST http://apibase.au.ngrok.io/connectors/b3ae7391-264c-4424-adad-fcc8836da839/datasources
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "name": "UCL iris data",
@@ -2568,11 +2619,11 @@ Successful requst returns the following response</p>
 </span></code></pre>
 <p>This endpoint adds a DataSource using specified Connector, creating an instance of Connector with configuration
 specified by <code>source</code>.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/datasources</code></p>
-<h3 id='parameters-23'>Parameters</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/connectors/{id}/datasources</code></p>
+<h3 id='parameters-24'>Parameters</h3>
 <p>A <a href="#data-source">DataSource</a> Object.</p>
-<h3 id='response-23'>Response</h3>
+<h3 id='response-24'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -2588,7 +2639,7 @@ specified by <code>source</code>.</p>
 <td>ID of the created DataSource entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-24'>Errors</h3>
+<h3 id='errors-25'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2612,7 +2663,7 @@ specified by <code>source</code>.</p>
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-datasource'>Retrieve information of a DataSource</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/576927bb-7cb3-4c75-81b0-7c1e67a724a1
+<h2 id='retrieve-information-of-a-datasource'>Retrieve information of a DataSource</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/datasources/576927bb-7cb3-4c75-81b0-7c1e67a724a1
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#data-source">DataSource object</a>:</p>
@@ -2625,9 +2676,9 @@ specified by <code>source</code>.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a DataSource.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/datasources/{id}</code></p>
-<h3 id='parameters-24'>Parameters</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/datasources/{id}</code></p>
+<h3 id='parameters-25'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2641,9 +2692,9 @@ specified by <code>source</code>.</p>
 <td>ID of the DataSource</td>
 </tr>
 </tbody></table>
-<h3 id='response-24'>Response</h3>
+<h3 id='response-25'>Response</h3>
 <p>A <a href="#data-source-schema">DataSource</a> Object.</p>
-<h3 id='errors-25'>Errors</h3>
+<h3 id='errors-26'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2665,7 +2716,7 @@ specified by <code>source</code>.</p>
 </tr>
 </tbody></table>
 <h2 id='create-query'>Create Query</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
+curl -XPOST http://apibase.au.ngrok.io/queries
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "expression": "map(select(.sepalLength &gt; 5))",
@@ -2685,7 +2736,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
 <blockquote>
 <p>More complicated query, used to prepare data for the google-chart widget.</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
+<pre class="highlight shell tab-shell"><code>curl -XPOST http://apibase.au.ngrok.io/queries
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "expression": "group_by(.class) | map(map([ .sepalLength, .sepalWidth, .class ])) | [[\"sepalLength\", .[0][0][2], .[1][0][2], .[2][0][2]]] + (.[0] | map([.[0], .[1], null, null])) + (.[1] | map([.[0], null, .[1], null])) + (.[2] | map([.[0], null, null, .[1]]))",
@@ -2697,11 +2748,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
 <p>A Query allows one to evaluate an <code>expression</code> on one or more DataSources or Queries. Upon being
 created, the query is not immediately executed and returns only the entity created message. To
 evaluate the Query and view the result, use the <a href="#display-entity">Display Entity</a> endpoint.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/queries</code></p>
-<h3 id='parameters-25'>Parameters</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/queries</code></p>
+<h3 id='parameters-26'>Parameters</h3>
 <p>A <a href="#query">Query</a> Object.</p>
-<h3 id='response-25'>Response</h3>
+<h3 id='response-26'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -2717,7 +2768,7 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 <td>ID of the created Query entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-26'>Errors</h3>
+<h3 id='errors-27'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2736,7 +2787,7 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-query'>Retrieve information of a Query</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/b1c73190-553e-4453-a672-394e83feb417
+<h2 id='retrieve-information-of-a-query'>Retrieve information of a Query</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/queries/b1c73190-553e-4453-a672-394e83feb417
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#query">Query object</a>:</p>
@@ -2753,9 +2804,9 @@ evaluate the Query and view the result, use the <a href="#display-entity">Displa
 </span></code></pre>
 <p>This endpoint retrieves a Query. Note that this endpoint only retrieves the query expression, not the evaluated result.
 To evaluate the Query and view the result, use the <a href="#display-entity">Display Entity</a> endpoint.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/queries/{id}</code></p>
-<h3 id='parameters-26'>Parameters</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/queries/{id}</code></p>
+<h3 id='parameters-27'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2769,9 +2820,9 @@ To evaluate the Query and view the result, use the <a href="#display-entity">Dis
 <td>ID of the Query</td>
 </tr>
 </tbody></table>
-<h3 id='response-26'>Response</h3>
+<h3 id='response-27'>Response</h3>
 <p>An <a href="#query">Query</a> Object.</p>
-<h3 id='errors-27'>Errors</h3>
+<h3 id='errors-28'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -2901,7 +2952,7 @@ values will be stored in the context. In the example recipe on the right, the re
 <h4 id='recipe-parameters'>Recipe/Parameters</h4>
 <p>The <code>parameters</code> in a Recipe will be used as the context when running the Recipe. All expressions will be evaluated against this context. </p>
 <h2 id='create-recipe'>Create Recipe</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
+curl -XPOST http://apibase.au.ngrok.io/recipes
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "sequence": [
@@ -2938,11 +2989,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a Recipe.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes</code></p>
-<h3 id='parameters-27'>Parameters</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/recipes</code></p>
+<h3 id='parameters-28'>Parameters</h3>
 <p>A <a href="#recipe">Recipe</a> Object.</p>
-<h3 id='response-27'>Response</h3>
+<h3 id='response-28'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -2958,7 +3009,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 <td>ID of the created Recipe entity</td>
 </tr>
 </tbody></table>
-<h3 id='errors-28'>Errors</h3>
+<h3 id='errors-29'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -2977,7 +3028,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-recipe'>Retrieve information of a Recipe</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/recipe/f95c28be-f3d9-459b-b204-b00bd31c981f
+<h2 id='retrieve-information-of-a-recipe'>Retrieve information of a Recipe</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/recipe/f95c28be-f3d9-459b-b204-b00bd31c981f
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#recipe">Recipe object</a>:</p>
@@ -3010,9 +3061,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Recipe.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/recipes/{id}</code></p>
-<h3 id='parameters-28'>Parameters</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/recipes/{id}</code></p>
+<h3 id='parameters-29'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3026,9 +3077,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 <td>ID of the Recipe</td>
 </tr>
 </tbody></table>
-<h3 id='response-28'>Response</h3>
+<h3 id='response-29'>Response</h3>
 <p>A <a href="#recipe">Recipe</a> Object.</p>
-<h3 id='errors-29'>Errors</h3>
+<h3 id='errors-30'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3050,7 +3101,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
 </tr>
 </tbody></table>
 <h2 id='run-recipe'>Run Recipe</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f/run
+curl -XPOST http://apibase.au.ngrok.io/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f/run
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "parameters": {
@@ -3074,9 +3125,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint executes a Recipe.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/recipes/{id}/run</code></p>
-<h3 id='parameters-29'>Parameters</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/recipes/{id}/run</code></p>
+<h3 id='parameters-30'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3090,11 +3141,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b
 <td>Parameter to be passed to the recipe, overwriting any default parameters and will be used as the context</td>
 </tr>
 </tbody></table>
-<h3 id='response-29'>Response</h3>
+<h3 id='response-30'>Response</h3>
 <p>The resulting context of the Recipe. The <code>_result</code> object contains result of
 each opeartion with <code>._result[&quot;0&quot;]</code> being the result of the first operation,
 <code>._result[&quot;1&quot;]</code> being the second and so on.</p>
-<h3 id='errors-30'>Errors</h3>
+<h3 id='errors-31'>Errors</h3>
 <table><thead>
 <tr>
 <th>Code</th>
@@ -3182,7 +3233,7 @@ can visualize the data with a call to the <a href="#widget-render">Widget Render
 </tr>
 </tbody></table>
 <h2 id='add-widget'>Add Widget</h2><pre class="highlight shell tab-shell"><code><span class="c"># Make sure the `Content-Type` is set correctly</span>
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
+curl -XPOST http://apibase.au.ngrok.io/widgets
     -H <span class="s1">'Content-Type: application/json'</span>
     -d <span class="s1">'{
         "name": "gist-element",
@@ -3209,11 +3260,11 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a Widget entity to APIBase.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets</code></p>
-<h3 id='parameters-30'>Parameters</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/widgets</code></p>
+<h3 id='parameters-31'>Parameters</h3>
 <p>A <a href="#widget">Widget</a> Object.</p>
-<h3 id='response-30'>Response</h3>
+<h3 id='response-31'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -3229,7 +3280,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of the created Widget object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-31'>Errors</h3>
+<h3 id='errors-32'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3250,7 +3301,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>entity of that name already exists</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-information-of-a-widget'>Retrieve information of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba
+<h2 id='retrieve-information-of-a-widget'>Retrieve information of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba
 </code></pre>
 <blockquote>
 <p>Successful request returns a <a href="#widget">Widget object</a>:</p>
@@ -3287,9 +3338,9 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a Widget.</p>
-<h3 id='http-request-32'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}</code></p>
-<h3 id='parameters-31'>Parameters</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/widgets/{id}</code></p>
+<h3 id='parameters-32'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3303,7 +3354,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='response-31'>Response</h3>
+<h3 id='response-32'>Response</h3>
 <p>A <a href="#widget">Widget</a> Object with related <code>artifacts</code>.</p>
 
 <table><thead>
@@ -3317,7 +3368,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 <td>ID of Artifacts of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='errors-32'>Errors</h3>
+<h3 id='errors-33'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3340,8 +3391,8 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
 </tbody></table>
 <h2 id='render-widget'>Render Widget</h2>
 <p>This endpoint is an iframe API to render a Widget. To use the endpoint, one must use the endpoint URL in the iframe in order to render the widget.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/render?{parameter}={value}</code></p>
+<h3 id='http-request-34'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/widgets/{id}/render?{parameter}={value}</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <blockquote>
 <p>Example using gist-element Widget to render a Gist with id <code>3cac2180f2c0ef43d6c7</code></p>
@@ -3357,7 +3408,7 @@ as <code>data</code> parameter for google-chart.</p>
 
 <iframe style="margin-left: 30px; width: 500px; height: 350px; border: 1px solid; overflow: none;" src="https://apibase.freehaha.org/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba/render?type=scatter&options={%22hAxis%22:%20{%22title%22:%20%22sepal%20width%22},%20%22vAxis%22:%20{%22title%22:%20%22sepal%20length%22}}&data=query://7e221af2-df53-4124-aad7-8b81b4da8c56"></iframe>
 <h2 id='add-an-artifact-to-a-widget'>Add an Artifact to a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XPOST -H <span class="s1">'Content-Type: application/json'</span>
-http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts -d <span class="s1">'{
+http://apibase.au.ngrok.io/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts -d <span class="s1">'{
     "artifactType": "YoutubeVideo",
     "description": "Basic tutorial for Github in Mac and Windows",
     "data": {
@@ -3376,11 +3427,11 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds an Artifact to a Widget.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
-<p><code>POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/artifacts</code></p>
-<h3 id='parameters-32'>Parameters</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
+<p><code>POST http://apibase.au.ngrok.io/widgets/{id}/artifacts</code></p>
+<h3 id='parameters-33'>Parameters</h3>
 <p>An <a href="#artifact">Artifact</a> Object.</p>
-<h3 id='response-32'>Response</h3>
+<h3 id='response-33'>Response</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -3396,7 +3447,7 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 <td>ID of the created Artifact object</td>
 </tr>
 </tbody></table>
-<h3 id='errors-33'>Errors</h3>
+<h3 id='errors-34'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>
@@ -3422,7 +3473,7 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 <td>artifact schema mismatch</td>
 </tr>
 </tbody></table>
-<h2 id='list-artifacts-of-a-widget'>List artifacts of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts
+<h2 id='list-artifacts-of-a-widget'>List artifacts of a Widget</h2><pre class="highlight shell tab-shell"><code>curl -XGET http://apibase.au.ngrok.io/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts
 </code></pre>
 <blockquote>
 <p>Successful request returns a list of ID of artifacts:</p>
@@ -3433,9 +3484,9 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves an array of Artifacts that are associated with the Widget.</p>
-<h3 id='http-request-35'>HTTP Request</h3>
-<p><code>GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/artifacts</code></p>
-<h3 id='parameters-33'>Parameters</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
+<p><code>GET http://apibase.au.ngrok.io/widgets/{id}/artifacts</code></p>
+<h3 id='parameters-34'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3449,9 +3500,9 @@ http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/
 <td>ID of the Widget</td>
 </tr>
 </tbody></table>
-<h3 id='response-33'>Response</h3>
+<h3 id='response-34'>Response</h3>
 <p>An array of <a href="#artifact">Artifact objects</a> related to the Widget.</p>
-<h3 id='errors-34'>Errors</h3>
+<h3 id='errors-35'>Errors</h3>
 <p>Possible error codes and reasons:</p>
 
 <table><thead>

@@ -171,7 +171,7 @@ Property | Type | Description
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas
+curl -XPOST http://apibase.au.ngrok.io/datasourceschemas
 	-H 'Content-Type: application/json'
 	-d '{
 		"name": "Iris Dataset",
@@ -215,7 +215,7 @@ A DataSourceSchema describes the schema of data coming from a source so that we 
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas`
+`POST http://apibase.au.ngrok.io/datasourceschemas`
 
 ### Parameters
 
@@ -238,7 +238,7 @@ Code | Reason | Message
 ## Retrieve information of a DataSourceSchema
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f
+curl -XGET http://apibase.au.ngrok.io/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f
 ```
 
 > Successful request returns a [DataSourceSchema object](#data-source-schema):
@@ -279,7 +279,7 @@ This endpoint retrieves a DataSourceSchema.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}`
+`GET http://apibase.au.ngrok.io/datasourceschemas/{id}`
 
 ### Parameters
 
@@ -308,7 +308,7 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts -d '{
+http://apibase.au.ngrok.io/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts -d '{
 	"artifactType": "URL",
 	"description": "UCI Machine Learning reporitory web page for Iris Data Set",
 	"data": {
@@ -332,7 +332,7 @@ This endpoint adds an Artifact to a DataSourceSchema.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/artifacts`
+`POST http://apibase.au.ngrok.io/datasourceschemas/{id}/artifacts`
 
 ### Parameters
 
@@ -355,7 +355,7 @@ Code | Reason | Message
 
 ## List artifacts of a DataSourceSchema
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts
+curl -XGET http://apibase.au.ngrok.io/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/artifacts
 ```
 
 > Successful request returns a list of ID of artifacts:
@@ -370,7 +370,7 @@ This endpoint retrieves an array of Artifacts that are associated with the DataS
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/artifacts`
+`GET http://apibase.au.ngrok.io/datasourceschemas/{id}/artifacts`
 
 ### Parameters
 
@@ -394,7 +394,7 @@ Code | Reason | Message
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/connectors
+curl -XPOST http://apibase.au.ngrok.io/datasourceschemas/3fafc259-5abb-4780-8807-5663d374290f/connectors
 	-H 'Content-Type: application/json'
 	-d '{
 		"name": "iris-data-connector",
@@ -419,7 +419,7 @@ This endpoint adds a Connector to a DataSourceSchema
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/datasourceschemas/{id}/connectors`
+`POST http://apibase.au.ngrok.io/datasourceschemas/{id}/connectors`
 
 ### Parameters
 
@@ -443,7 +443,7 @@ Code | Reason | Message
 ## Retrieve information of a Connector
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839
+curl -XGET http://apibase.au.ngrok.io/connectors/b3ae7391-264c-4424-adad-fcc8836da839
 ```
 
 > Successful request returns a [Connector object](#connector):
@@ -465,7 +465,7 @@ This endpoint retrieves a Connector.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}`
+`GET http://apibase.au.ngrok.io/connectors/{id}`
 
 ### Parameters
 
@@ -494,7 +494,7 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts -d '{
+http://apibase.au.ngrok.io/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts -d '{
 	"artifactType": "URL",
 	"description": "link to the iris data set from UCI Machine Learning Repository",
 	"data": {
@@ -518,7 +518,7 @@ This endpoint adds an Artifact to a Connector.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/artifacts`
+`POST http://apibase.au.ngrok.io/connectors/{id}/artifacts`
 
 ### Parameters
 
@@ -541,7 +541,7 @@ Code | Reason | Message
 
 ## List artifacts of a Connector
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts
+curl -XGET http://apibase.au.ngrok.io/connectors/b3ae7391-264c-4424-adad-fcc8836da839/artifacts
 ```
 
 > Successful request returns a list of ID of artifacts:
@@ -557,7 +557,7 @@ This endpoint retrieves an array of Artifacts that are associated with the Conne
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/artifacts`
+`GET http://apibase.au.ngrok.io/connectors/{id}/artifacts`
 
 ### Parameters
 
@@ -581,7 +581,7 @@ Code | Reason | Message
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/connectors/b3ae7391-264c-4424-adad-fcc8836da839/datasources
+curl -XPOST http://apibase.au.ngrok.io/connectors/b3ae7391-264c-4424-adad-fcc8836da839/datasources
 	-H 'Content-Type: application/json'
 	-d '{
 		"name": "UCL iris data",
@@ -605,7 +605,7 @@ specified by `source`.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/connectors/{id}/datasources`
+`POST http://apibase.au.ngrok.io/connectors/{id}/datasources`
 
 ### Parameters
 
@@ -629,7 +629,7 @@ Code | Reason | Message
 ## Retrieve information of a DataSource
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/datasources/576927bb-7cb3-4c75-81b0-7c1e67a724a1
+curl -XGET http://apibase.au.ngrok.io/datasources/576927bb-7cb3-4c75-81b0-7c1e67a724a1
 ```
 
 > Successful request returns a [DataSource object](#data-source):
@@ -647,7 +647,7 @@ This endpoint retrieves a DataSource.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/datasources/{id}`
+`GET http://apibase.au.ngrok.io/datasources/{id}`
 
 ### Parameters
 
@@ -671,7 +671,7 @@ Code | Reason | Message
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
+curl -XPOST http://apibase.au.ngrok.io/queries
 	-H 'Content-Type: application/json'
 	-d '{
 		"expression": "map(select(.sepalLength > 5))",
@@ -693,7 +693,7 @@ curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
 > More complicated query, used to prepare data for the google-chart widget.
 
 ```shell
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/queries
+curl -XPOST http://apibase.au.ngrok.io/queries
 	-H 'Content-Type: application/json'
 	-d '{
 		"expression": "group_by(.class) | map(map([ .sepalLength, .sepalWidth, .class ])) | [[\"sepalLength\", .[0][0][2], .[1][0][2], .[2][0][2]]] + (.[0] | map([.[0], .[1], null, null])) + (.[1] | map([.[0], null, .[1], null])) + (.[2] | map([.[0], null, null, .[1]]))",
@@ -710,7 +710,7 @@ evaluate the Query and view the result, use the [Display Entity](#display-entity
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/queries`
+`POST http://apibase.au.ngrok.io/queries`
 
 ### Parameters
 
@@ -733,7 +733,7 @@ Code | Reason | Message
 ## Retrieve information of a Query
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/queries/b1c73190-553e-4453-a672-394e83feb417
+curl -XGET http://apibase.au.ngrok.io/queries/b1c73190-553e-4453-a672-394e83feb417
 ```
 
 > Successful request returns a [Query object](#query):
@@ -755,7 +755,7 @@ To evaluate the Query and view the result, use the [Display Entity](#display-ent
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/queries/{id}`
+`GET http://apibase.au.ngrok.io/queries/{id}`
 
 ### Parameters
 

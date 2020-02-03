@@ -77,7 +77,7 @@ The `parameters` in a Recipe will be used as the context when running the Recipe
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes
+curl -XPOST http://apibase.au.ngrok.io/recipes
 	-H 'Content-Type: application/json'
 	-d '{
 		"sequence": [
@@ -119,7 +119,7 @@ This endpoint creates a Recipe.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/recipes`
+`POST http://apibase.au.ngrok.io/recipes`
 
 ### Parameters
 
@@ -142,7 +142,7 @@ Code | Reason | Message
 ## Retrieve information of a Recipe
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/recipe/f95c28be-f3d9-459b-b204-b00bd31c981f
+curl -XGET http://apibase.au.ngrok.io/recipe/f95c28be-f3d9-459b-b204-b00bd31c981f
 ```
 
 > Successful request returns a [Recipe object](#recipe):
@@ -180,7 +180,7 @@ This endpoint retrieves a Recipe.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/recipes/{id}`
+`GET http://apibase.au.ngrok.io/recipes/{id}`
 
 ### Parameters
 
@@ -204,7 +204,7 @@ Code | Reason | Message
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f/run
+curl -XPOST http://apibase.au.ngrok.io/recipes/f95c28be-f3d9-459b-b204-b00bd31c981f/run
 	-H 'Content-Type: application/json'
 	-d '{
 		"parameters": {
@@ -233,7 +233,7 @@ This endpoint executes a Recipe.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/recipes/{id}/run`
+`POST http://apibase.au.ngrok.io/recipes/{id}/run`
 
 ### Parameters
 

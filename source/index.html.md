@@ -214,11 +214,50 @@ Property | Type | Description
 \*title | string | Title of the URL
 \*url | string | URL of the webpage
 
+## Import an API via Swagger(v2, or OpenAPI v2)
+
+```shell
+# swagger.json is the json file (utf-8 encoded)
+curl -XPOST http://apibase.au.ngrok.io/import/swaggerv2.json -Ffile=@swagger.json
+```
+
+> Successful requst returns the following response
+
+```json
+{
+	"message": "importing 18 operations...",
+	"id": "<id_of_api>"
+}
+```
+
+This endpoint imports an API from OpenAPI documentation format v2, formerly known as Swagger v2. 
+
+### HTTP Request
+
+`POST http://apibase.au.ngrok.io/import/swaggerv2.json`
+
+### Parameters
+Form Data `file`, A Swagger documentation JSON object.
+
+### Response
+Property | Description
+--- | ---
+message | `importing # operations`
+id | ID of the API object to be created
+
+### Errors
+Possible error codes and reasons:
+
+Code | Reason | Message
+--- | --- | ---
+400 | the swagger document provided is invalid or is not a valid JSON | invalid parameter
+
+
 ## Add an API
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/apis
+curl -XPOST http://apibase.au.ngrok.io/apis
 	-H 'Content-Type: application/json'
 	-d '{
 	  "name": "Github",
@@ -249,7 +288,7 @@ This endpoint adds an API entity to APIBase.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/apis`
+`POST http://apibase.au.ngrok.io/apis`
 
 ### Parameters
 An [API](#api) Object.
@@ -270,7 +309,7 @@ Code | Reason | Message
 
 ## Retrieve information of an API
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
+curl -XGET http://apibase.au.ngrok.io/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4
 ```
 
 > Successful request returns an API object:
@@ -297,7 +336,7 @@ This endpoint retrieves an API.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}`
+`GET http://apibase.au.ngrok.io/apis/{id}`
 
 ### Parameters
 
@@ -327,7 +366,7 @@ Code | Reason | Message
 ```shell
 #
 curl -XPOST -H 'Content-Type: application/json' \
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/methods -d '{
+http://apibase.au.ngrok.io/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/methods -d '{
   "name": "GetGist”,
   "method": "POST",
   "path": "/gist/{gistId}",
@@ -349,7 +388,7 @@ This endpoint adds a Method entity to an API.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/methods`
+`POST http://apibase.au.ngrok.io/apis/{id}/methods`
 
 ### Parameters
 
@@ -372,7 +411,7 @@ Code | Reason | Message
 ## Retrieve information of a Method
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c
+curl -XGET http://apibase.au.ngrok.io/methods/99d64f8e-eace-417d-8cea-511621aaf57c
 ```
 > Successful request returns an [Method object](#method):
 
@@ -397,7 +436,7 @@ This endpoint retrieves a Method.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}`
+`GET http://apibase.au.ngrok.io/methods/{id}`
 
 ### Parameters
 
@@ -428,7 +467,7 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/parameters -d '{
+http://apibase.au.ngrok.io/methods/99d64f8e-eace-417d-8cea-511621aaf57c/parameters -d '{
   "name": "gistId",
   "location": "path",
   "type": "string",
@@ -455,7 +494,7 @@ This endpoint adds a Parameter entity to a Method.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/parameters`
+`POST http://apibase.au.ngrok.io/methods/{id}/parameters`
 
 ### Parameters
 A [Parameter](#parameter) Object.
@@ -478,7 +517,7 @@ Code | Reason | Message
 ## Retrieve information of a Parameter
 
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/parameters/d74c24e6-9451-41f6-93be-afdfc20a7f4c
+curl -XGET http://apibase.au.ngrok.io/parameters/d74c24e6-9451-41f6-93be-afdfc20a7f4c
 ```
 
 > Successful request returns an [Parameter object](#parameter):
@@ -497,7 +536,7 @@ This endpoint retrieves an Parameter.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/parameters/{id}`
+`GET http://apibase.au.ngrok.io/parameters/{id}`
 
 ### Parameters
 
@@ -521,7 +560,7 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/methods/99d64f8e-eace-417d-8cea-511621aaf57c/invoke -d '{
+http://apibase.au.ngrok.io/methods/99d64f8e-eace-417d-8cea-511621aaf57c/invoke -d '{
 	"params": {
 		"id": "freehaha"
 	}
@@ -556,7 +595,7 @@ This endpoint invokes a Method, sending a HTTP request to the API and then retur
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/invoke`
+`POST http://apibase.au.ngrok.io/methods/{id}/invoke`
 
 ### Parameters
 
@@ -585,7 +624,7 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d '{
+http://apibase.au.ngrok.io/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts -d '{
 	"artifactType": "YoutubeVideo",
 	"description": "Github Universe 2017 event video",
 	"data": {
@@ -609,7 +648,7 @@ This endpoint adds an Artifact to an API.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/apis/{id}/artifacts`
+`POST http://apibase.au.ngrok.io/apis/{id}/artifacts`
 
 ### Parameters
 An [Artifact](#artifact) Object.
@@ -632,7 +671,7 @@ Code | Reason | Message
 
 ## Retrieve information of an Artifact
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/artifacts/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
+curl -XGET http://apibase.au.ngrok.io/artifacts/6d5dd456-3b04-4590-b51a-c5094c6a5cd7
 ```
 
 > Successful request returns an Artifact object:
@@ -655,7 +694,7 @@ the entity the artifact is added to.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/artifacts/{id}`
+`GET http://apibase.au.ngrok.io/artifacts/{id}`
 
 ### Parameters
 
@@ -682,7 +721,7 @@ Code | Reason | Message
 
 ## List artifacts of an API
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
+curl -XGET http://apibase.au.ngrok.io/apis/ee1db224-3331-4b8a-bc11-8839b4e5d6b4/artifacts
 ```
 
 > Successful request returns a list of ID of artifacts:
@@ -698,7 +737,7 @@ This endpoint retrieves an array of Artifacts that are associated with the API.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/apis/{id}/artifacts`
+`GET http://apibase.au.ngrok.io/apis/{id}/artifacts`
 
 ### Parameters
 
@@ -723,7 +762,7 @@ Code | Reason | Message
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts -d '{
+http://apibase.au.ngrok.io/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts -d '{
 	"artifactType": "InvokeExample",
 	"description": "an example to retrieve gist from the user 'freehaha'"
 	"data": {
@@ -749,7 +788,7 @@ This endpoint adds an Artifact to a Method.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/methods/{id}/artifacts`
+`POST http://apibase.au.ngrok.io/methods/{id}/artifacts`
 
 ### Parameters
 An [Artifact](#artifact) Object.
@@ -772,7 +811,7 @@ Code | Reason | Message
 
 ## List artifacts of a Method
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts
+curl -XGET http://apibase.au.ngrok.io/methods/9446bdf1-da5a-4096-98bc-47cfa8c15157/artifacts
 ```
 
 > Successful request returns a list of ID of artifacts:
@@ -791,7 +830,7 @@ This endpoint retrieves an array of Artifacts that are associated with the Metho
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/methods/{id}/artifacts`
+`GET http://apibase.au.ngrok.io/methods/{id}/artifacts`
 
 ### Parameters
 

@@ -4,14 +4,14 @@
 
 ```shell
 # search for API with the 'Github' keyword
-curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=Github&type=API'
+curl -XGET 'http://apibase.au.ngrok.io/entities/search?q=Github&type=API'
 ```
 
 > if you want to specify a particular field to search, use `field:` syntax
 
 ```shell
 # search for APIs that have 'music' in their description
-curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/search?q=description:music&type=API'
+curl -XGET 'http://apibase.au.ngrok.io/entities/search?q=description:music&type=API'
 ```
 
 > example result for APIs that have 'music' in their description
@@ -52,7 +52,7 @@ more results, use the `page` query parameter.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/entities/search`
+`GET http://apibase.au.ngrok.io/entities/search`
 
 ### Query Parameters
 Parameter | Type | Example | Description
@@ -73,7 +73,7 @@ N/A
 ## Retrieving arbitrary entity
 
 ```shell
-curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/b1c73190-553e-4453-a672-394e83feb417'
+curl -XGET 'http://apibase.au.ngrok.io/entities/b1c73190-553e-4453-a672-394e83feb417'
 ```
 
 > successful request returns the entity:
@@ -112,7 +112,7 @@ entities will also be retrieved. To change this behavior, use the `brief=true` q
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}`
+`GET http://apibase.au.ngrok.io/entities/{id}`
 
 ### Parameters
 
@@ -146,7 +146,7 @@ Code | Reason | Message
 ## Display Entity
 
 ```shell
-curl -XGET 'http://johnsd.cse.unsw.edu.au:3000/entities/b1c73190-553e-4453-a672-394e83feb417/display'
+curl -XGET 'http://apibase.au.ngrok.io/entities/b1c73190-553e-4453-a672-394e83feb417/display'
 ```
 > successful request returns the entity:
 
@@ -185,7 +185,7 @@ return the result instead.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/entities/{id}/display`
+`GET http://apibase.au.ngrok.io/entities/{id}/display`
 
 ### Parameters
 

@@ -47,7 +47,7 @@ tags | [ string ] | An array of string to tag the Widget. This is only used for 
 
 ```shell
 # Make sure the `Content-Type` is set correctly
-curl -XPOST http://johnsd.cse.unsw.edu.au:3000/widgets
+curl -XPOST http://apibase.au.ngrok.io/widgets
 	-H 'Content-Type: application/json'
 	-d '{
 		"name": "gist-element",
@@ -79,7 +79,7 @@ This endpoint adds a Widget entity to APIBase.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/widgets`
+`POST http://apibase.au.ngrok.io/widgets`
 
 ### Parameters
 A [Widget](#widget) Object.
@@ -100,7 +100,7 @@ Code | Reason | Message
 
 ## Retrieve information of a Widget
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba
+curl -XGET http://apibase.au.ngrok.io/widgets/f3b8bd9a-b524-4b5e-b9e2-55b4366e58ba
 ```
 
 > Successful request returns a [Widget object](#widget):
@@ -142,7 +142,7 @@ This endpoint retrieves a Widget.
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}`
+`GET http://apibase.au.ngrok.io/widgets/{id}`
 
 ### Parameters
 
@@ -172,7 +172,7 @@ This endpoint is an iframe API to render a Widget. To use the endpoint, one must
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/render?{parameter}={value}`
+`GET http://apibase.au.ngrok.io/widgets/{id}/render?{parameter}={value}`
 
 ### Query Parameters
 
@@ -195,7 +195,7 @@ Below is an example rendering the iris-data-set using the google-chart Widget.  
 
 ```shell
 curl -XPOST -H 'Content-Type: application/json'
-http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts -d '{
+http://apibase.au.ngrok.io/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts -d '{
 	"artifactType": "YoutubeVideo",
 	"description": "Basic tutorial for Github in Mac and Windows",
 	"data": {
@@ -219,7 +219,7 @@ This endpoint adds an Artifact to a Widget.
 
 ### HTTP Request
 
-`POST http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/artifacts`
+`POST http://apibase.au.ngrok.io/widgets/{id}/artifacts`
 
 ### Parameters
 An [Artifact](#artifact) Object.
@@ -242,7 +242,7 @@ Code | Reason | Message
 
 ## List artifacts of a Widget
 ```shell
-curl -XGET http://johnsd.cse.unsw.edu.au:3000/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts
+curl -XGET http://apibase.au.ngrok.io/widgets/9a038994-16c2-4d2a-bb79-e6c8261d0cd4/artifacts
 ```
 
 > Successful request returns a list of ID of artifacts:
@@ -258,7 +258,7 @@ This endpoint retrieves an array of Artifacts that are associated with the Widge
 
 ### HTTP Request
 
-`GET http://johnsd.cse.unsw.edu.au:3000/widgets/{id}/artifacts`
+`GET http://apibase.au.ngrok.io/widgets/{id}/artifacts`
 
 ### Parameters
 
